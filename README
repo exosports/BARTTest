@@ -1,0 +1,592 @@
+===============================================================================
+
+This is BARTTest, the collection of tests for radiative-transfer codes. It is 
+configured by default to test BART, the Bayesian Atmospheric Radiative Transfer 
+code. After executing the tests on an RT code that has not yet been verified by
+BARTTest, please submit the results as a pull request on Github to be formally 
+added to the test suite.
+
+BARTTest can be found at https://github.com/exosports/BARTTest
+
+Authors:                Michael D. Himes, Joseph Harrington, 
+                        Jasmina Blecic, Patricio E. Cubillos, Ryan C. Challener
+
+Test-case Contributors: Ian Dobbs-Dixon
+
+Contact: For general questions about BART or BARTTest, email 
+            bart-user@planets.ucf.edu
+         or
+            bart-devel@planets.ucf.edu
+         depending on the nature of the question. BART-user handles general 
+         usage questions and suggestions, while BART-devel handles 
+         contributions, data, technical discussions, and the like. 
+         Note: these mailing lists require a simple registration to prevent
+         spam. You may sign up for each at the following links:
+            https://physics.ucf.edu/mailman/listinfo/bart-user
+            https://physics.ucf.edu/mailman/listinfo/bart-devel
+
+         For questions or issues specific to BARTTest, users may also contact 
+         the lead author at 
+            mhimes@knights.ucf.edu 
+         This may result in faster response times, though typically it will be 
+         equal to the response time to emails sent to the above mailing lists.
+
+===============================================================================
+
+Revision history
+
+2017-07-17      mhimes              Original version. TOC, sections 1 and 2, 
+                                    and subsections 2.1 - 2.7
+2017-08-02      mhimes              Added section 2.8
+2017-09-04      mhimes              Added section 0, updated section 1
+2017-10-23      mhimes              Cleanup for release-ready version
+
+===============================================================================
+
+----------
+|Contents|
+----------
+[0] Getting started
+[1] Executing the tests
+[2] Descriptions of files and directories in top-level directory
+[3] Descriptions of tests and files in each test subdirectory
+    [3.00] inputs
+    [3.01] oneline
+    [3.02] fewline
+    [3.03] multiline
+    [3.04] broadening
+    [3.05] abundance
+    [3.06] blending
+    [3.07] multicia
+    [3.08] isothermal
+    [3.09] comparison
+    [3.10] retrievals
+           [3.10.1] isothermal
+           [3.10.2] noninverted
+           [3.10.3] inverted
+[4] How to use this software to test RT code
+
+Note that the user may search this document by a directory name in BARTTest to 
+find out more about it (00inputs/ or 01oneline/ for example).
+
+===============================================================================
+
+[0] Getting started
+
+Welcome to BARTTest. This section details the general layout of the package 
+and how to run it.
+
+The directory hierarchy is as follows:
+BARTTest/
+- code-output/
+- doc/
+- lib/
+- LICENSE
+- Makefile
+- README
+- results/
+- tests/
+  - 00inputs/
+  - 01oneline/
+  - 02fewline/
+  - 03multiline/
+  - 04broadening/
+  - 05abundance/
+  - 06blending/
+  - 07multicia/
+  - 08isothermal/
+  - 09comparison/
+  - 10retrievals/
+
+Excluding the Makefile (see section [1]), each of these will be explained in 
+greater detail in the BARTTest User Manual, located at 
+BARTTest/doc/BARTTest-User-Manual.pdf
+
+Some notes:
+- If the user already has line lists downloaded, storage requirements are 
+  on the order of 100 MB. 
+- If the user does not have line lists already downloaded, it will take 
+  longer to run the tests in full and will use gigabytes (on the order of 
+  15 GB) of storage space. 
+  Make sure to have adequate storage space before downloading line lists!
+- If storage space is an issue, there is an option to run only tests 1 - 7. 
+  This eliminates the need to download line lists.
+
+===============================================================================
+
+[1] Executing the tests
+
+
+The user has a number of ways to run the tests depending on where they are at 
+in the process. The general process is as follows:
+ * Pull BART from Github and compile (to run BARTTest for BART)
+ * Pull line lists from the HITRAN website (note: necessary for isothermal test)
+ * Run the tests
+ * Produce plots of the results
+
+These are the built-in methods of executing BARTTest. If the user wishes to 
+run the package in some other manner, it is up to them to configure it as such.
+
+For all of the following cases, commands must be issued in the BARTTest/ 
+directory in order to work. These options should cover the vast majority of 
+desired methods of executing the tests.
+
+
+For a complete run of BARTTest using BART (including downloading line lists), 
+type
+    make all
+into the terminal. This executes all of the above steps.
+NOTE: This requires a lot of hard drive space (~15 GB) as this downloads HITRAN 
+      line lists to be used in the isothermal test.
+NOTE: This will take a lot of time. Most users do not want to execute BARTTest 
+      in this manner. If you use this command, be very sure that you actually 
+      want to execute the tests in this manner!
+
+
+If you already have line lists, you may bypass that part of the program. Type
+    make some
+into the terminal. This will pull BART and compile, run the tests, and make 
+the plots. Note that any set of line lists may be used; BARTTest/isothermal/ 
+is configured by default to use certain line lists. If using different line 
+lists, be sure to edit BARTTest/isothermal/pyline_isothermal.cfg with the 
+correct paths to your line lists. Note also that Transit's Pylineread module 
+is only configured to work with certain line lists; see the Transit User Manual 
+for more information: https://planets.ucf.edu/bart-docs/transit_user_manual.pdf
+
+
+If you already have line lists and BART, type
+    make tests_plusiso
+into the terminal. This will execute all of the tests, including the isothermal 
+test, and produce plots. Be sure that the directory for BART is parallel to the 
+BARTTest/ directory (that is, BARTTest/../BART/), and be sure to edit the paths 
+in BARTTest/isothermal/pyline_isothermal.cfg to properly match the location of 
+your line lists. Also ensure that the BART directory is exactly named "BART", 
+or change all of the paths/to/BART in the Makefile and configuration files in 
+each test directory.
+
+
+If you already have BART wish to execute all of the tests except the 
+isothermal test, type
+    make tests_noiso
+into the terminal. This will execute all of the tests except the isothermal 
+test and produce plots of the results.
+
+
+If you wish to only produce the plots (i.e., re-making the plots after 
+re-running the tests), type 
+    make plots
+into the terminal. This will produce the plots for all of the tests that have 
+been completed. Note that this does not include the comparison plot in 
+broadening/ as that is handled by its own file, broadening/voigtcomp.py.
+
+
+If you wish to run a specific test, type 
+    make <testname>
+into the terminal, where <testname> is the name of the test without its 
+identifying number (i.e., multiline, broadening, isothermal, ...).
+
+===============================================================================
+
+[2] Descriptions of files and directories in top-level directory
+
+This section describes the files and subdirectories in the RTS package.
+It also makes note of some useful files in subdirectories.
+The tests subdirectory is described in greater detail in section [3].
+
+
+FILES:
+LICENSE
+      - Reproducible Research Software License. It requires, among other things,
+        that modified versions of this package must also be open source.
+
+Makefile
+      - This file handles the setup of the package and executes the various 
+        tests. Section [1] details the various methods of executing the tests.
+
+README
+      - The file you are currently reading! Describes the contents of the 
+        BARTTest package.
+
+
+SUBDIRECTORIES:
+code-output/
+      - Contains the output of each RT that has executed the tests.
+      - Naming convention is, i.e., 01BART, 02<code>, 03<code>...
+        - Numbering is assigned at the time a code's test results are submitted
+
+doc/
+      - Contains the BARTTest User Manual (BARTTest-User-Manual.pdf).
+
+lib/
+      - Contains functions and scripts used by BARTTest, such as for the 
+        abundance test, broadening test, and producing plots.
+      - makeplots.py can be easily configured by the user to produce plots for 
+        their RT code as long as it is formatted exactly the same as the output 
+        from BART/Transit and located at BARTTest/code-output/__code/. Simply 
+        change 
+            odir = '../code-output/01BART/'
+            rdir = '../results/01BART/'
+        to
+            odir = '../code-output/__code/'
+            rdir = '../results/__code/'
+        in the file (BARTTest/lib/makeplots.py).
+
+results/
+      - Contains the plotted results of code-output/__code/ and comparisons of 
+        the 09comparison test with other codes.
+      - Follows the naming convention of code-output/
+
+tests/
+      - Contains the tests of RT code. For more detail, see section [3] below.
+
+===============================================================================
+
+[3] Descriptions of tests and files in each test subdirectory
+
+This section describes the files in each test subdirectory. All directories and 
+files are given with respect to BARTTest/tests/
+
+[3.00] inputs (00inputs/)
+DESCRIPTION
+  - Contains input files used for Transit (the radiative transfer package of 
+    BART) to execute the tests.
+  - Defines new (fake) molecules used in the tests:
+        CG1, similar to H2
+        CG2, similar to He
+        CG3, similar to N2
+        LG1, similar to H2O
+        LG2, similar to CH4
+        LG3, similar to CO
+        LG4, similar to CO2
+      - Note that due to the similarity between these molecules, the user may 
+        use the real molecule in place of the fake one as far as calculations 
+        are concerned. It is important to note that the lines used in these 
+        tests are often fake transition lines, so it would not be correct to 
+        refer to it as i.e., a CO2 line if the LG4 line is fake.
+
+FILES
+  - CIA_CG1CG1_400-7000K.dat
+      - An opacity table for collision-induced absorptions between CG1 (an 
+        H2-like fake molecule) molecules.
+  - CIA_HITRAN_H2He_0200-9900K_0.5-500um.dat
+      - An opacity table for collision-induced absorptions between H2 and He
+        molecules.
+  - litran.dat
+      - A modified version of the HITRAN definitions file used by the pylineread
+        module (reads line lists to build a file of line transitions) of 
+        Transit (the radiative transfer module of BART). This is to allow for 
+        fake molecules to be used in model atmospheres.
+  - molecules.dat
+      - A modified version of the molecule definitions file used by Transit. 
+        This is to allow for fake molecules to be used in model atmospheres.
+
+SUBDIRECTORIES
+  - par/
+      - Contains short line lists for each test in HITRAN format.
+      - Naming convention is <test>.par (some tests use the same line list).
+      - Also contains text files of URLs to HITRAN line lists to be used for 
+        downloading full line lists for the isothermal test if desired.
+  - TLI/
+      - Contains the Transition Line Information files produced by pylineread 
+        to be used by Transit.
+      - Naming convention is <test>_<wavelength range>.tli
+
+
+[3.01] oneline (01oneline/)
+DESCRIPTION
+  - One molecule, one layer, one line test.
+  - One layer of LG2 (Line Gas 2, a methane-like fake molecule), one LG2 line 
+    at ~2.28 um. Only eclipse geometry.
+
+FILES
+  - 01oneline_emission.cfg
+      - Configuration file for Transit. Produces emission spectrum.
+  - oneline.atm
+      - Atmospheric model used by Transit.
+  - pyline_oneline.cfg
+      - Configuration file for pylineread. Creates TLI file.
+
+
+[3.02] fewline (02fewline/)
+DESCRIPTION
+  - One molecule, one layer, three line test.
+  - Same as oneline, but with two more LG2 lines added at ~2.15 & ~3.2 um.
+  - Eclipse and transit geometries.
+
+FILES
+  - 02fewline_emission.cfg
+      - Configuration file for Transit. Produces emission spectrum.
+  - 02fewline_transmission.cfg
+      - Configuration file for Transit. Produces transmission spectrum.
+  - fewline.atm
+      - Atmospheric model used by Transit.
+  - pyline_fewline.cfg
+      - Configuration file for pylineread. Creates TLI file.
+
+
+[3.03] multiline (03multiline/)
+DESCRIPTION
+  - Three molecules, one layer each, three lines each.
+  - One layer of pure LG2, one layer of pure LG3 (a CO-like fake molecule), 
+    one layer of pure LG4 (a CO2-like fake molecule). 
+  - All other layers have uniform composition of pure CG1 (a H2-like fake 
+    molecule). Note that there are no CIAs involved in this test.
+  - Three lines per molecule:
+        LG2 lines are the same as fewline, 
+        LG3 lines are at ~2.38, 2.50, 2.54 um, and 
+        LG4 lines are at ~2.86, 3.02, 3.78 um.
+  - Eclipse and transit geometries.
+
+FILES
+  - 03multiline_emission.cfg
+      - Configuration file for Transit. Produces emission spectrum.
+  - 03multiline_transmission.cfg
+      - Configuration file for Transit. Produces transmission spectrum.
+  - multiline.atm
+      - Atmospheric model used by Transit.
+  - pyline_multiline.cfg
+      - Configuration file for pylineread. Creates TLI file.
+
+
+[3.04] broadening (04broadening/)
+DESCRIPTION
+  - Tests the accuracy of the Voigt profile corresponding to the  
+    Doppler and Lorentz HWHM used in Transit. This ensures broadening is 
+    properly calculated.
+  - Uses a setup similar to oneline (one layer of LG2, one line of LG2).
+  - The resulting opacity spectrum is compared to the theoretical Voigt 
+    profile corresponding to the properties of LG2 (identical to methane) and 
+    the layer in the atmosphere (pressure, temperature).
+      - The opacity spectrum and the theoretical Voigt profile are both 
+        normalized to avoid calculating the proportionality constant. The 
+        test is of the shape of the line, not the depth.
+
+FILES
+  - 04broadening.cfg
+      - Configuration file for Transit. Produces emission spectrum.
+  - broadening.atm
+      - Atmospheric model used by Transit.
+  - pyline_broadening.cfg
+      - Configuration file for pylineread. Creates TLI file.
+
+
+[3.05] abundance (05abundance/)
+DESCRIPTION
+  - This test uses the LG2 line from oneline, except that the abundance of 
+    LG2 is varied from 1e-4 to 1e-3 in steps of 1e-4. One run has no LG2 
+    line and is used as a baseline comparison (flux value without the line 
+    present). The line depths are compared to each other to retrieve the 
+    factor difference in abundance.
+  - The atmosphere is optically thin, so the expected result is that by 
+    doubling the abundance of the line-producing gas, the line depth will 
+    be roughly doubled (and similarly for any factor change in abundance).
+  - All cases are in eclipse geometry.
+
+FILES
+  - 05abundance_*.cfg
+      - Configuration files for Transit. * ranges from `1e-4` to `1e-3` in steps
+        of 1e-4, as well as `linemoved` for the case of no line. Each produces 
+        an emission spectrum.
+  - pyline_abundance_*.cfg
+      - Configuration file for pylineread. * includes `line` and `linemoved` for
+        the case of having a line or not. Creates TLI files for each.
+  - README
+      - Provides a description of the test and brief discussion of the 
+        analytical result.
+
+SUBDIRECTORIES
+  - atm/
+      - Contains the atmospheric models for each case of some abundance.
+      - Naming convention is *_uniform.atm, where * ranges from `1e-4` to 
+        `1e-3` in steps of 1e-4.
+
+
+[3.06] blending (06blending/)
+DESCRIPTION
+
+FILES
+  - 06blending_emission.cfg
+      - Configuration file for Transit. Produces emission spectrum.
+  - blending.atm
+      - Atmospheric model.
+  - pyline_blending.cfg
+      - Configuration file for pylineread.
+
+
+[3.07] multicia (07multicia/)
+DESCRIPTION
+  - Transit is executed for three cases: that of no CIA file, one CIA 
+    file (H2-He CIAs), and two CIA files (H2-H2 and H2-He CIAs).
+      - Note: Transit uses an opacity table for CIAs; this test is to ensure 
+        that many can be specified. Other codes may handle this differently 
+        and thus 
+  - Eclipse geometry.
+
+FILES
+  - 07multicia_noCIA.cfg
+      - Configuration file for Transit. Contains no CIAs. Emission.
+  - 07multicia_oneCIA.cfg
+      - Configuration file for Transit. Contains H2-He CIAs. Emission.
+  - 07multicia_twoCIA.cfg
+      - Configuration file for Transit. Contains H2-H2 and H2-He CIAs. Emission.
+  - multicia.atm
+      - Atmospheric model.
+  - pyline_multicia.cfg
+      - Configuration file for pylineread. Note that no line appears in the 
+        resulting spectra.
+
+
+[3.08] isothermal (08isothermal/)
+DESCRIPTION
+  - Isothermal atmosphere with many molecules and a full line list.
+  - Eclipse geometry.
+  - IMPORTANT NOTE: Line lists used to generate the TLI file are NOT 
+        supplied due to file sizes. Make sure to edit the 
+        pylineread configuration file to point to line list databases if 
+        not using the default method of execution. To download the line lists 
+        that this is configured for by default, see Section [1] for more 
+        information. Downloading the line lists will take a considerable 
+        amount of time.
+FILES
+  - 08isothermal_emission.cfg
+      - Configfuration file for Transit. Produces emission spectrum.
+  - isothermal.atm
+      - Atmospheric model.
+  - pyline_isothermal.cfg
+      - Configuration file for pylineread. Produces a TLI file for complete 
+        line lists for multiple molecules.
+          - The line lists are not supplied with the code. If the user wishes 
+            to run this, they must either change the paths to point the line 
+            lists on their machine or download the line lists. To download 
+            the set of HITRAN line lists that this file is configured to work 
+            with by default, see section [1]. Note that this requires a lot of 
+            hard drive space, so ensure that there is adequate space available.
+          - This can take a long time!
+
+
+[3.09] comparison (09comparison/)
+DESCRIPTION
+  - A realistic forward model is generated for an HD 189733b-like planet for 
+    three different PT profiles: isothermal, non-inverted, and inverted. 
+      - Each contains H, He, C, N, O, H2, CO, CO2, CH4, H2O, N2, HCN, and NH3.
+          - Line lists only cover CH4, CO, CO2, H2O, NH3, and H2. H2-H2 and 
+            H2-He CIAs are also included.
+              - These were selected for compatibility with most line lists and 
+                opacity tables in use.
+          - It is important to emphasize that line lists are not used for some 
+            of these molecules (such as HCN), so they are acting like inert 
+            gases in the atmosphere.
+
+FILES
+  - 09inv_emission.cfg
+      - Configuration file for Transit for the case of an inverted atmosphere
+        in eclipse geometry.
+  - 09inv_transmission.cfg
+      - Configuration file for Transit for the case of an inverted atmosphere
+        in transit geometry.
+  - 09iso_emission.cfg
+      - Configuration file for Transit for the case of an isothermal atmosphere
+        in eclipse geometry.
+  - 09iso_transmission.cfg
+      - Configuration file for Transit for the case of an isothermal atmosphere
+        in transit geometry.
+  - 09noinv_emission.cfg
+      - Configuration file for Transit for the case of a non-inverted atmosphere
+        in eclipse geometry.
+  - 09noinv_transmission.cfg
+      - Configuration file for Transit for the case of a non-inverted atmosphere
+        in transit geometry.
+  - inv.tea
+      - Atmospheric model for inverted atmosphere.
+  - iso.tea
+      - Atmospheric model for isothermal atmosphere.
+  - noinv.tea
+      - Atmospheric model for non-inverted atmosphere.
+  - pyline_comparison.cfg
+      - Configuration file for pylineread. Note that it will not work as 
+        BARTTest is not configured to do that; the user may download line lists 
+        to make it work if they wish. These files are mainly provided for 
+        reference so that the user can see the exact setup.
+
+SUBDIRECTORIES
+  - visuals/
+      - Contains plots of the PT and abundance profiles for each atmospheric 
+        model.
+
+
+[3.10] retrievals
+DESCRIPTION
+  - Some RT codes can perform retrievals given some eclipse or transit depths 
+    and errors associated with some wavelength filters. These codes seek a 
+    forward model that best matches the eclipse or transit depths for the 
+    filters supplied.
+  - This test uses the atmospheric models from the comparison test. The 
+    forward models were used to compute eclipse and transit depths for 81 
+    high-resolution filters spanning 1 to 5 microns. Uncertainties were 
+    computed using a JWST-like telescope and assuming all noise is due to 
+    photon noise.
+      - This should ensure that retrieval codes yield similar results; 
+        best-fit parameters should match within 3 sigma.
+  - NOTE: The BART configuration files are supplied so one could run the 
+    retrieval. However, it takes a long time to run a retrieval, so it is 
+    not recommended for users to run it in general. See the BART User 
+    Manual for more information on running BART at 
+    https://planets.ucf.edu/bart-docs/BART_user_manual.pdf
+
+FILES
+  - 
+
+SUBDIRECTORIES
+  - filters/
+      - This has all of the filters used for the retrievals.
+      - Naming convention is ###.dat. ### ranges from 019 to 099.
+
+===============================================================================
+
+[4] How to use this software to test RT code
+
+BARTTest has been designed with one goal in mind: to provide verification 
+that an RT code works as it is intended. To do so, there are numerous tests 
+that are offered in the package (see section [3]). It is not necessary for 
+all tests to be executed for some RT code. Rather, the comparison test (see 
+section [3.09]) is the most important of these tests due to the realistic 
+setup, as this best reflects the real cases RT codes are used for. The more 
+codes that yield the same answer, the more confident we as a community can 
+be that our codes are all implementing the same mathematics, and thus the more 
+confident we can be in the results of our codes. If there are discrepancies 
+between the results of different codes, the simpler tests can be used to 
+locate the cause of the differing results.
+
+We would like you to contribute the results of your code (but not the code 
+itself) to BARTTest! This is by no means required though it is certainly 
+encouraged for the aforementioned reason.
+
+In order to contribute results, the user must run their RT code for the exact 
+same cases as those set up in BARTTest/tests/ and then format their code output 
+a specific way. The specific format and naming convention is, of course, the 
+format and naming convention that is adopted by BART. Rather than attempting 
+to explain this format, the user is encouraged to look at the output of BART 
+in BARTTest/code-output/01BART/. If the user does not wish to reformat the 
+output of their code to match this particular format, then they must include a 
+file (in BARTTest/code-output/__code/) to produce plots of the results of their 
+code (in BARTTest/results/__code/).
+
+Contributing results to BARTTest will follow a particular format. The 
+code-output/ and results/ directories will have subdirectories for each RT 
+code following a specific naming convention of __code/ (e.g., 01BART/). 
+__code/ is currently a subdirectory in these directories, and that is where 
+the user will put relevant files: the numerical output from their code goes 
+in BARTTest/code-output/__code/, and plots of the outputs goes in 
+BARTTest/results/__code/ (BARTTest/lib/makeplots.py can be easily configured 
+to do this if the output is in the same format as BART's output; see 
+section [2] for details). 
+
+The user can then submit a pull request on Github to have the results of 
+their code (NOT the RT code itself!) added to the repository. The user has 
+three choices for naming: replace 'code' in __code with a short name or 
+acronym for their code (e.g., BART), include a name/acronym in the pull 
+request on Github (e.g., title the pull request "BARTTest results for 
+<code>"), or leave it up to an author to name it. The number preceeding 
+the name/acronym (__ by default) will be decided by an author based on the 
+order the results are received.
+

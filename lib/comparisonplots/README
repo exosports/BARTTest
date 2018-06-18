@@ -1,0 +1,12 @@
+These files are used to produce plots comparing two codes' results for the 
+comparison test.
+
+comp.py:
+
+makeplots.py: 
+
+plotfuncs.py: Contains functions used by plotter.py
+
+plotter.py: Produces the plots located in BARTTest/tests/09comparison/visuals/
+
+
