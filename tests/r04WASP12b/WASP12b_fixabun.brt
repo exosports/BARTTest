@@ -200,7 +200,7 @@ verb = 1
 tconfig = config_transit.cfg
 
 # Transit line information (TLI) file:
-linedb = ../00inputs/TLI/H2O_CO2_CO_C2H2_H2_HCN_C2H6_06-11um.tli
+linedb = ../00inputs/TLI/CH4_H2O_CO2_CO_C2H2_H2_HCN_C2H6_075-11um.tli
 # Collision induced absorption file:
 csfile    = ../../../BART/modules/transit/inputs/CIA_H2H2_400-7000K.dat
             ../00inputs/CIA_HITRAN_H2He_0200-9900K_0.5-500um.dat

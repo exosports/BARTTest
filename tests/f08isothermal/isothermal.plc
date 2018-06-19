@@ -18,7 +18,7 @@
 
 
 # Path(s) to the database linelists:
-db_list  = db_list  = ../00inputs/par/06_hit08_f53.par
+db_list  = ../00inputs/par/06_hit12.par
 	   ../00inputs/par/01_1150-1300_HITEMP2010.par
 	   ../00inputs/par/01_1300-1500_HITEMP2010.par
 	   ../00inputs/par/01_1500-1750_HITEMP2010.par
