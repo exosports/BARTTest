@@ -47,7 +47,7 @@ hitran_linelists:
 	unzip '26_hit12.zip'                                                    &&\
 	unzip '27_hit12.zip'                                                    &&\
 	unzip '45_hit12.zip'                                                    &&\
-	@rm -f *.zip
+	rm -f *.zip
 	@echo "Finished retrieving HITRAN line lists.\n"
 
 oneline:
@@ -123,7 +123,6 @@ abundance:
 	   abundance_1e-3_emission.trc                                          &&\
 	../../../BART/modules/transit/transit/transit -c                          \
 	   abundance_noline_emission.trc
-	@cd lib/ && comparison.py
 	@echo "abundance test complete.\n"
 
 blending:
@@ -229,7 +228,7 @@ WASP12b_retrieval:
 
 plots:
 	@echo "Making plots..."
-	@cd lib/ && makeplots.py
+	@cd lib/ && ./makeplots.py
 	@echo "Plotting complete.\n"
 
 fin:

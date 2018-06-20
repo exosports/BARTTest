@@ -410,8 +410,6 @@ def main():
     By default, it is configured to do this for BART.
     To modify this for other RT codes, change `odir` and `rdir` below.
     """
-    print("Producing plots of spectra...")
-
     # Directory containing outputs from tests
     odir = '../code-output/01BART/'
     # Directory to save plots
@@ -483,13 +481,13 @@ def main():
 
     # multicia
     try:
-        plotspectrum(odir+'f07multicia/multicia_noCIA_emission_spectrum.dat', \ 
+        plotspectrum(odir+'f07multicia/noCIA_emission_spectrum.dat', \
                      'eclipse',                                               \
                      oname=rdir+'f07multicia_noCIA_emission_spectrum.png')
-        plotspectrum(odir+'f07multicia/multicia_oneCIA_emission_spectrum.dat',\
+        plotspectrum(odir+'f07multicia/oneCIA_emission_spectrum.dat',\
                      'eclipse',                                               \
                      oname=rdir+'f07multicia_oneCIA_emission_spectrum.png')
-        plotspectrum(odir+'f07multicia/multicia_twoCIA_emission_spectrum.dat',\
+        plotspectrum(odir+'f07multicia/twoCIA_emission_spectrum.dat',\
                      'eclipse',                                               \
                      oname=rdir+'f07multicia_twoCIA_emission_spectrum.png')
     except:
