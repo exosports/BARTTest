@@ -513,7 +513,7 @@ are included for H\sb{2}-H\sb{2} and H\sb{2}-He.\\
 
 Files in f09comparison/:
 \begin{itemize} \itemsep0pt
-  \item comparison.plc: Configuration file for pylineread. Creates 
+  \item comparison.plc: Configuration file for Pylineread. Creates 
         line list input file for Transit. Note: requires line lists. See 
         Section \ref{sec:commands} for information on downloading line lists if 
         the user wishes to download them. Be aware that this will take some 
@@ -627,20 +627,23 @@ spectroscopic observations of the
 dayside emission of WASP-12b to perform a retrieval of atmospheric parameters 
 and abundances. Data from the following publications are used:
 \begin{itemize} \itemsep0pt
-  \item 
-  \item 
-  \item 
-  \item 
+  \item Lopez-Morales et al. 2010, "Day-side z'-bad Emission and Eccentricity of WASP-12b"
+  \item Croll et al. 2011, "Near-infrared Thermal Emission from WASP-12b: Detections of the Secondary Eclipse in Ks, H, and J"
+  \item Crossfield et al. 2012, "Re-evaluating WASP-12b: Strong Emission at 2.315 um, Deeper Occultations, and an Isothermal Atmosphere"
+  \item Stevenson et al. 2014, "Deciphering the Atmospheric Composition of WASP-12b: A Comprehensive Analysis of its Dayside Emission"
 \end{itemize}
 
 Files in r04WASP12b/:
 \begin{itemize} \itemsep0pt
-  \item 
-  \item 
+  \item WASP12b.brt: Configuration file for BART.
+  \item WASP12b.plc: Configuration file for Pylineread. Creates 
+        line list input file for Transit. Note: requires line lists. See 
+        Section \ref{sec:commands} for information on downloading line lists if 
+        the user wishes to download them. Be aware that this will take some 
+        time and will use {\sim}15 GB of storage.
   \item 
   \item 
 \end{itemize}
-
 
 \section{Example}
 \label{sec:example}

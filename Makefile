@@ -1,4 +1,4 @@
-.PHONY: all some tests_noiso test_plusiso comparison synthretrievals WASP12b bart oneline fewline multiline abundance broadening blending multicia isothermal comparison_tli comparison_iso comparison_noinv comparison_inv retrieval_iso retrieval_noinv retrieval_inv WASP12b_tli WASP12b_retrieval plots fin clean
+.PHONY: all some tests_noiso test_plusiso comparison synthretrievals WASP12b bart bart_LineEtal oneline fewline multiline abundance broadening blending multicia isothermal comparison_tli comparison_iso comparison_noinv comparison_inv retrieval_iso retrieval_noinv retrieval_inv WASP12b_tli WASP12b_retrieval WASP12b_LineEtal WASP12b_StevensonEtal plots fin clean
 
 forwardmodels: bart hitran_linelists oneline fewline multiline broadening abundance blending multicia isothermal comparison plots fin
 
@@ -23,6 +23,17 @@ bart:
 	@cd ../BART/modules/transit/ && make
 	@cd ../BART/modules/MCcubed/ && make
 	@echo "Finished compiling BART.\n"
+
+bart_LineEtal:
+	@echo "\nCloning BART_LineEtal..."
+	git clone --recursive https://github.com/exosports/BART ../BART_LineEtal/
+	@echo "Finished cloning BART_Line to a directory parallel to BARTTest.\n"
+	@echo "Compiling BART_LineEtal..."
+	@cp -f tests/00inputs/transit_LineEtal/*.c                                \
+	                              ../BART_LineEtal/modules/transit/transit/src/.
+	@cd ../BART_LineEtal/modules/transit/ && make
+	@cd ../BART_LineEtal/modules/MCcubed/ && make
+	@echo "Finished compiling BART_LineEtal.\n"
 
 hitran_linelists:
 	@echo "Downloading HITRAN line lists...\n"
@@ -225,6 +236,18 @@ WASP12b_retrieval:
 	@cd tests/r04WASP12b/                                                   &&\
 	../../../BART/BART.py -c WASP12b.brt
 	@echo "WASP-12b retrieval complete.\n"
+
+WASP12b_LineEtal:
+	@echo "Running retrieval, WASP-12b, Line et al. 2014 case: \n"
+	@cd tests/r04WASP12b/                                                   &&\
+	../../../BART_LineEtal/BART.py -c WASP12b_LineEtal2014.brt
+	@echo "WASP-12b Line et al. 2014 retrieval complete.\n"
+
+WASP12b_StevensonEtal:
+	@echo "Running retrieval, WASP-12b, Stevenson et al. 2014 case: \n"
+	@cd tests/r04WASP12b/                                                   &&\
+	../../../BART/BART.py -c WASP12b_StevensonEtal2014.brt
+	@echo "WASP-12b Stevenson et al. 2014 retrieval complete.\n"
 
 plots:
 	@echo "Making plots..."
