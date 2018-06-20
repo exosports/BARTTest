@@ -1,8 +1,6 @@
 .PHONY: all some tests_noiso test_plusiso comparison synthretrievals WASP12b bart bart_LineEtal oneline fewline multiline abundance broadening blending multicia isothermal comparison_tli comparison_iso comparison_noinv comparison_inv retrieval_iso retrieval_noinv retrieval_inv WASP12b_tli WASP12b_retrieval WASP12b_LineEtal WASP12b_StevensonEtal plots fin clean
 
-forwardmodels: bart hitran_linelists oneline fewline multiline broadening abundance blending multicia isothermal comparison plots fin
-
-some: bart oneline fewline multiline broadening abundance blending multicia plots fin
+forwardmodels: hitran_linelists oneline fewline multiline broadening abundance blending multicia isothermal comparison plots fin
 
 tests_noiso: oneline fewline multiline broadening abundance blending multicia plots fin
 
@@ -29,6 +27,7 @@ bart_LineEtal:
 	git clone --recursive https://github.com/exosports/BART ../BART_LineEtal/
 	@echo "Finished cloning BART_Line to a directory parallel to BARTTest.\n"
 	@echo "Compiling BART_LineEtal..."
+	@echo "Modifying transit's makesample.c and opacity.c..."
 	@cp -f tests/00inputs/transit_LineEtal/*.c                                \
 	                              ../BART_LineEtal/modules/transit/transit/src/.
 	@cd ../BART_LineEtal/modules/transit/ && make
