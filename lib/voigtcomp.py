@@ -18,8 +18,8 @@ def comp(molmass=16.04, press=3.3516e-01, temp=1442.58,
          dia=np.array([3.2e-8, 1.55e-8]), 
          wavenum=4368.350283, 
          atm=np.array([[0.0001, 18.01528],[0.9999, 14.0067]]), 
-         opacity='../tests/f04broadening/opacity.opt', ipress=35, itemp=9, 
-         imol=0, savename='../results/01BART/04voigt_comp'):
+         opacity='../code-output/01BART/f04broadening/broadening.opt', 
+         ipress=35, itemp=9, imol=0, savename='../results/01BART/04voigt_comp'):
     """
     molmass : float.  Molar mass of the molecule responsible for the spectral 
 					  line.
