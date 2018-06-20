@@ -1,4 +1,4 @@
-.PHONY: all some tests_noiso test_plusiso comparison synthretrievals WASP12b oneline fewline multiline abundance broadening blending multicia isothermal comparison_tli comparison_iso comparison_noinv comparison_inv retrieval_iso retrieval_noinv retrieval_inv WASP12b_tli WASP12b_retrieval plots fin clean
+.PHONY: all some tests_noiso test_plusiso comparison synthretrievals WASP12b init oneline fewline multiline abundance broadening blending multicia isothermal comparison_tli comparison_iso comparison_noinv comparison_inv retrieval_iso retrieval_noinv retrieval_inv WASP12b_tli WASP12b_retrieval plots fin clean
 
 all: bart hitran_linelists oneline fewline multiline broadening abundance blending multicia isothermal comparison plots fin
 
@@ -13,6 +13,7 @@ comparison: comparison_tli comparison_iso comparison_noinv comparison_inv fin
 synthretrievals: comparison_tli retrieval_iso retrieval_noinv retrieval_inv fin
 
 WASP12b: WASP12b_tli WASP12b_retrieval fin
+
 
 bart:
 	@echo "\nCloning BART..."
@@ -50,6 +51,7 @@ hitran_linelists:
 	@echo "Finished retrieving HITRAN line lists.\n"
 
 oneline:
+	@mkdir -p "code-output/01BART/f01oneline"
 	@echo "Running oneline test...\n"
 	@cd tests/f01oneline/                                                   &&\
 	../../../BART/modules/transit/pylineread/src/pylineread.py -c             \
@@ -58,6 +60,7 @@ oneline:
 	@echo "oneline test complete.\n"
 
 fewline:
+	@mkdir -p "code-output/01BART/f02fewline"
 	@echo "Running fewline test...\n"
 	@cd tests/f02fewline/                                                   &&\
 	../../../BART/modules/transit/pylineread/src/pylineread.py -c             \
@@ -69,6 +72,7 @@ fewline:
 	@echo "fewline test complete.\n"
 
 multiline:
+	@mkdir -p "code-output/01BART/f03multiline"
 	@echo "Running multiline test...\n"
 	@cd tests/f03multiline/                                                 &&\
 	../../../BART/modules/transit/pylineread/src/pylineread.py -c             \
@@ -80,6 +84,7 @@ multiline:
 	@echo "multiline test complete.\n"
 
 broadening:
+	@mkdir -p "code-output/01BART/f04broadening"
 	@echo "Running broadening test...\n"
 	@cd tests/f04broadening/                                                &&\
 	../../../BART/modules/transit/pylineread/src/pylineread.py -c             \
@@ -89,6 +94,7 @@ broadening:
 	@echo "broadening test complete.\n"
 
 abundance:
+	@mkdir -p "code-output/01BART/f05abundance"
 	@echo "Running abundance test...\n"
 	@cd tests/f05abundance/                                                 &&\
 	../../../BART/modules/transit/pylineread/src/pylineread.py -c             \
@@ -121,6 +127,7 @@ abundance:
 	@echo "abundance test complete.\n"
 
 blending:
+	@mkdir -p "code-output/01BART/f06blending"
 	@echo "Running blending test...\n"
 	@cd tests/f06blending/                                                  &&\
 	../../../BART/modules/transit/pylineread/src/pylineread.py -c             \
@@ -129,6 +136,7 @@ blending:
 	@echo "blending test complete.\n"
 
 multicia:
+	@mkdir -p "code-output/01BART/f07multicia"
 	@echo "Running multicia test...\n"
 	@cd tests/f07multicia/                                                  &&\
 	../../../BART/modules/transit/pylineread/src/pylineread.py -c             \
@@ -145,6 +153,7 @@ generate_tli:
 	@echo "TLI generation complete. \n"
 
 isothermal:
+	@mkdir -p "code-output/01BART/f08isothermal"
 	@echo "Running isothermal test...\n"
 	@cd tests/f08isothermal/                                                &&\
 	../../../BART/modules/transit/pylineread/src/pylineread.py -c             \
@@ -160,6 +169,7 @@ comparison_tli:
 	@echo "TLI file generated for comparison tests.\n"
 
 comparison_iso:
+	@mkdir -p "code-output/01BART/f09comparison"
 	@echo "Running comparison test, isothermal atmosphere: \n"
 	@cd tests/f09comparison/                                                &&\
 	../../../BART/modules/transit/transit/transit -c iso_emission.trc       &&\
@@ -167,6 +177,7 @@ comparison_iso:
 	@echo "Isothermal comparison test complete. \n"
 
 comparison_noinv:
+	@mkdir -p "code-output/01BART/f09comparison"
 	@echo "Running comparison test, noninverted atmosphere: \n"
 	@cd tests/f09comparison/                                                &&\
 	../../../BART/modules/transit/transit/transit -c noinv_emission.trc     &&\
@@ -175,6 +186,7 @@ comparison_noinv:
 	@echo "Noninverted comparison test complete. \n"
 
 comparison_inv:
+	@mkdir -p "code-output/01BART/f09comparison"
 	@echo "Running comparison test, inverted atmosphere: \n"
 	@cd tests/f09comparison/                                                &&\
 	../../../BART/modules/transit/transit/transit -c inv_emission.trc       &&\
