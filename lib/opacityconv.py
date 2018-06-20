@@ -1,3 +1,4 @@
+import os
 import numpy as np
 import struct
 
@@ -68,8 +69,8 @@ def bin2np(foo, output='opacity'):
     optable = np.asarray(optable).reshape(Nlayer, Ntemp, Nmol, Nwave)
 
     # Save arrays to Numpy file
-    np.savez(output+'.npz', header=header, molID=molID, temp=temp,            \
-             press=press, wns=wns, optable=optable)
+    np.savez(os.path.dirname(foo) + '/' + output+'.npz', header=header, 
+             molID=molID, temp=temp, press=press, wns=wns, optable=optable)
 
     # Return arrays
     return (header, molID, temp, press, wns, optable)

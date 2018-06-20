@@ -495,7 +495,7 @@ def main():
     
     # isothermal
     try:
-        plotspeciso(odir+'f08isothermal_emission_spectrum.dat',             \
+        plotspeciso(odir+'f08isothermal/isothermal_emission_spectrum.dat',  \
                     '../tests/f08isothermal/isothermal.atm',                \
                     oname=rdir+'f08isothermal_emission_spectrum.png')
     except:

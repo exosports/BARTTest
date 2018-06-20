@@ -1,6 +1,6 @@
 .PHONY: all some tests_noiso test_plusiso comparison synthretrievals WASP12b bart oneline fewline multiline abundance broadening blending multicia isothermal comparison_tli comparison_iso comparison_noinv comparison_inv retrieval_iso retrieval_noinv retrieval_inv WASP12b_tli WASP12b_retrieval plots fin clean
 
-all: bart hitran_linelists oneline fewline multiline broadening abundance blending multicia isothermal comparison plots fin
+forwardmodels: bart hitran_linelists oneline fewline multiline broadening abundance blending multicia isothermal comparison plots fin
 
 some: bart oneline fewline multiline broadening abundance blending multicia plots fin
 
