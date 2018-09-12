@@ -90,7 +90,7 @@ def comp(molmass=16.04, press=3.3516e-01, temp=1442.58,
     plt.xlim(4368.12, 4368.5)
     plt.legend(loc="upper left")
     plt.title("Voigt Profile Comparison")
-    plt.xlabel("Wavelength  (um)")
+    plt.xlabel(u"Wavelength  (\u00b5m)")
     frame1.set_xticklabels([])
     frame2 = fig1.add_axes((.1, .1, .8, .2))
     #frame2.set_yticklabels([-0.0010, -0.0005, 0.0000, 0.0005, 0.0010])

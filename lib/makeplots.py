@@ -88,21 +88,21 @@ def plotspectrum(fname, geo, wl=True, oname=None, ptitle=True):
             plt.title(testname + " Emission Spectrum")
         elif ptitle!=False:
             plt.title(ptitle)
-        plt.ylabel("Flux  [erg s$^{-1}$ cm$^{-1}$]")
+        plt.ylabel("Flux  (erg s$^{-1}$ cm$^{-1}$)")
         plotname = testname + '_emission_spectrum.png'
     else:
         if ptitle==True:
             plt.title(testname + " Transmission Spectrum")
         elif ptitle!=False:
             plt.title(ptitle)
-        plt.ylabel("Modulation  [$(R_p/R_s)^2$]")
+        plt.ylabel("Modulation  ($(R_p/R_s)^2$)")
         plotname = testname + '_transmission_spectrum.png'
     
     # Set X axis label to that specified
     if wl==True:
-        plt.xlabel("Wavelength  [microns]")
+        plt.xlabel(u"Wavelength  (\u00b5m)")
     else:
-        plt.xlabel("Wavenumber  [cm$^{-1}$]")
+        plt.xlabel("Wavenumber  (cm$^{-1}$)")
 
     # Set x limits
     plt.xlim(np.amin(wlength), np.amax(wlength))
@@ -185,22 +185,22 @@ def plotspeczoom(fname, geo, loc, wl=True, xlims=False, oname=None,
             plt.title(testname + " Emission Spectrum")
         elif ptitle!=False:
             plt.title(ptitle)
-        plt.ylabel("Flux  [erg s$^{-1}$ cm$^{-1}$]")
+        plt.ylabel("Flux  (erg s$^{-1}$ cm$^{-1}$)")
         plotname = testname + '_emission_spectrum_zoom'
     else:
         if ptitle==True:
             plt.title(testname + " Transmission Spectrum")
         elif ptitle!=False:
             plt.title(ptitle)
-        plt.ylabel("Modulation  [$(R_p/R_s)^2$]")
+        plt.ylabel("Modulation  ($(R_p/R_s)^2$)")
         plotname = testname + '_transmission_spectrum_zoom'
     
     # Set X axis label to that specified
     if wl==True:
-        plt.xlabel("Wavelength  [microns]")
+        plt.xlabel(u"Wavelength  (\u00b5m)")
         plotname += str(1000*loc)[:4] + 'nm'
     else:
-        plt.xlabel("Wavenumber  [cm$^{-1}$]")
+        plt.xlabel("Wavenumber  (cm$^{-1}$)")
         plotname += str(loc) + 'cm-1'
     
     # Set the X axis limits for the plot
@@ -297,14 +297,14 @@ def plotspeciso(fname, atm, wl=True, oname=None, ptitle=True):
         plt.title(testname + " Emission Spectrum")
     elif ptitle!=False:
         plt.title(ptitle)
-    plt.ylabel("Flux  [erg s$^{-1}$ cm$^{-1}$]")
+    plt.ylabel("Flux  (erg s$^{-1}$ cm$^{-1}$)")
     plotname = testname + '_emission_spectrum.png'
     
     # Set X axis label to that specified
     if wl==True:
-        plt.xlabel("Wavelength  [microns]")
+        plt.xlabel(u"Wavelength  (\u00b5m)")
     else:
-        plt.xlabel("Wavenumber  [cm$^{-1}$]")
+        plt.xlabel("Wavenumber  (cm$^{-1}$)")
     
     # Plot the Planck function if possible
     if bgtemp!=None:
@@ -394,8 +394,8 @@ def plotspecabun(fnames, base, geo='eclipse', xlims=(2.28905,2.28945),
         plt.title('Varying Abundance of One Line, \n Optically Thin Regime')
     elif ptitle!=False:
         plt.title(ptitle)
-    plt.ylabel("Flux  [erg s$^{-1}$ cm$^{-1}$]")
-    plt.xlabel("Wavelength  [microns]")
+    plt.ylabel("Flux  (erg s$^{-1}$ cm$^{-1}$)")
+    plt.xlabel(u"Wavelength  (\u00b5m)")
     plt.legend(loc="upper right")
     if oname==None:
         plt.savefig(base.split('/')[0] + '/' + 'abundance_emission_spectra.png')

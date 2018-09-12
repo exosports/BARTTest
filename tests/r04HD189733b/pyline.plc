@@ -19,6 +19,12 @@
 
 # Path(s) to the database linelists:
 db_list  = ../00inputs/par/06_hit12.par
+           ../00inputs/par/01_250-350_HITEMP2010.par
+           ../00inputs/par/01_350-500_HITEMP2010.par
+           ../00inputs/par/01_500-600_HITEMP2010.par
+           ../00inputs/par/01_600-700_HITEMP2010.par
+           ../00inputs/par/01_700-800_HITEMP2010.par
+           ../00inputs/par/01_800-900_HITEMP2010.par
            ../00inputs/par/01_900-1000_HITEMP2010.par
 	       ../00inputs/par/01_1000-1150_HITEMP2010.par
 	       ../00inputs/par/01_1150-1300_HITEMP2010.par
@@ -44,6 +50,9 @@ db_list  = ../00inputs/par/06_hit12.par
 	       ../00inputs/par/01_8500-9000_HITEMP2010.par
 	       ../00inputs/par/01_9000-11000_HITEMP2010.par
 	       ../00inputs/par/01_11000-30000_HITEMP2010.par
+	       ../00inputs/par/02_0-500_HITEMP2010.par
+	       ../00inputs/par/02_500-625_HITEMP2010.par
+	       ../00inputs/par/02_625-750_HITEMP2010.par
 	       ../00inputs/par/02_750-1000_HITEMP2010.par
 	       ../00inputs/par/02_1000-1500_HITEMP2010.par
 	       ../00inputs/par/02_1500-2000_HITEMP2010.par
@@ -62,13 +71,16 @@ db_list  = ../00inputs/par/06_hit12.par
 	       ../00inputs/par/02_6000-6500_HITEMP2010.par
 	       ../00inputs/par/02_6500-12785_HITEMP2010.par
            ../00inputs/par/05_HITEMP2010new.par
-           ../00inputs/par/HITRAN_2012/26_hit12.par
-           ../00inputs/par/HITRAN_2012/45_hit12.par
-           ../00inputs/par/HITRAN_2012/23_hit08.par
-           ../00inputs/par/HITRAN_2012/27_hit12.par
+           ../00inputs/par/45_hit12.par
 
 # Path(s) to the partition function files:
 part_list = ../../../BART/modules/transit/pylineread/src/fortran/lib/TIPS_BART
+            ../../../BART/modules/transit/pylineread/src/fortran/lib/TIPS_BART
+            ../../../BART/modules/transit/pylineread/src/fortran/lib/TIPS_BART
+            ../../../BART/modules/transit/pylineread/src/fortran/lib/TIPS_BART
+            ../../../BART/modules/transit/pylineread/src/fortran/lib/TIPS_BART
+            ../../../BART/modules/transit/pylineread/src/fortran/lib/TIPS_BART
+            ../../../BART/modules/transit/pylineread/src/fortran/lib/TIPS_BART
             ../../../BART/modules/transit/pylineread/src/fortran/lib/TIPS_BART
             ../../../BART/modules/transit/pylineread/src/fortran/lib/TIPS_BART
             ../../../BART/modules/transit/pylineread/src/fortran/lib/TIPS_BART
@@ -121,16 +133,16 @@ part_list = ../../../BART/modules/transit/pylineread/src/fortran/lib/TIPS_BART
 #   hit:  hitran and hitemp
 #   ps:   Partridge and Schwenke H2O
 #   ts:   Schwenke TiO 
-dbtype = hit hit hit hit hit hit hit hit hit hit hit hit hit hit hit hit hit hit hit hit hit hit hit hit hit hit hit hit hit hit hit hit hit hit hit hit hit hit hit hit hit hit hit hit hit hit hit hit
+dbtype = hit hit hit hit hit hit hit hit hit hit hit hit hit hit hit hit hit hit hit hit hit hit hit hit hit hit hit hit hit hit hit hit hit hit hit hit hit hit hit hit hit hit hit hit hit hit hit hit hit hit hit hit hit hit
 
 # Output TLI filename:
-output = ../00inputs/TLI/CH4_H2O_CO2_CO_C2H2_H2_HCN_C2H6_075-11um.tli
+output = ../00inputs/TLI/CH4_H2O_CO2_CO_H2_075-36um.tli
 
 # Initial wavelength in microns:
 iwav   = 0.75
 
 # Final wavelength in microns:
-fwav   = 11.0
+fwav   = 36.0
 
 # Verbosity level (0 -- 20):
 verb   = 1

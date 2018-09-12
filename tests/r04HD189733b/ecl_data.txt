@@ -1,0 +1,230 @@
+data   = 0.000452   #1.698um - HST NICMOS, Swain et al 2009
+        0.000532    #1.755um
+        0.000331    #1.814um
+        0.000389    #1.869
+        0.000128    #1.929
+        0.000030    #1.986
+        0.000122    #2.044
+        0.000250    #2.101
+        0.000452    #2.159
+        0.000714    #2.216
+        0.000860    #2.274
+        0.000592    #2.332
+        0.000633    #2.389
+        0.00211     #5.46um - Spitzer IRS spec, Grillmair et al 2007
+        0.00195     #5.55     reanalyzed by Todorov et al 2014
+        0.00195     #5.65
+        0.00222     #5.74
+        0.00251     #5.83
+        0.00190     #5.92
+        0.00198     #6.02
+        0.00214     #6.11
+        0.00256     #6.20
+        0.00243     #6.30
+        0.00227     #6.39
+        0.00252     #6.48
+        0.00192     #6.58
+        0.00194     #6.67
+        0.00194     #6.76
+        0.00239     #6.85
+        0.00189     #6.95
+        0.00240     #7.04
+        0.00226     #7.13
+        0.00292     #7.23
+        0.00207     #7.32
+        0.00318     #7.41
+        0.00227     #7.51
+        0.00314     #7.53
+        0.00287     #7.66
+        0.00257     #7.84
+        0.00296     #8.03
+        0.00266     #8.22
+        0.00324     #8.40
+        0.00317     #8.59
+        0.00343     #8.77
+        0.00318     #8.96
+        0.00366     #9.15
+        0.00314     #9.33
+        0.00333     #9.52
+        0.00382     #9.71
+        0.00362     #9.89
+        0.00377     #10.08
+        0.00420     #10.27
+        0.00340     #10.45
+        0.00331     #10.64
+        0.00418     #10.82
+        0.00394     #11.01
+        0.00417     #11.20
+        0.00401     #11.38
+        0.00357     #11.57
+        0.00408     #11.76
+        0.00416     #11.94
+        0.00367     #12.13
+        0.00522     #12.31
+        0.00473     #12.50
+        0.00443     #12.69
+        0.00383     #12.87
+        0.00378     #13.06
+        0.00461     #13.24
+        0.00365     #13.43
+        0.001242    #3.6um - Spitzer IRAC ch1, Knutson et al 2012
+        0.000982    #4.5um - Spitzer IRAC ch2, Knutson et al 2012
+        0.00310     #5.8um - Spitzer IRAC ch3, Charbonneau et al 2008
+        0.00344     #8um   - Spitzer IRAC ch4, Agol et al 2010
+        0.00519     #16um - Spitzer IRS phot, Charbonneau et al 2008
+        0.00598     #24um - Spitzer MIPS, Charbonneau et al 2008
+
+# Data uncertainties:
+uncert = 0.00007    #1.698 - HST NICMOS
+        0.00006     #1.755
+        0.00006     #1.814
+        0.00006     #1.869
+        0.00007     #1.929
+        0.00007     #1.986
+        0.00006     #2.044
+        0.00007     #2.101
+        0.00007     #2.159
+        0.00008     #2.216
+        0.00008     #2.274
+        0.00008     #2.332
+        0.00009     #2.389
+        0.00031     #5.46um - Spitzer IRS spec
+        0.00036     #5.55
+        0.00026     #5.65
+        0.00023     #5.74
+        0.00037     #5.83
+        0.00029     #5.92
+        0.00023     #6.02
+        0.00028     #6.11
+        0.00039     #6.20
+        0.00027     #6.30
+        0.00026     #6.39
+        0.00023     #6.48
+        0.00029     #6.58
+        0.00027     #6.67
+        0.00028     #6.76
+        0.00030     #6.85
+        0.00032     #6.95
+        0.00031     #7.04
+        0.00029     #7.13
+        0.00038     #7.23
+        0.00041     #7.32
+        0.00049     #7.41
+        0.00068     #7.51
+        0.00050     #7.53
+        0.00036     #7.66
+        0.00034     #7.84
+        0.00034     #8.03
+        0.00028     #8.22
+        0.00034     #8.40
+        0.00032     #8.59
+        0.00034     #8.77
+        0.00036     #8.96
+        0.00037     #9.15
+        0.00030     #9.33
+        0.00035     #9.52
+        0.00038     #9.71
+        0.00042     #9.89
+        0.00035     #10.08
+        0.00036     #10.27
+        0.00038     #10.45
+        0.00050     #10.64
+        0.00045     #10.82
+        0.00038     #11.01
+        0.00041     #11.20
+        0.00048     #11.38
+        0.00035     #11.57
+        0.00046     #11.76
+        0.00041     #11.94
+        0.00044     #12.13
+        0.00040     #12.31
+        0.00047     #12.50
+        0.00042     #12.69
+        0.00047     #12.87
+        0.00045     #13.06
+        0.00075     #13.24
+        0.00046     #13.43
+        0.000061    #3.6um - Spitzer ch1
+        0.000089    #4.5um - Spitzer ch2
+        0.00034     #5.8um - Spitzer IRAC ch3
+        0.000036    #8um   - Spitzer ch4
+        0.00020     #16um - Spitzer IRS phot
+        0.00038     #24um - Spitzer MIPS
+
+# The waveband filters:
+filter   = ../00inputs/filters/NICMOS_01.dat #1.698 - HST NICMOS
+        ../00inputs/filters/NICMOS_02.dat    #1.755
+        ../00inputs/filters/NICMOS_03.dat    #1.814
+        ../00inputs/filters/NICMOS_04.dat    #1.869
+        ../00inputs/filters/NICMOS_05.dat    #1.929
+        ../00inputs/filters/NICMOS_06.dat    #1.986
+        ../00inputs/filters/NICMOS_07.dat    #2.044
+        ../00inputs/filters/NICMOS_08.dat    #2.101
+        ../00inputs/filters/NICMOS_09.dat    #2.159
+        ../00inputs/filters/NICMOS_10.dat    #2.216
+        ../00inputs/filters/NICMOS_11.dat    #2.274
+        ../00inputs/filters/NICMOS_12.dat    #2.332
+        ../00inputs/filters/NICMOS_13.dat    #2.389
+        ../00inputs/filters/IRS_01.dat  #5.46 - Spitzer IRS
+        ../00inputs/filters/IRS_02.dat  #5.55
+        ../00inputs/filters/IRS_03.dat  #5.65
+        ../00inputs/filters/IRS_04.dat  #5.74
+        ../00inputs/filters/IRS_05.dat  #5.83
+        ../00inputs/filters/IRS_06.dat  #5.92
+        ../00inputs/filters/IRS_07.dat  #6.02
+        ../00inputs/filters/IRS_08.dat  #6.11
+        ../00inputs/filters/IRS_09.dat  #6.2
+        ../00inputs/filters/IRS_10.dat  #6.3
+        ../00inputs/filters/IRS_11.dat  #6.39
+        ../00inputs/filters/IRS_12.dat  #6.48
+        ../00inputs/filters/IRS_13.dat  #6.58
+        ../00inputs/filters/IRS_14.dat  #6.67
+        ../00inputs/filters/IRS_15.dat  #6.76
+        ../00inputs/filters/IRS_16.dat  #6.85
+        ../00inputs/filters/IRS_17.dat  #6.95
+        ../00inputs/filters/IRS_18.dat  #7.04
+        ../00inputs/filters/IRS_19.dat  #7.13
+        ../00inputs/filters/IRS_20.dat  #7.23
+        ../00inputs/filters/IRS_21.dat  #7.32
+        ../00inputs/filters/IRS_22.dat  #7.41
+        ../00inputs/filters/IRS_23.dat  #7.51
+        ../00inputs/filters/IRS_24.dat  #7.53
+        ../00inputs/filters/IRS_25.dat  #7.66
+        ../00inputs/filters/IRS_26.dat  #7.84
+        ../00inputs/filters/IRS_27.dat  #8.03
+        ../00inputs/filters/IRS_28.dat  #8.22
+        ../00inputs/filters/IRS_29.dat  #8.4
+        ../00inputs/filters/IRS_30.dat  #8.59
+        ../00inputs/filters/IRS_31.dat  #8.77
+        ../00inputs/filters/IRS_32.dat  #8.96
+        ../00inputs/filters/IRS_33.dat  #9.15
+        ../00inputs/filters/IRS_34.dat  #9.33
+        ../00inputs/filters/IRS_35.dat  #9.52
+        ../00inputs/filters/IRS_36.dat  #9.71
+        ../00inputs/filters/IRS_37.dat  #9.89
+        ../00inputs/filters/IRS_38.dat  #10.08
+        ../00inputs/filters/IRS_39.dat  #10.27
+        ../00inputs/filters/IRS_40.dat  #10.45
+        ../00inputs/filters/IRS_41.dat  #10.64
+        ../00inputs/filters/IRS_42.dat  #10.82
+        ../00inputs/filters/IRS_43.dat  #11.01
+        ../00inputs/filters/IRS_44.dat  #11.2
+        ../00inputs/filters/IRS_45.dat  #11.38
+        ../00inputs/filters/IRS_46.dat  #11.57
+        ../00inputs/filters/IRS_47.dat  #11.76
+        ../00inputs/filters/IRS_48.dat  #11.94
+        ../00inputs/filters/IRS_49.dat  #12.13
+        ../00inputs/filters/IRS_50.dat  #12.31
+        ../00inputs/filters/IRS_51.dat  #12.5
+        ../00inputs/filters/IRS_52.dat  #12.69
+        ../00inputs/filters/IRS_53.dat  #12.87
+        ../00inputs/filters/IRS_54.dat  #13.06
+        ../00inputs/filters/IRS_55.dat  #13.24
+        ../00inputs/filters/IRS_56.dat  #13.43
+        ../../../BART/inputs/filters/spitzer_irac1_fa.dat #3.6um - Spitzer ch1
+	    ../../../BART/inputs/filters/spitzer_irac2_fa.dat #4.5um - Spitzer ch2
+	    ../../../BART/inputs/filters/spitzer_irac3_fa.dat #5.8um - Spitzer ch3
+	    ../../../BART/inputs/filters/spitzer_irac4_fa.dat #8  um - Spitzer ch4
+        ../../../BART/inputs/filters/spitzer_irsblue.dat  #16 um - Spitzer IRS
+        ../../../BART/inputs/filters/spitzer_mips24.dat   #24 um - Spitzer MIPS
+
