@@ -41,7 +41,7 @@ raygrid 0 20 40 60 80
 # Maximum optical depth:
 toomuch 10
 # Line-strength threshold:
-ethresh 1e-6
+ethresh 1e-50
 
 # :::::::::: Line Broadening :::::::::::::::::::::::::::::::::::::::::
 # Voigt profile half width (in Doppler or Lorentz HWHM):
@@ -51,10 +51,10 @@ nwidth 20
 # Verbosity level for on-screen display (1 -- 5):
 verb 1
 
-#opacityfile ../../code-output/01BART/f01oneline/oneline.opt
+opacityfile ../../code-output/01BART/f01oneline/oneline.opt
 
 # :::::::::: Output files ::::::::::::::::::::::::::::::::::::::::::::
 # Radius (at each wavelength sample) where the optical depth == toomuch:
-outtoomuch ../../code-output/01BART/f01oneline/oneline_emission_toomuch.dat
+#outtoomuch ../../code-output/01BART/f01oneline/oneline_emission_toomuch.dat
 # Emission (eclipse) spectrum:
 outspec    ../../code-output/01BART/f01oneline/oneline_emission_spectrum.dat

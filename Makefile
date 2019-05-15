@@ -1,38 +1,31 @@
-.PHONY: all some tests_noiso test_plusiso comparison synthretrievals WASP12b bart bart_LineEtal oneline fewline multiline abundance broadening blending multicia isothermal comparison_tli comparison_iso comparison_noinv comparison_inv retrieval_iso retrieval_noinv retrieval_inv WASP12b_tli WASP12b_retrieval WASP12b_LineEtal WASP12b_StevensonEtal plots fin clean
+.PHONY: all some tests_noiso test_plusiso oneline fewline multiline abundance isothermal broadening blending multicia plots fin clean
 
-forwardmodels: hitran_linelists oneline fewline multiline broadening abundance blending multicia isothermal comparison plots fin
+all: bart hitran_linelists oneline fewline multiline broadening abundance blending multicia isothermal enregycons comparisontests plots fin
 
-tests_noiso: oneline fewline multiline broadening abundance blending multicia plots fin
+some: bart oneline fewline multiline broadening abundance blending multicia plots fin
 
-tests_plusiso: oneline fewline multiline broadening abundance blending multicia isothermal plots fin
+quicktests: oneline fewline multiline broadening abundance blending multicia plots fin
 
-comparison: comparison_tli comparison_iso comparison_noinv comparison_inv fin
+forwardtests: oneline fewline multiline broadening abundance blending multicia isothermal energycons plots fin
 
-synthretrievals: comparison_tli retrieval_iso retrieval_noinv retrieval_inv fin
+comparisontests: comparison_tli comparison_iso comparison_noinv comparison_inv comparison_plots fin
 
-WASP12b: WASP12b_tli WASP12b_retrieval fin
+synth_retrievals: retrieval_tli retrieval_iso_e retrieval_iso_t retrieval_noinv_e retrieval_noinv_t retrieval_inv_e retrieval_inv_t fin
 
+hd189: hd189_tli hd189_retrieval fin
 
 bart:
 	@echo "\nCloning BART..."
-	git clone --recursive https://github.com/exosports/BART ../BART/
-	@echo "Finished cloning BART to a directory parallel to BARTTest.\n"
-	@echo "Compiling BART..."
-	@cd ../BART/modules/transit/ && make
-	@cd ../BART/modules/MCcubed/ && make
-	@echo "Finished compiling BART.\n"
-
-bart_LineEtal:
-	@echo "\nCloning BART_LineEtal..."
-	git clone --recursive https://github.com/exosports/BART ../BART_LineEtal/
-	@echo "Finished cloning BART_Line to a directory parallel to BARTTest.\n"
-	@echo "Compiling BART_LineEtal..."
-	@echo "Modifying transit's makesample.c and opacity.c..."
-	@cp -f tests/00inputs/transit_LineEtal/*.c                                \
-	                              ../BART_LineEtal/modules/transit/transit/src/.
-	@cd ../BART_LineEtal/modules/transit/ && make
-	@cd ../BART_LineEtal/modules/MCcubed/ && make
-	@echo "Finished compiling BART_LineEtal.\n"
+	@if [ ! -d "../BART" ]; then                                              \
+		git clone --recursive https://github.com/exosports/BART ../BART/;     \
+		echo "Finished cloning BART to a directory parallel to BARTTest.\n";  \
+		echo "Compiling BART...";                                             \
+		cd ../BART/modules/transit/ && make;                                  \
+		cd ../BART/modules/MCcubed/ && make;                                  \
+		echo "Finished compiling BART.\n";                                    \
+	else                                                                      \
+		echo "BART already exists.\n";                                        \
+	fi
 
 hitran_linelists:
 	@echo "Downloading HITRAN line lists...\n"
@@ -41,11 +34,8 @@ hitran_linelists:
 	wget --user=HITRAN --password=getdata -N -i wget-list_HITEMP-CO.txt     &&\
 	wget --user=HITRAN --password=getdata -N -i wget-list_HITEMP-H2O.txt    &&\
 	wget --user=HITRAN --password=getdata -N -i wget-list_HITRAN-CH4.txt    &&\
-	wget --user=HITRAN --password=getdata -N -i wget-list_HITRAN-HCN.txt    &&\
-	wget --user=HITRAN --password=getdata -N -i wget-list_HITRAN-C2H2.txt   &&\
-	wget --user=HITRAN --password=getdata -N -i wget-list_HITRAN-C2H6.txt   &&\
-	wget --user=HITRAN --password=getdata -N -i wget-list_HITRAN-H2.txt     &&\
-	wget --user=HITRAN --password=getdata -N -i wget-list_HITRAN-NH3.txt
+	wget --user=HITRAN --password=getdata -N -i wget-list_HITRAN-NH3.txt    &&\
+	wget --user=HITRAN --password=getdata -N -i wget-list_HITRAN-H2.txt
 	@echo "Extracting archives...\n"
 	@cd tests/00inputs/par/                                                 &&\
 	unzip '01_*HITEMP2010.zip'                                              &&\
@@ -53,15 +43,11 @@ hitran_linelists:
 	unzip '05_*HITEMP2010.zip'                                              &&\
 	unzip '06_hit12.zip'                                                    &&\
 	unzip '11_hit12.zip'                                                    &&\
-	unzip '23_hit08.zip'                                                    &&\
-	unzip '26_hit12.zip'                                                    &&\
-	unzip '27_hit12.zip'                                                    &&\
 	unzip '45_hit12.zip'                                                    &&\
 	rm -f *.zip
 	@echo "Finished retrieving HITRAN line lists.\n"
 
 oneline:
-	@mkdir -p "code-output/01BART/f01oneline"
 	@echo "Running oneline test...\n"
 	@cd tests/f01oneline/                                                   &&\
 	../../../BART/modules/transit/pylineread/src/pylineread.py -c             \
@@ -70,7 +56,6 @@ oneline:
 	@echo "oneline test complete.\n"
 
 fewline:
-	@mkdir -p "code-output/01BART/f02fewline"
 	@echo "Running fewline test...\n"
 	@cd tests/f02fewline/                                                   &&\
 	../../../BART/modules/transit/pylineread/src/pylineread.py -c             \
@@ -82,7 +67,6 @@ fewline:
 	@echo "fewline test complete.\n"
 
 multiline:
-	@mkdir -p "code-output/01BART/f03multiline"
 	@echo "Running multiline test...\n"
 	@cd tests/f03multiline/                                                 &&\
 	../../../BART/modules/transit/pylineread/src/pylineread.py -c             \
@@ -94,23 +78,21 @@ multiline:
 	@echo "multiline test complete.\n"
 
 broadening:
-	@mkdir -p "code-output/01BART/f04broadening"
 	@echo "Running broadening test...\n"
 	@cd tests/f04broadening/                                                &&\
 	../../../BART/modules/transit/pylineread/src/pylineread.py -c             \
 	   broadening.plc                                                       &&\
 	../../../BART/modules/transit/transit/transit -c broadening_emission.trc
-	@cd lib/ && python -c 'import voigtcomp;voigtcomp.comp()'
+	@cd lib/ && ./voigtcomp.py
 	@echo "broadening test complete.\n"
 
 abundance:
-	@mkdir -p "code-output/01BART/f05abundance"
 	@echo "Running abundance test...\n"
 	@cd tests/f05abundance/                                                 &&\
 	../../../BART/modules/transit/pylineread/src/pylineread.py -c             \
-	   abundance_line.plc                                                   &&\
-	../../../BART/modules/transit/pylineread/src/pylineread.py -c             \
-	   abundance_noline.plc                                                 &&\
+	   abundance.plc                                                        &&\
+	../../../BART/modules/transit/transit/transit -c                          \
+	   abundance_0_emission.trc                                             &&\
 	../../../BART/modules/transit/transit/transit -c                          \
 	   abundance_1e-4_emission.trc                                          &&\
 	../../../BART/modules/transit/transit/transit -c                          \
@@ -130,13 +112,11 @@ abundance:
 	../../../BART/modules/transit/transit/transit -c                          \
 	   abundance_9e-4_emission.trc                                          &&\
 	../../../BART/modules/transit/transit/transit -c                          \
-	   abundance_1e-3_emission.trc                                          &&\
-	../../../BART/modules/transit/transit/transit -c                          \
-	   abundance_noline_emission.trc
+	   abundance_1e-3_emission.trc
+	@cd ./lib/ && ./abuncomp.py
 	@echo "abundance test complete.\n"
 
 blending:
-	@mkdir -p "code-output/01BART/f06blending"
 	@echo "Running blending test...\n"
 	@cd tests/f06blending/                                                  &&\
 	../../../BART/modules/transit/pylineread/src/pylineread.py -c             \
@@ -145,7 +125,6 @@ blending:
 	@echo "blending test complete.\n"
 
 multicia:
-	@mkdir -p "code-output/01BART/f07multicia"
 	@echo "Running multicia test...\n"
 	@cd tests/f07multicia/                                                  &&\
 	../../../BART/modules/transit/pylineread/src/pylineread.py -c             \
@@ -155,111 +134,151 @@ multicia:
 	../../../BART/modules/transit/transit/transit -c twoCIA_emission.trc
 	@echo "multicia test complete.\n"
 
-generate_tli:
-	@echo "Generating TLI file from HITRAN linelists...\n"
-	@cd tests/00inputs/TLI/                                                 &&\
-	../../../BART/modules/transit/pylineread/src/pylineread.py -c pyline.plc
-	@echo "TLI generation complete. \n"
-
 isothermal:
-	@mkdir -p "code-output/01BART/f08isothermal"
 	@echo "Running isothermal test...\n"
+	@if [ ! -f ./tests/00inputs/TLI/CH4_CO_CO2_H2O_full_1-8um.tli ]; then     \
+	    cd tests/f08isothermal/                                             &&\
+	    ../../../BART/modules/transit/pylineread/src/pylineread.py -c         \
+	                                                 isothermal.plc;          \
+	fi
 	@cd tests/f08isothermal/                                                &&\
-	../../../BART/modules/transit/pylineread/src/pylineread.py -c             \
-	   isothermal.plc                                                       &&\
 	../../../BART/modules/transit/transit/transit -c isothermal_emission.trc
 	@echo "isothermal test complete. \n"
 
+energycons:
+	@echo "Running energy conservation test...\n"
+	@if [ ! -f ./tests/00inputs/TLI/CH4_CO_CO2_H2O_full_1-8um.tli ]; then     \
+	    cd tests/f09energycons/                                             &&\
+	    ../../../BART/modules/transit/pylineread/src/pylineread.py -c         \
+	                                                 energycons.plc;          \
+	fi
+	@cd tests/f09energycons/                                                &&\
+	../../../BART/modules/transit/transit/transit -c                          \
+	                                             energycons_1_emission.trc  &&\
+	../../../BART/modules/transit/transit/transit -c                          \
+	                                             energycons_3_emission.trc  &&\
+	../../../BART/modules/transit/transit/transit -c                          \
+	                                             energycons_5_emission.trc  &&\
+	../../../BART/modules/transit/transit/transit -c                          \
+	                                             energycons_10_emission.trc
+	@cd ./lib/ && ./energycons.py
+	@echo "energy conservation test complete. \n"
+
 comparison_tli:
-	@echo "Generating TLI file for comparison/synthetic retrieval tests...\n"
-	@cd tests/f09comparison                                                 &&\
-	../../../BART/modules/transit/pylineread/src/pylineread.py -c             \
-	   comparison.plc
-	@echo "TLI file generated for comparison tests.\n"
+	@echo "Generating TLI file for comparison tests...\n"
+	@if [ ! -f ./tests/00inputs/TLI/CH4_CO_CO2_H2O_NH3_H2_1-11um.tli ]; then  \
+	    cd tests/c01hjcleariso/                                             &&\
+	    ../../../BART/modules/transit/pylineread/src/pylineread.py -c         \
+	                                                 comparison.plc;          \
+		echo "TLI file generated for comparison tests.\n";                    \
+	else                                                                      \
+		echo "TLI file already exists.\n";                                    \
+	fi
 
 comparison_iso:
-	@mkdir -p "code-output/01BART/f09comparison"
 	@echo "Running comparison test, isothermal atmosphere: \n"
-	@cd tests/f09comparison/                                                &&\
+	@cd tests/c01hjcleariso/                                                &&\
 	../../../BART/modules/transit/transit/transit -c iso_emission.trc       &&\
 	../../../BART/modules/transit/transit/transit -c iso_transmission.trc
 	@echo "Isothermal comparison test complete. \n"
 
 comparison_noinv:
-	@mkdir -p "code-output/01BART/f09comparison"
 	@echo "Running comparison test, noninverted atmosphere: \n"
-	@cd tests/f09comparison/                                                &&\
+	@cd tests/c02hjclearnoinv/                                                &&\
 	../../../BART/modules/transit/transit/transit -c noinv_emission.trc     &&\
 	../../../BART/modules/transit/transit/transit -c                          \
 	   noinv_transmission.trc
 	@echo "Noninverted comparison test complete. \n"
 
 comparison_inv:
-	@mkdir -p "code-output/01BART/f09comparison"
 	@echo "Running comparison test, inverted atmosphere: \n"
-	@cd tests/f09comparison/                                                &&\
+	@cd tests/c03hjclearinv/                                                &&\
 	../../../BART/modules/transit/transit/transit -c inv_emission.trc       &&\
 	../../../BART/modules/transit/transit/transit -c inv_transmission.trc
 	@echo "Inverted comparison test complete. \n"
 
-retrieval_iso:
-	@echo "Running retrievals, isothermal atmosphere: \n"
-	@cd tests/r01isothermal/                                                &&\
-	../../../BART/BART.py -c iso_emission.brt                               &&\
+comparison_plots:
+	@echo "Making plots for comparison test...\n"
+	@cd ./lib/ && ./comparison.py
+
+retrieval_tli:
+	@echo "Generating TLI file for synthetic retrieval tests...\n"
+	@if [ ! -f ./tests/00inputs/TLI/CH4_CO_CO2_H2O_NH3_H2_1-11um.tli ]; then  \
+	    cd tests/s01hjcleariso/                                             &&\
+	    ../../../BART/modules/transit/pylineread/src/pylineread.py -c         \
+	                                                 retrievals.plc;          \
+		echo "TLI file generated for synthetic retrieval tests.\n";           \
+	else                                                                      \
+		echo "TLI file already exists.\n";                                    \
+	fi
+
+retrieval_iso_e:
+	@echo "Running retrieval, isothermal atmosphere, eclipse: \n"
+	@cd tests/s01hjcleariso/                                                &&\
+	../../../BART/BART.py -c iso_emission.brt --justPlots
+
+retrieval_iso_t:
+	@echo "Running retrieval, isothermal atmosphere, transit: \n"
+	@cd tests/s01hjcleariso/                                                &&\
 	../../../BART/BART.py -c iso_transmission.brt
-	@echo "Isothermal retrieval test complete. \n"
 
-retrieval_noinv:
-	@echo "Running retrievals, noninverted atmosphere: \n"
-	@cd tests/r02noninverted/                                               &&\
-	../../../BART/BART.py -c noinv_emission.brt                             &&\
+retrieval_noinv_e:
+	@echo "Running retrieval, noninverted atmosphere: \n"
+	@cd tests/s02hjclearnoinv/                                              &&\
+	../../../BART/BART.py -c noinv_emission.brt
+
+retrieval_noinv_t:
+	@echo "Running retrieval, noninverted atmosphere: \n"
+	@cd tests/s02hjclearnoinv/                                              &&\
 	../../../BART/BART.py -c noinv_transmission.brt
-	@echo "Noninverted retrieval test complete. \n"
 
-retrieval_inv:
-	@echo "Running retrievals, inverted atmosphere: \n"
-	@cd tests/r03inverted/                                                  &&\
-	../../../BART/BART.py -c inv_emission.brt                               &&\
+retrieval_inv_e:
+	@echo "Running retrieval, inverted atmosphere: \n"
+	@cd tests/s03hjclearinv/                                                &&\
+	../../../BART/BART.py -c inv_emission.brt
+
+retrieval_inv_t:
+	@echo "Running retrieval, inverted atmosphere: \n"
+	@cd tests/s03hjclearinv/                                                &&\
 	../../../BART/BART.py -c inv_transmission.brt
-	@echo "Inverted retrieval test complete. \n"
 
-WASP12b_tli:
-	@echo "Generating TLI file for WASP-12b retrieval...\n"
-	@cd tests/r04WASP12b/                                                   &&\
+
+hd189_tli:
+	@echo "Running retrieval, HD 189733b: \n"
+	@cd tests/r01hd189733b/                                                 &&\
 	../../../BART/modules/transit/pylineread/src/pylineread.py -c             \
-	   WASP12b.plc
-	@echo "TLI file generated for WASP-12b retrieval.\n"
+	pyline.plc
 
-WASP12b_retrieval:
-	@echo "Running retrieval, WASP-12b: \n"
-	@cd tests/r04WASP12b/                                                   &&\
-	../../../BART/BART.py -c WASP12b.brt
-	@echo "WASP-12b retrieval complete.\n"
-
-WASP12b_LineEtal:
-	@echo "Running retrieval, WASP-12b, Line et al. 2014 case: \n"
-	@cd tests/r04WASP12b/                                                   &&\
-	../../../BART_LineEtal/BART.py -c WASP12b_LineEtal2014.brt
-	@echo "WASP-12b Line et al. 2014 retrieval complete.\n"
-
-WASP12b_StevensonEtal:
-	@echo "Running retrieval, WASP-12b, Stevenson et al. 2014 case: \n"
-	@cd tests/r04WASP12b/                                                   &&\
-	../../../BART/BART.py -c WASP12b_StevensonEtal2014.brt
-	@echo "WASP-12b Stevenson et al. 2014 retrieval complete.\n"
+hd189_retrieval:
+	@echo "Running retrieval, HD 189733b: \n"
+	@cd tests/r01hd189733b/                                                 &&\
+	../../../BART/BART.py -c HD189733b.brt -- justOpacity
 
 plots:
 	@echo "Making plots..."
-	@cd lib/ && ./makeplots.py
+	@cd lib/ && makeplots.py
 	@echo "Plotting complete.\n"
 
 fin:
 	@echo "Done!\n"
 
 clean:
+	@echo "Deleting files created from running BARTTest.\n"
+	@echo "Deleting .pyc files..."
+	@cd lib/                            &&\
+	rm -f *.pyc
+	@echo "Deleting BART output files..."
 	@cd code-output/01BART/             &&\
-	rm -f *
+	rm -rf ./*
+	@echo "Deleting BART results..."
 	@cd results/01BART/                 &&\
-	rm -f *
+	rm -rf ./*
+	@echo "Deleting downloaded line list files..."
+	@cd tests/00inputs/par/             &&\
+	rm -f 01* 02* 05* 06* 11* 45*
+	@echo "Deleting TLI files...\n"
+	@cd tests/00inputs/TLI/             &&\
+	rm -f *.tli
+	@echo "BARTTest is now back to its base state."
 
 
