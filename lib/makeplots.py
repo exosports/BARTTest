@@ -373,78 +373,86 @@ def main():
     
     # oneline
     try:
-        plotspectrum(odir+'01oneline_emission_spectrum.dat', 'eclipse', 
-                     oname=rdir+'01oneline_emission_spectrum.png')
-    except:
+        plotspectrum(odir+'f01oneline/oneline_emission_spectrum.dat', 'eclipse', 
+                     oname=rdir+'f01oneline_emission_spectrum.png')
+    except Exception as e:
+        print(e)
         pass
 
     # fewline
     try:
-        plotspectrum(odir+'02fewline_emission_spectrum.dat', 'eclipse', 
+        plotspectrum(odir+'f02fewline/fewline_emission_spectrum.dat', 'eclipse', 
                      oname=rdir+'02fewline_emission_spectrum.png')
-        plotspectrum(odir+'02fewline_transmission_spectrum.dat', 'transit', 
-                     oname=rdir+'02fewline_transmission_spectrum.png')
-    except:
+        plotspectrum(odir+'f02fewline/fewline_transmission_spectrum.dat', 'transit', 
+                     oname=rdir+'f02fewline_transmission_spectrum.png')
+    except Exception as e:
+        print(e)
         pass
 
     # multiline
     try:
-        plotspectrum(odir+'03multiline_emission_spectrum.dat', 'eclipse', 
-                     oname=rdir+'03multiline_emission_spectrum.png')
+        plotspectrum(odir+'f03multiline/multiline_emission_spectrum.dat', 'eclipse', 
+                     oname=rdir+'f03multiline_emission_spectrum.png')
         plotspectrum(odir+'03multiline_transmission_spectrum.dat', 'transit', 
-                     oname=rdir+'03multiline_transmission_spectrum.png')
-    except:
+                     oname=rdir+'f03multiline_transmission_spectrum.png')
+    except Exception as e:
+        print(e)
         pass
 
     # broadening
     try:
-        plotspectrum(odir+'04broadening_emission_spectrum.dat', 'eclipse', 
-                     oname=rdir+'04broadening_emission_spectrum.png')
+        plotspectrum(odir+'f04broadening/broadening_emission_spectrum.dat', 'eclipse', 
+                     oname=rdir+'f04broadening_emission_spectrum.png')
         voigtcomp.comp()
-    except:
+    except Exception as e:
+        print(e)
         pass
 
     # abundance
-    fnames = [odir+'05abundance_1e-4_emission_spectrum.dat',
-              odir+'05abundance_2e-4_emission_spectrum.dat',
-              odir+'05abundance_3e-4_emission_spectrum.dat',
-              odir+'05abundance_4e-4_emission_spectrum.dat',
-              odir+'05abundance_5e-4_emission_spectrum.dat',
-              odir+'05abundance_6e-4_emission_spectrum.dat',
-              odir+'05abundance_7e-4_emission_spectrum.dat',
-              odir+'05abundance_8e-4_emission_spectrum.dat',
-              odir+'05abundance_9e-4_emission_spectrum.dat',
-              odir+'05abundance_1e-3_emission_spectrum.dat']
+    fnames = [odir+'f05abundance/abundance_1e-4_emission_spectrum.dat',
+              odir+'f05abundance/abundance_2e-4_emission_spectrum.dat',
+              odir+'f05abundance/abundance_3e-4_emission_spectrum.dat',
+              odir+'f05abundance/abundance_4e-4_emission_spectrum.dat',
+              odir+'f05abundance/abundance_5e-4_emission_spectrum.dat',
+              odir+'f05abundance/abundance_6e-4_emission_spectrum.dat',
+              odir+'f05abundance/abundance_7e-4_emission_spectrum.dat',
+              odir+'f05abundance/abundance_8e-4_emission_spectrum.dat',
+              odir+'f05abundance/abundance_9e-4_emission_spectrum.dat',
+              odir+'f05abundance/abundance_1e-3_emission_spectrum.dat']
     try:
-        plotspecabun(fnames, odir+'05abundance_linemoved_emission_spectrum.dat', 
-                     oname=rdir+'05abundance_emission_spectra.png')
-    except:
+        plotspecabun(fnames, odir+'f05abundance/abundance_0_emission_spectrum.dat', 
+                     oname=rdir+'f05abundance_emission_spectra.png')
+    except Exception as e:
+        print(e)
         pass
 
     # blending
     try:
-        plotspectrum(odir+'06blending_emission_spectrum.dat', 'eclipse', 
-                     oname=rdir+'06blending_emission_spectrum.png')
-    except:
+        plotspectrum(odir+'f06blending/blending_emission_spectrum.dat', 'eclipse', 
+                     oname=rdir+'f06blending_emission_spectrum.png')
+    except Exception as e:
+        print(e)
         pass
 
     # multicia
     try:
-        plotspectrum(odir+'07multicia_noCIA_emission_spectrum.dat', 'eclipse', 
-                     oname=rdir+'07multicia_noCIA_emission_spectrum.png')
-        plotspectrum(odir+'07multicia_oneCIA_emission_spectrum.dat', 'eclipse', 
-                     oname=rdir+'07multicia_oneCIA_emission_spectrum.png')
-        plotspectrum(odir+'07multicia_twoCIA_emission_spectrum.dat', 'eclipse', 
-                     oname=rdir+'07multicia_twoCIA_emission_spectrum.png')
-    except:
+        plotspectrum(odir+'f07multicia/noCIA_emission_spectrum.dat', 'eclipse', 
+                     oname=rdir+'f07noCIA_emission_spectrum.png')
+        plotspectrum(odir+'f07multicia/oneCIA_emission_spectrum.dat', 'eclipse', 
+                     oname=rdir+'f07oneCIA_emission_spectrum.png')
+        plotspectrum(odir+'f07multicia/twoCIA_emission_spectrum.dat', 'eclipse', 
+                     oname=rdir+'f07twoCIA_emission_spectrum.png')
+    except Exception as e:
+        print(e)
         pass
     
     # isothermal
     try:
-        plotspeciso(odir+'08isothermal_emission_spectrum.dat', 
-                    '../tests/08isothermal/isothermal.atm', 'eclipse', 
-                    oname=rdir+'08isothermal_emission_spectrum.png')
-    except:
+        plotspeciso(odir+'f08isothermal/isothermal_emission_spectrum.dat', 
+                    '../tests/f08isothermal/isothermal.atm', 'eclipse', 
+                    oname=rdir+'f08isothermal_emission_spectrum.png')
+    except Exception as e:
+        print(e)
         pass
 
     

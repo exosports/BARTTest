@@ -256,7 +256,7 @@ hd189_retrieval:
 
 plots:
 	@echo "Making plots..."
-	@cd lib/ && makeplots.py
+	@cd lib/ && ./makeplots.py
 	@echo "Plotting complete.\n"
 
 fin:
