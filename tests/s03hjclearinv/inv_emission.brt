@@ -75,151 +75,151 @@ atmfile = ./inv_uni.tea
 
 # MCMC arguments :::::::::::::::::::::::::::::::::::::::::::::::::::::
 # The data (eclipse or transit depths):
-data   = 7.95859118063e-05
-    5.83528326741e-05
-    0.000125751142512
-    8.56075731833e-05
-    0.000113319239696
-    0.000174223046185
-    7.30946772544e-05
-    0.000108850047599
-    9.26092286081e-05
-    8.51031832682e-05
-    0.000143422875722
-    0.000122282398229
-    0.000147475079236
-    0.000179650761937
-    0.000164285319159
-    0.000222634308312
-    0.000229213034325
-    0.000211210676344
-    0.000256772736096
-    0.00028567755379
-    0.000280737319724
-    0.000293560896467
-    0.000312706122275
-    0.00036865387491
-    0.000327246197345
-    0.000349776997229
-    0.000339943872961
-    0.000457723896694
-    0.000412162515574
-    0.000463176820428
-    0.000433208413869
-    0.000573208290494
-    0.000669826791336
-    0.000801202224596
-    0.000882812429618
-    0.000997404392895
-    0.00102150320812
-    0.000951732922383
-    0.00077947141131
-    0.000808993284026
-    0.000955480013646
-    0.00101064890316
-    0.00112450448455
-    0.00119764686792
-    0.00117654639159
-    0.00116028561487
-    0.00128097821143
+data   = 0.0001035535205719964
+        9.213191506322165e-05
+        0.00013023077595182247
+        0.0001751598735306932
+        0.00018045221211995016
+        0.00012812932763147522
+        0.0001486117935103816
+        0.00012099020977385473
+        0.00013492125906132445
+        0.00015632548032278593
+        0.00017131603361297734
+        0.000202671972816119
+        0.00020350682079612345
+        0.00019792389582667396
+        0.00022206405148228014
+        0.00023686685423966654
+        0.0002609305152626109
+        0.0002468451503293134
+        0.0002772736286495012
+        0.0002809535669280667
+        0.000261664444475031
+        0.00036465885281031614
+        0.0004073981395698761
+        0.0003901772106386784
+        0.00043172541379130736
+        0.0004065145971791499
+        0.0004389160792582142
+        0.0004829093936644654
+        0.0005101091200676221
+        0.000576443227116913
+        0.0006320825038300846
+        0.0007660556127670387
+        0.0008337693586579132
+        0.000940443843678585
+        0.0010213118127022395
+        0.0011097327890047892
+        0.001175496579287918
+        0.0011739742536798251
+        0.0010412404264694627
+        0.0009437849534067309
+        0.0010184410934650449
+        0.0011104313630373565
+        0.0012407843289938213
+        0.0013692848811341191
+        0.0013282848494025924
+        0.001369657274970874
+        0.001377164444850443
 
 # Data uncertainties:
-uncert = 2.50762316373e-05
-    2.49906331605e-05
-    2.51978603914e-05
-    2.53591874163e-05
-    2.54102247232e-05
-    2.56434308788e-05
-    2.57812776791e-05
-    2.59594434113e-05
-    2.64973342829e-05
-    2.67500252671e-05
-    2.69882876755e-05
-    2.71472669457e-05
-    2.72168474191e-05
-    2.73385654337e-05
-    2.74417569072e-05
-    2.76564743163e-05
-    2.76585205272e-05
-    2.78438375917e-05
-    2.79823954574e-05
-    2.81750125246e-05
-    2.84173897762e-05
-    2.86051909749e-05
-    2.88137754686e-05
-    2.90885720187e-05
-    2.92575455728e-05
-    2.9485301871e-05
-    2.97791566743e-05
-    3.00038371646e-05
-    3.01946237738e-05
-    3.04352151532e-05
-    3.06900851038e-05
-    3.09754290033e-05
-    3.12663594485e-05
-    3.14550532168e-05
-    3.17097771227e-05
-    3.19647516138e-05
-    3.22446039217e-05
-    3.24640794894e-05
-    3.28353354492e-05
-    3.33400836962e-05
-    3.43986808019e-05
-    3.51947480346e-05
-    3.56284309161e-05
-    3.58145753278e-05
-    3.58285298789e-05
-    3.60076135714e-05
-    3.62512421029e-05
+uncert = 2.5483055931826367e-05
+        2.5396594755357908e-05
+        2.560801261388644e-05
+        2.5772728839089924e-05
+        2.582502273780167e-05
+        2.6062016922020126e-05
+        2.6201205117275807e-05
+        2.638218847230893e-05
+        2.6931845950776223e-05
+        2.718779087801013e-05
+        2.7429999995563174e-05
+        2.759156314973431e-05
+        2.7662758031654506e-05
+        2.7786594656161404e-05
+        2.7891334639024334e-05
+        2.8110123412496046e-05
+        2.8112958986011567e-05
+        2.8302904313073885e-05
+        2.8442951984860828e-05
+        2.86388530669724e-05
+        2.888815160781373e-05
+        2.908019288343948e-05
+        2.9292378720600175e-05
+        2.9571996599469072e-05
+        2.9744410560241374e-05
+        2.9978013985167326e-05
+        3.0276499308267176e-05
+        3.0504972122970058e-05
+        3.0697990435559936e-05
+        3.094651844825192e-05
+        3.1207657953492675e-05
+        3.150436451707013e-05
+        3.1800582399911786e-05
+        3.199714693947681e-05
+        3.22607847558163e-05
+        3.252360679777949e-05
+        3.2807516267489845e-05
+        3.303093197913193e-05
+        3.3403887400587195e-05
+        3.390967618393905e-05
+        3.499902735130931e-05
+        3.5805827055922066e-05
+        3.625848476308153e-05
+        3.644909954541213e-05
+        3.646283349921403e-05
+        3.6648843859130256e-05
+        3.690221883020938e-05
 
 # The waveband filters:
 filters   = ../00inputs/filters/053.dat
-    ../00inputs/filters/054.dat
-    ../00inputs/filters/055.dat
-    ../00inputs/filters/056.dat
-    ../00inputs/filters/057.dat
-    ../00inputs/filters/058.dat
-    ../00inputs/filters/059.dat
-    ../00inputs/filters/060.dat
-    ../00inputs/filters/061.dat
-    ../00inputs/filters/062.dat
-    ../00inputs/filters/063.dat
-    ../00inputs/filters/064.dat
-    ../00inputs/filters/065.dat
-    ../00inputs/filters/066.dat
-    ../00inputs/filters/067.dat
-    ../00inputs/filters/068.dat
-    ../00inputs/filters/069.dat
-    ../00inputs/filters/070.dat
-    ../00inputs/filters/071.dat
-    ../00inputs/filters/072.dat
-    ../00inputs/filters/073.dat
-    ../00inputs/filters/074.dat
-    ../00inputs/filters/075.dat
-    ../00inputs/filters/076.dat
-    ../00inputs/filters/077.dat
-    ../00inputs/filters/078.dat
-    ../00inputs/filters/079.dat
-    ../00inputs/filters/080.dat
-    ../00inputs/filters/081.dat
-    ../00inputs/filters/082.dat
-    ../00inputs/filters/083.dat
-    ../00inputs/filters/084.dat
-    ../00inputs/filters/085.dat
-    ../00inputs/filters/086.dat
-    ../00inputs/filters/087.dat
-    ../00inputs/filters/088.dat
-    ../00inputs/filters/089.dat
-    ../00inputs/filters/090.dat
-    ../00inputs/filters/091.dat
-    ../00inputs/filters/092.dat
-    ../00inputs/filters/093.dat
-    ../00inputs/filters/094.dat
-    ../00inputs/filters/095.dat
-    ../00inputs/filters/096.dat
-    ../00inputs/filters/097.dat
-    ../00inputs/filters/098.dat
-    ../00inputs/filters/099.dat
+            ../00inputs/filters/054.dat
+            ../00inputs/filters/055.dat
+            ../00inputs/filters/056.dat
+            ../00inputs/filters/057.dat
+            ../00inputs/filters/058.dat
+            ../00inputs/filters/059.dat
+            ../00inputs/filters/060.dat
+            ../00inputs/filters/061.dat
+            ../00inputs/filters/062.dat
+            ../00inputs/filters/063.dat
+            ../00inputs/filters/064.dat
+            ../00inputs/filters/065.dat
+            ../00inputs/filters/066.dat
+            ../00inputs/filters/067.dat
+            ../00inputs/filters/068.dat
+            ../00inputs/filters/069.dat
+            ../00inputs/filters/070.dat
+            ../00inputs/filters/071.dat
+            ../00inputs/filters/072.dat
+            ../00inputs/filters/073.dat
+            ../00inputs/filters/074.dat
+            ../00inputs/filters/075.dat
+            ../00inputs/filters/076.dat
+            ../00inputs/filters/077.dat
+            ../00inputs/filters/078.dat
+            ../00inputs/filters/079.dat
+            ../00inputs/filters/080.dat
+            ../00inputs/filters/081.dat
+            ../00inputs/filters/082.dat
+            ../00inputs/filters/083.dat
+            ../00inputs/filters/084.dat
+            ../00inputs/filters/085.dat
+            ../00inputs/filters/086.dat
+            ../00inputs/filters/087.dat
+            ../00inputs/filters/088.dat
+            ../00inputs/filters/089.dat
+            ../00inputs/filters/090.dat
+            ../00inputs/filters/091.dat
+            ../00inputs/filters/092.dat
+            ../00inputs/filters/093.dat
+            ../00inputs/filters/094.dat
+            ../00inputs/filters/095.dat
+            ../00inputs/filters/096.dat
+            ../00inputs/filters/097.dat
+            ../00inputs/filters/098.dat
+            ../00inputs/filters/099.dat
 
 # The fitting function (3-element tuple with function name, module name,
 #  and path to module):
@@ -236,14 +236,14 @@ Tmax = 3000.0
 # The model fitting parameters:
 # The 'Mi' parameters are the log10 of an abundance scale factor:
 #      log(kappa)  log(g1) log(g2) alpha   beta  log(M1) log(M2) ...
-parnames = kappa g1 g2 alpha beta H2O CO2 CO CH4 NH3
-params   = -1.52 -0.8   0.4   0.5   0.85    2.0   0.0  0.0  4.0  1.0
-pmin     = -2.2  -1.2   0.2   0.0   0.78    0.0  -4.0 -4.0  2.0 -1.0
-pmax     = -0.8  -0.2   1.2   0.7   0.88    4.0   1.0  6.0  5.0  2.5
-stepsize =  0.1   0.1   0.1   0.1   0.1     0.4   0.4  0.4  0.4  0.4
+parnames = kappa   g1   g2   alpha  beta    H2O   CO2  CO    CH4   NH3
+params   = -1.52 -0.8   0.4   0.5   0.85    2.0   0.0  0.0   4.0   1.0
+pmin     = -4.0  -4.0  -4.0   0.0   0.5    -8.0  -8.0 -8.0  -8.0  -8.0
+pmax     =  1.0   1.0   2.5   1.0   1.3     5.0   5.0  5.0   5.0   8.0
+stepsize =  0.1   0.1   0.1   0.1   0.1     0.4   0.4  0.4   0.4   0.4
 
 # Total number of MCMC samples (burn-in + final MCMC):
-numit       = 1e6
+numit       = 2e6
 # Number of parallel MCMC chains (= number of processors):
 nchains     = 10
 # Number of burn-in iterations per chain:
@@ -252,7 +252,6 @@ burnin      = 5000
 # MCMC algorithm ('demc' for Differential Evolution or 'mrw' for 
 #  Metropolis Random Walk with Gaussian proposals):
 walk        = snooker
-hsize       = 25
 
 # Perform a least-square fit before the MCMC:
 leastsq     = False
@@ -260,7 +259,7 @@ leastsq     = False
 chisqscale  = False
 # Perform the Gelman-Rubin convergence test along the MCMC:
 grtest      = True
-grexit      = True
+grexit      = False
 # Use MPI for parallel processing:
 mpi         = True
 # Filename to store the model fit for each MCMC evaluation:
@@ -318,7 +317,7 @@ thigh  = 3000
 # Opacity-grid temperature sampling interval (in Kelvin):
 tempdelt = 100
 # Opacity-grid file name:
-opacityfile = opacity_testcase.dat
+opacityfile = opacity_hjclear.dat
 
 # Output spectrum file name:
 outspec    = ./eclipse_out.dat

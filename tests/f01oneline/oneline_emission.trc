@@ -17,18 +17,22 @@ molfile ../00inputs/molecules.dat
 
 # :::::::::: Spectrum sampling :::::::::::::::::::::::::::::::::::::::
 # Lowest wavelength boundary (see also wnhigh):
-wllow   2.2
+#wllow   2.2
+wnhigh  4455.0
+
 # Highest wavelength boundary (see also wnlow):
-wlhigh  2.4
+#wlhigh  2.4
+wnlow   4264.0
+
 # Wavelength conversion factor to cm (default: 1e-4, microns)
 wlfct  1e-4
 
 # Wavenumber sampling interval for output:
-wndelt  1.0
+wndelt  0.5
 # Wavenumber oversampling factor:
 wnosamp 2160
 # Wavenumber conversion factor to cm-1 (default: 1.0):
-wnfct 1.0
+wnfct   1.0
 
 # :::::::::: Geometry ::::::::::::::::::::::::::::::::::::::::::::::::
 # Raypath geometry (transit, for transmission; or
@@ -51,7 +55,7 @@ nwidth 20
 # Verbosity level for on-screen display (1 -- 5):
 verb 1
 
-opacityfile ../../code-output/01BART/f01oneline/oneline.opt
+#opacityfile ../../code-output/01BART/f01oneline/oneline.opt
 
 # :::::::::: Output files ::::::::::::::::::::::::::::::::::::::::::::
 # Radius (at each wavelength sample) where the optical depth == toomuch:

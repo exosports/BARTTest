@@ -57,7 +57,7 @@ def compabun(fnamel, fnameh, fnamen, outdir='../results/01BART/'):
 
     stats = np.stack((fmean, fmedn, frngl, frngh, fstdv), axis=1)
 
-    np.savetxt(outdir+'05results.txt', stats, fmt='%.6e', \
+    np.savetxt(outdir+'f05results.txt', stats, fmt='%.6e', \
                header='The following are the factor differences of line ' + \
                'depth between the \n' +                                     \
                'shallowest line (1e-4 abundance) and the others:\n' +       \

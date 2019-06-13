@@ -17,14 +17,16 @@ molfile ../00inputs/molecules.dat
 
 # :::::::::: Spectrum sampling :::::::::::::::::::::::::::::::::::::::
 # Lowest wavelength boundary (see also wnhigh):
-wllow   2.25
+#wllow   2.25
+wnhigh 4370
+
 # Highest wavelength boundary (see also wnlow):
-wlhigh  2.31
+#wlhigh  2.31
+wnlow  4366
+
 # Wavelength conversion factor to cm (default: 1e-4, microns)
 wlfct  1e-4
 
-wnlow  4365
-wnhigh 4371
 # Wavenumber sampling interval for output:
 wndelt  0.005
 # Wavenumber oversampling factor:
@@ -43,7 +45,7 @@ raygrid 0 20 40 60 80
 # Maximum optical depth:
 toomuch 10
 # Line-strength threshold:
-ethresh 1e-6
+ethresh 1e-50
 
 # :::::::::: Line Broadening :::::::::::::::::::::::::::::::::::::::::
 # Voigt profile half width (in Doppler or Lorentz HWHM):
@@ -60,6 +62,6 @@ opacityfile ../../code-output/01BART/f04broadening/broadening.opt
 
 # :::::::::: Output files ::::::::::::::::::::::::::::::::::::::::::::
 # Radius (at each wavelength sample) where the optical depth == toomuch:
-outtoomuch ../../code-output/01BART/f04broadening/broadening_emission_toomuch.dat
+#outtoomuch ../../code-output/01BART/f04broadening/broadening_emission_toomuch.dat
 # Emission (eclipse) spectrum:
 outspec    ../../code-output/01BART/f04broadening/broadening_emission_spectrum.dat

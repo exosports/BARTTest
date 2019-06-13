@@ -41,7 +41,7 @@ if __name__ == "__main__":
     spectra = ['../code-output/01BART/f09energycons/' + \
                 'energycons_1_emission_spectrum.dat',
                '../code-output/01BART/f09energycons/' + \
-                'energycons_3_emission_spectrum.dat',
+                'energycons_2_emission_spectrum.dat',
                '../code-output/01BART/f09energycons/' + \
                 'energycons_5_emission_spectrum.dat',
                '../code-output/01BART/f09energycons/' + \

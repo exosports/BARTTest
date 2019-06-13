@@ -55,6 +55,6 @@ verb 1
 
 # :::::::::: Output files ::::::::::::::::::::::::::::::::::::::::::::
 # Radius (at each wavelength sample) where the optical depth == toomuch:
-outtoomuch ../../code-output/01BART/f05abundance/abundance_8e-4_emission_toomuch.dat
+#outtoomuch ../../code-output/01BART/f05abundance/abundance_8e-4_emission_toomuch.dat
 # Emission (eclipse) spectrum:
 outspec    ../../code-output/01BART/f05abundance/abundance_8e-4_emission_spectrum.dat

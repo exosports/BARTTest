@@ -17,7 +17,7 @@ molfile ../../../BART/modules/transit/inputs/molecules.dat
 
 # :::::::::: Spectrum sampling :::::::::::::::::::::::::::::::::::::::
 # Lowest wavelength boundary (see also wnhigh):
-wllow   1.0
+wllow   3.0
 # Highest wavelength boundary (see also wnlow):
 wlhigh  8.0
 # Wavelength conversion factor to cm (default: 1e-4, microns)
@@ -53,6 +53,6 @@ verb 1
 
 # :::::::::: Output files ::::::::::::::::::::::::::::::::::::::::::::
 # Radius (at each wavelength sample) where the optical depth == toomuch:
-outtoomuch ../../code-output/01BART/f09energycons/energycons_1_emission_toomuch.dat
+#outtoomuch ../../code-output/01BART/f09energycons/energycons_1_emission_toomuch.dat
 # Emission (eclipse) spectrum:
 outspec    ../../code-output/01BART/f09energycons/energycons_1_emission_spectrum.dat

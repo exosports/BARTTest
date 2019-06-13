@@ -1,8 +1,6 @@
-.PHONY: all some tests_noiso test_plusiso oneline fewline multiline abundance isothermal broadening blending multicia plots fin clean
+.PHONY: all quicktests forwardtests comparisontests synth_retrievals hd189 oneline fewline multiline abundance broadening blending multicia isothermal energycons plots fin clean
 
-all: bart hitran_linelists oneline fewline multiline broadening abundance blending multicia isothermal enregycons comparisontests plots fin
-
-some: bart oneline fewline multiline broadening abundance blending multicia plots fin
+all: bart hitran_linelists oneline fewline multiline broadening abundance blending multicia isothermal energycons comparisontests plots fin
 
 quicktests: oneline fewline multiline broadening abundance blending multicia plots fin
 
@@ -10,7 +8,7 @@ forwardtests: oneline fewline multiline broadening abundance blending multicia i
 
 comparisontests: comparison_tli comparison_iso comparison_noinv comparison_inv comparison_plots fin
 
-synth_retrievals: retrieval_tli retrieval_iso_e retrieval_iso_t retrieval_noinv_e retrieval_noinv_t retrieval_inv_e retrieval_inv_t fin
+synthretrievals: retrieval_tli retrieval_iso_e retrieval_iso_t retrieval_noinv_e retrieval_noinv_t retrieval_inv_e retrieval_inv_t fin
 
 hd189: hd189_tli hd189_retrieval fin
 
@@ -20,8 +18,8 @@ bart:
 		git clone --recursive https://github.com/exosports/BART ../BART/;     \
 		echo "Finished cloning BART to a directory parallel to BARTTest.\n";  \
 		echo "Compiling BART...";                                             \
-		cd ../BART/modules/transit/ && make;                                  \
-		cd ../BART/modules/MCcubed/ && make;                                  \
+		cd ../BART/modules/transit && make;                                  \
+		cd ../MCcubed && make;                                  \
 		echo "Finished compiling BART.\n";                                    \
 	else                                                                      \
 		echo "BART already exists.\n";                                        \
@@ -156,7 +154,7 @@ energycons:
 	../../../BART/modules/transit/transit/transit -c                          \
 	                                             energycons_1_emission.trc  &&\
 	../../../BART/modules/transit/transit/transit -c                          \
-	                                             energycons_3_emission.trc  &&\
+	                                             energycons_2_emission.trc  &&\
 	../../../BART/modules/transit/transit/transit -c                          \
 	                                             energycons_5_emission.trc  &&\
 	../../../BART/modules/transit/transit/transit -c                          \
@@ -252,11 +250,16 @@ hd189_tli:
 hd189_retrieval:
 	@echo "Running retrieval, HD 189733b: \n"
 	@cd tests/r01hd189733b/                                                 &&\
-	../../../BART/BART.py -c HD189733b.brt -- justOpacity
+	../../../BART/BART.py -c HD189733b.brt
 
 plots:
 	@echo "Making plots..."
 	@cd lib/ && ./makeplots.py
+	@echo "Plotting complete.\n"
+
+retrievalplots:
+	@echo "Making synthetic retrieval plots..."
+	@cd lib/ && ./retrievalplots.py
 	@echo "Plotting complete.\n"
 
 fin:

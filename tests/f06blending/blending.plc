@@ -20,17 +20,16 @@
 defn = ../00inputs/litran.dat
 
 # Path(s) to the database linelists:
-db_list  = ../00inputs/par/oneline.par
-           ../00inputs/par/fewline.par
+db_list  = ../00inputs/par/blending.par
 
 # Path(s) to the partition function files:
-part_list= implicit implicit
+part_list= implicit
 
 # Type of each input database:
 #   hit:  hitran and hitemp
 #   ps:   Partridge and Schwenke H2O
 #   ts:   Schwenke TiO 
-dbtype = hit hit
+dbtype = hit
 
 # Output TLI filename:
 output = ../00inputs/TLI/blending_2-4um.tli

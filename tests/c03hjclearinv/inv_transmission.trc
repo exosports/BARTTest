@@ -24,7 +24,7 @@ wlhigh  11.0
 wlfct  1e-4
 
 # Wavenumber sampling interval for output:
-wndelt 1.0
+wndelt 0.25
 # Wavenumber oversampling factor:
 wnosamp 2160
 # Wavenumber conversion factor to cm-1 (default: 1.0):
@@ -60,6 +60,6 @@ verb 2
 
 # :::::::::: Output files ::::::::::::::::::::::::::::::::::::::::::::
 # Radius (at each wavelength sample) where the optical depth == toomuch:
-outtoomuch ../../code-output/01BART/c03hjclearinv/inv_transmission_toomuch.dat
+#outtoomuch ../../code-output/01BART/c03hjclearinv/inv_transmission_toomuch.dat
 # Emission (eclipse) spectrum:
 outspec    ../../code-output/01BART/c03hjclearinv/inv_transmission_spectrum.dat
