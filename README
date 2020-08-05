@@ -17,7 +17,8 @@ Authors:                Michael D. Himes, Joseph Harrington,
 
 Test-case Contributors: Ian Dobbs-Dixon
 
-Contact: For general questions about BARTTest (or BART), email 
+Contact: For general questions about BARTTest (or BART), users may open an issue
+         on Github, or email 
             bart-user@planets.ucf.edu
          or
             bart-devel@planets.ucf.edu

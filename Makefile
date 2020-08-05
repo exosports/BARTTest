@@ -13,17 +13,18 @@ synthretrievals: retrieval_tli retrieval_iso_e retrieval_iso_t retrieval_noinv_e
 hd189: hd189_tli hd189_retrieval fin
 
 bart:
-	@echo "\nCloning BART..."
 	@if [ ! -d "../BART" ]; then                                              \
+		@echo "\nCloning BART..."                                             \
 		git clone --recursive https://github.com/exosports/BART ../BART/;     \
 		echo "Finished cloning BART to a directory parallel to BARTTest.\n";  \
-		echo "Compiling BART...";                                             \
-		cd ../BART/modules/transit && make;                                  \
-		cd ../MCcubed && make;                                  \
-		echo "Finished compiling BART.\n";                                    \
 	else                                                                      \
-		echo "BART already exists.\n";                                        \
+		echo "BART already exists in a directory parallel to BARTTest.\n";    \
 	fi
+	@echo "Compiling BART..."
+	@cd ../BART/modules/transit && make
+	@cd ../BART/modules/MCcubed && make
+	@echo "Finished compiling BART.\n"
+
 
 hitran_linelists:
 	@echo "Downloading HITRAN line lists...\n"
