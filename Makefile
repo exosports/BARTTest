@@ -214,7 +214,7 @@ retrieval_tli:
 retrieval_iso_e:
 	@echo "Running retrieval, isothermal atmosphere, eclipse: \n"
 	@cd tests/s01hjcleariso/                                                &&\
-	../../../BART/BART.py -c iso_emission.brt --justPlots
+	../../../BART/BART.py -c iso_emission.brt
 
 retrieval_iso_t:
 	@echo "Running retrieval, isothermal atmosphere, transit: \n"

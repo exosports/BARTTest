@@ -72,7 +72,7 @@ def retrievedPT(datadir, atmfile, tepfile, nmol, solution,
     T_int:    float.  Internal planetary temperature. Default is 100 K.
     """
     # Set outdir if not specified
-    if outdir == None:
+    if outdir is None:
         try:
             if datadir[-1] != '/':
                 datadir = datadir + '/'
@@ -103,7 +103,7 @@ def retrievedPT(datadir, atmfile, tepfile, nmol, solution,
     foo   = open(MCfile, 'r')
     lines = foo.readlines()
     foo.close()
-    line = filter(lambda x: " Burned in iterations per chain:" in x, lines)
+    line = [foop for foop in lines if " Burned in iterations per chain:" in foop]
     burnin = int(line[0].split()[-1])
 
     # Figure out number of parameters
@@ -115,7 +115,7 @@ def retrievedPT(datadir, atmfile, tepfile, nmol, solution,
     # Plot the best PT profile
     kappa, gamma1, gamma2, alpha, beta = PTparams
     best_T = pt.PT_line(pressure, kappa,  gamma1, gamma2, alpha, beta, 
-                        R_star,   T_star, T_int,  sma,    grav*1e2)
+                        R_star,   T_star, T_int,  sma,    grav*1e2, 'const')
 
     # Load MCMC data
     MCMCdata = datadir + 'output.npy'
@@ -138,9 +138,9 @@ def retrievedPT(datadir, atmfile, tepfile, nmol, solution,
             curr_PTparams[i] = data_stack[j,k]
             j +=1
         kappa, gamma1, gamma2, alpha, beta = curr_PTparams
-        PTprofiles[k] = pt.PT_line(pressure, 
-                                   kappa,  gamma1, gamma2, alpha, beta,
-                                   R_star, T_star, T_int,  sma,   grav*1e2)
+        PTprofiles[k] = pt.PT_line(pressure, kappa,  gamma1, gamma2, 
+                                   alpha, beta, R_star, T_star, T_int, 
+                                   sma, grav*1e2, 'const')
 
 
     # Get percentiles (for 1, 2-sigma boundaries):
@@ -187,7 +187,7 @@ def retrievedabun(datadir, outname, atminput,
     if datadir[-1] != '/':
         datadir = datadir + '/'
     # Set outdir if not specified. If it is, ensure trailing /
-    if outdir == None:
+    if outdir is None:
         try:
             outdir = 'results'.join(datadir.rsplit('code-output',            \
                                                    1)).rsplit('/', 2)[0] + '/'
