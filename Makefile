@@ -246,7 +246,7 @@ hd189_tli:
 	@echo "Running retrieval, HD 189733b: \n"
 	@cd tests/r01hd189733b/                                                 &&\
 	../../../BART/modules/transit/pylineread/src/pylineread.py -c             \
-	pyline.plc
+	HD189733b.plc
 
 hd189_retrieval:
 	@echo "Running retrieval, HD 189733b: \n"
