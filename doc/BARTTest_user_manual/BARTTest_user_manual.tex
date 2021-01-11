@@ -639,7 +639,7 @@ This test follows the Model 1 setup described in Barstow et al. (2020).\\
 
 Files in c05hjcloudisoBarstowEtal/:
 \begin{itemize} \itemsep0pt
-  \item BarstowEtal_model1.trc: Configuration file for Transit, Model 1.
+  \item BarstowEtal{\_}model1.trc: Configuration file for Transit, Model 1.
 \end{itemize}
 
 \subsubsection{s01hjcleariso}
@@ -785,19 +785,19 @@ configured for Linux, all commands given are for that operating sytem.
 First, the user must clone BARTTest from Github to their machine. 
 Navigate in a terminal to the location where BARTTest will be cloned. 
 Then type
-\beginverbatim
+\begin{verbatim}
 git clone https://github.com/exosports/BARTTest BARTTest/
-\endverbatim
+\end{verbatim}
 to clone it into a directory called BARTTest/ within your current directory.
 Then, navigate into the BARTTest directory.
-\beginverbatim
+\begin{verbatim}
 cd BARTTest/
-\endverbatim
+\end{verbatim}
 
 BARTTest comes with BART's code output and results already there (except the large input files, like line lists and opacity files). For this example, we will start fresh as if that is not the case. Type
-\beginverbatim
+\begin{verbatim}
 make clean
-\endverbatim
+\end{verbatim}
 into the terminal to delete all of the existing output from BART. Note that 
 reproducing all of that output will take many, many CPU hours, so it will 
 be easier to re-clone BARTTest than to run the code if the user wishes to 
@@ -805,16 +805,16 @@ undo the deletion of that output.
 
 From here, the execution method will be dependent on what test(s) the user 
 wishes to execute. The common step to (almost) all of the options is
-\beginverbatim
+\begin{verbatim}
 make bart
-\endverbatim
+\end{verbatim}
 as this command will clone and compile BART and its submodules from Github. 
 
 To run the forward modeling cases that do not require line lists (f01 
 -- f07), type
-\beginverbatim
+\begin{verbatim}
 make quicktests
-\endverbatim
+\end{verbatim}
 into the terminal. It will execute f01 through f07 sequentially and produce 
 plots of the output of those specific tests. Note that if the user deleted 
 the existing BART output, there will be some error messages related to the 
@@ -822,37 +822,37 @@ files missing for other tests, like f08 and f09.
 
 If the user wishes to run all of the forward modeling tests (f01 -- f09), full line lists are required.
 Type
-\beginverbatim
+\begin{verbatim}
 make hitran{\_}linelists
-\endverbatim
+\end{verbatim}
 to download all of the necessary line lists. Then, type
-\beginverbatim
+\begin{verbatim}
 make forwardtests
-\endverbatim
+\end{verbatim}
 into the terminal to run the tests. \textbf{Be aware of the hardware requirements for this} 
 (see Section \ref{sec:requirements}). This will take on the order of hours 
 to execute.
 
 If the user wishes to run only the comparison tests (c01 -- c03), type
-\beginverbatim
+\begin{verbatim}
 make comparisontests
-\endverbatim
+\end{verbatim}
 into the terminal. This will take roughly as long as the previous option, as 
 the comparison test is the most time-consuming part of the forward modeling 
 tests. Note that full line lists are required.
 
 To run all of the synthetic retrievals, type
-\beginverbatim
+\begin{verbatim}
 make synthretrievals
-\endverbatim
+\end{verbatim}
 into the terminal. \textbf{Be aware of the hardware requirements for this} 
 (see Section \ref{sec:requirements}). This will take on the order of a week to complete.
 
 If the user wishes to run, e.g., the synthetic retrievals on a non-inverted 
 atmosphere in only eclipse geometry, type
-\beginverbatim
+\begin{verbatim}
 make noinv{\_}retrieval{\_}e
-\endverbatim
+\end{verbatim}
 
 For additional options, see Table \ref{tbl:makecommands}.
 
