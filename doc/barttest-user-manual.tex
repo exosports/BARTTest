@@ -59,7 +59,7 @@ Dr.~Joseph \textsc{Harrington}
 \label{sec:intro}
 
 This document describes BARTTest, a collection of tests for 
-radiative-transfer (RT) and retrieval codes. 
+radiative-transfer (RT) and exoplanet retrieval codes. 
 The tests include simple forward models with 
 analytically-verifiable answers, realistic forward models for an 
 HD 189733b-like planet with various types of temperature profiles, and 
@@ -205,24 +205,33 @@ comparison{\_}tli & Generates the TLI file for the c01hjcleariso, c02hjclearnoin
 comparison{\_}iso & Runs the isothermal emission and transmission cases for the c01hjcleariso test. Note: This may take a couple hours.\\
 comparison{\_}noinv & Runs the noninverted emission and transmission cases for the c02hjclearnoinv test. Note: This may take a couple hours.\\
 comparison{\_}inv & Runs the inverted emission and transmission cases for the c03hjclearinv test. Note: This may take a couple hours.\\
-comparison{\_}plots & Produces the plots that compare Transit's results to Ian Dobbs-Dixon's radiative hydrodynamic (RHD) code.\\
+comparison{\_}BarstowEtal & Runs the selected Barstow et al. (2020) cases: Model 0, Model 1, 1000 K w/ 1e-4 CO, 1500 K w/ 1e-4 CO, 1500 K w/ 1e-5 CO (see Sections \ref{sec:comp-barstow-clear} and \ref{sec:comp-barstow-cloud}).\\
+BarstowEtal{\_}OSF & Downloads the Barstow et al. (2020) OSF archive, which contains their spectra.\\
+comparison{\_}plots & Produces the plots that compare Transit's results to the Barstow et al. (2020) cases.\\
 comparisontests & Generates TLI file, runs all of the cases for the c01hjcleariso, c02hjclearnoinv, and c03hjclearinv tests, and produces plots (see see Sections \ref{sec:comp-iso} -- \ref{sec:comp-inv}). Note: this takes on the order of hours.\\
-synthretrievals & Runs all of the synthetic retrievals (s01 -- s03; see Section \ref{sec:retrievals}). Note: this may take on the order of a week.\\
+synthretrievals & Runs all of the synthetic retrievals (s01 -- s05; see Section \ref{sec:retrievals}). Note: this may take on the order of weeks.\\
+BarstowEtalretrievals & Runs all of the Barstow et al. (2020) synthetic retrievals (s04 and s05; see Section \ref{sec:ret-barstow}). Note: this may take on the order of a week.\\
 retrieval{\_}tli & Generates the TLI file for the s01 -- s03 tests. Note: equivalent to comparison{\_}tli.\\
-retrieval{\_}iso_e & Runs emission retrieval for the s01hjcleariso test. Note: this takes on the order of days.\\
-retrieval{\_}iso_t & Runs transmission retrieval for the s01hjcleariso test. Note: this takes on the order of days.\\
-retrieval{\_}noinv_e & Runs emission retrieval for the s02hjclearnoinv test. Note: this takes on the order of days.\\
-retrieval{\_}noinv_t & Runs transmission retrieval for the s02hjclearnoinv test. Note: this takes on the order of days.\\
-retrieval{\_}inv_e & Runs emission retrieval for the s03hjclearinv test. Note: this takes on the order of days.\\
-retrieval{\_}inv_t & Runs transmission retrieval for the s03hjclearinv test. Note: this takes on the order of days.\\
+retrieval{\_}iso{\_}e & Runs emission retrieval for the s01hjcleariso test. Note: this takes on the order of days.\\
+retrieval{\_}iso{\_}t & Runs transmission retrieval for the s01hjcleariso test. Note: this takes on the order of days.\\
+retrieval{\_}noinv{\_}e & Runs emission retrieval for the s02hjclearnoinv test. Note: this takes on the order of days.\\
+retrieval{\_}noinv{\_}t & Runs transmission retrieval for the s02hjclearnoinv test. Note: this takes on the order of days.\\
+retrieval{\_}inv{\_}e & Runs emission retrieval for the s03hjclearinv test. Note: this takes on the order of days.\\
+retrieval{\_}inv{\_}t & Runs transmission retrieval for the s03hjclearinv test. Note: this takes on the order of days.\\
+retrieval{\_}BarstowEtal{\_}NEMESIS{\_}clear & Runs transmission retrieval on NEMESIS spectrum for Barstow et al. (2020) Model 0 (see Section \ref{sec:ret-barstow}).\\
+retrieval{\_}BarstowEtal{\_}NEMESIS{\_}cloud & Runs transmission retrieval on NEMESIS spectrum for Barstow et al. (2020) Model 1 (see Section \ref{sec:ret-barstow}).\\
+retrieval{\_}BarstowEtal{\_}CHIMERA{\_}clear & Runs transmission retrieval on CHIMERA spectrum for Barstow et al. (2020) Model 0 (see Section \ref{sec:ret-barstow}).\\
+retrieval{\_}BarstowEtal{\_}CHIMERA{\_}cloud & Runs transmission retrieval on CHIMERA spectrum for Barstow et al. (2020) Model 1 (see Section \ref{sec:ret-barstow}).\\
+retrieval{\_}BarstowEtal{\_}TauREx{\_}clear  & Runs transmission retrieval on Tau-REx spectrum for Barstow et al. (2020) Model 0 (see Section \ref{sec:ret-barstow}).\\
+retrieval{\_}BarstowEtal{\_}TauREx{\_}cloud  & Runs transmission retrieval on Tau-REx spectrum for Barstow et al. (2020) Model 1 (see Section \ref{sec:ret-barstow}).\\
 hd189{\_}tli & Generates the TLI file for the HD 189733b retrieval (see Section \ref{sec:hd189}).\\
 hd189{\_}retrieval & Runs a retrieval using HD 189733b secondary eclipse data. Note: this takes on the order of days (see Section \ref{sec:hd189}).\\
 hd189 & Equivalent to executing hd189{\_}tli and hd189{\_}retrieval Note: this takes on the order of days (see Section \ref{sec:hd189}).\\
 quicktests & Runs f01 -- f07.\\
 forwardtests & Runs f01 -- f09.\\
-all & Downloads BART and HITRAN/HITEMP line lists, and runs f01 -- f09 and c01 -- c03. Note: does not execute the retrievals due to the time involved.\\
+all & Downloads BART and HITRAN/HITEMP line lists, and runs f01 -- f09 and c01 -- c05. Note: does not execute the retrievals due to the time involved.\\
 plots & Produces plots of the code output for f01 -- f09, c01 -- c03, and s01 -- s03.\\
-retrievalplots & Produces plots that compare the retrieved results to the known ground-truth for the synthetic retrieval cases.
+retrievalplots & Produces plots that compare the retrieved results to the known ground-truth for the synthetic retrieval cases.\\
 clean & Deletes everything in BARTTest/code-output/01BART/ and BARTTest/results/01BART/.\\
 \hline
 \end{tabular}
@@ -237,9 +246,10 @@ run the package in some other manner, it must be manually configured.
 This section describes the files and subdirectories in BARTTest.
 
 \subsection{Top-level Files}
-The BARTTest directory contains 3 files: LICENSE, Makefile, and README.
-
+The BARTTest directory contains some files:
 \begin{itemize} \itemsep0pt
+  \item environment.yml: a conda environment that can run the software.
+  \item HOW{\_}TO{\_}FIND{\_}WHAT{\_}YOU{\_}ARE{\_}LOOKING{\_}FOR: a quickguide to the directories and what they contain.
   \item LICENSE: identical to Section \ref{sec:license}. It contains the 
         usage license.
   \item Makefile: the main driver of the program; it handles commands used 
@@ -272,7 +282,10 @@ Files in the directory:
         and produces those plots when executed.
   \item opacityconv.py: contains a function to read a (binary) Transit opacity 
         file, convert it to Numpy arrays, and save out a .npz file.
-  \item retrievalplots.py: contains functions to plot the results of the s01 -- s03 tests against the known ground-truth answers. Produces those plots when executed.
+  \item plotPTs.py: a script to plot the T(p) profiles used in the c01 -- c03 and s01 -- s03 tests.
+  \item retrievalplots.py: contains functions to plot the results of the s01 -- s03 tests against the known ground-truth answers.
+  \item retrievalplots{\_}BarstowEtal.py: as above, but for the Barstow et al. (2020) cases of s04 and s05.
+  \item spec{\_}grid{\_}comp.py: a script to produce plots related to Appendix B of Harrington et al. (2021).
   \item voigtcomp.py: contains a function to compare the line profile from the 
         broadening test with the normalized theoretical Voigt profile 
         corresponding to the setup (temperature, pressure, molecular 
@@ -285,7 +298,9 @@ Files in the directory:
 
 \subsection{results}
 \label{sec:results}
-The results directory contains the plots of the output of each test. It is 
+The results directory contains results derived from the output(s) of tests. 
+This includes plots (e.g., comparing spectra) as well as numbers (e.g., the 
+factor from test f04). It is 
 similar in structure to code-output: each subdirectory is associated with 
 the plots of the output of a particular RT/retrieval code, and these are numbered 
 according to the time that the output was received. 
@@ -307,15 +322,17 @@ model tests, c{\#}{\#}name are forward model comparison tests, s{\#}{\#}name are
 Each subdirectory is detailed below. 
 Note that paths in this section are given with respect to BARTTest/tests/.
 
-The forward model tests are configured for Transit, the radiative transfer package of BART. 
+The forward model tests are configured for Transit, the RT package of BART. 
 The retrieval tests are configured for BART. 
-These input and configuration files are provided so that the user may reference these for clarity on the exact setup for each test. 
+These input and configuration files are provided so that the user may reference these for clarity on the exact setup for each test, allowing easy replication in other RT packages. 
 The following sections describe each file in each subdirectory. 
 Note that other RT or retrieval codes may handle inputs differently, such as in the case of collision-induced absorptions.
 
 In general, each forward model test will have a Transit configuration file (e.g., broadening{\_}emission.trc), a Pylineread configuration file (e.g., broadening.plc), and an atmospheric model (e.g., broadening.atm). 
 Some tests have multiple configuration files or atmospheric models, such as f05. 
-For the synthetic retrieval tests, each directory will have two BART configuration files for transit and eclipse geometry (e.g., iso{\_}emission.brt), four text files containing the eclipse and transit depths and uncertainties (e.g., iso{\_}ecldepths.txt and iso{\_}ecluncs.txt), and a text file containing the paths to the filter files, with respect to the test directory.
+For the synthetic retrieval tests, each directory will have two BART configuration files for transit and eclipse geometry (e.g., iso{\_}uni{\_}emission.brt), four text files containing the eclipse and transit depths and uncertainties (e.g., iso{\_}ecldepths.txt and iso{\_}ecluncs.txt), and a text file containing the paths to the filter files (e.g., iso{\_}uni{\_}filters.txt), with respect to the test directory.
+
+Each test is executed over a specific wavenumber grid.  Rather than list those here, we direct the Transit/BART configuration files.  The parameters of interest are `wnlow` (or `wlhigh`), `wnhigh` (or `wllow`), and `wndelt`; `wnlow` (or `wlhigh`) sets the starting point of the grid, `wndelt` determines the step size between grid points, and `wnhigh` (or `wllow`) sets the maximum possible grid value.  Note that if `wnhigh` (or `wllow`) does not correspond to the `wndelt` spacing, the last value in the grid will be the next-smallest value that does correspond to the spacing.  For example, if `wnlow` is 100, `wnhigh` is 199.9, and `wndelt` is 0.25, then the grid would cover wavenumbers 100 -- 199.75, inclusive.
 
 \subsubsection{00inputs}
 \label{sec:inputs}
@@ -341,7 +358,7 @@ Files in 00inputs/:
 \begin{itemize} \itemsep0pt
   \item CIA{\_}HITRAN{\_}H2He{\_}0200-9900K{\_}0.5-500um.dat: An opacity table 
         for collision-induced absorptions between H2 and He molecules.
-  \item hd189733b-fp00k2odfnew.pck: Kurucz stellar model file for HD 189733.
+  \item hd189733b-fp00k2odfnew.pck: Kurucz stellar model file for HD 189733-like star.
   \item HD189733b.tep: Transiting ExoPlanet file for HD 189733b. Contains 
         system parameters.
   \item litran.dat: A modified version of the HITRAN definitions file used by 
@@ -531,7 +548,7 @@ Files in f09energycons/:
 \subsubsection{c01hjcleariso}
 \label{sec:comp-iso}
 This test generates forward models for an HD 189733b-like planet with an isothermal PT profile in both eclipse and transit geometry. The atmosphere contains H, He, C, N, O, H\sb{2}, 
-CO, CO\sb{2}, CH\sb{4}, H\sb{2}O, N\sb{2}, and NH\sb{3}. Line lists are 
+CO, CO\sb{2}, CH\sb{4}, H\sb{2}O, and NH\sb{3}. Line lists are 
 included for H\sb{2}, CO, CO\sb{2}, CH\sb{4}, H\sb{2}O, and NH\sb{3}. CIAs 
 are included for H\sb{2}-H\sb{2} and H\sb{2}-He.\\
 
@@ -542,17 +559,18 @@ Files in c01hjcleariso/:
         Section \ref{sec:commands} for information on downloading line lists if 
         the user wishes to download them. Be aware that this will take some 
         time and will use {\sim}15 GB of storage.
-  \item iso.tea: Atmospheric model used by Transit.
-  \item iso{\_}emission.trc: Configuration file for Transit. Produces 
+  \item iso{\_}uni.atm: Atmospheric model used by Transit.
+  \item iso{\_}uni{\_}emission.trc: Configuration file for Transit. Produces 
         emission spectrum.
-  \item iso{\_}transmission.trc: Configuration file for Transit. Produces 
+  \item iso{\_}uni{\_}transmission.trc: Configuration file for Transit. Produces 
         transmission spectrum.
+  \item pt{\_}iso.png: Plot of the temperature--pressure profile.
 \end{itemize}
 
 \subsubsection{c02hjclearnoinv}
 \label{sec:comp-noinv}
 This test generates forward models for an HD 189733b-like planet with a non-inverted PT profile in both eclipse and transit geometry. The atmosphere contains H, He, C, N, O, H\sb{2}, 
-CO, CO\sb{2}, CH\sb{4}, H\sb{2}O, N\sb{2}, and NH\sb{3}. Line lists are 
+CO, CO\sb{2}, CH\sb{4}, H\sb{2}O, and NH\sb{3}. Line lists are 
 included for H\sb{2}, CO, CO\sb{2}, CH\sb{4}, H\sb{2}O, and NH\sb{3}. CIAs 
 are included for H\sb{2}-H\sb{2} and H\sb{2}-He.\\
 
@@ -563,17 +581,19 @@ Files in c02hjclearnoinv/:
         Section \ref{sec:commands} for information on downloading line lists if 
         the user wishes to download them. Be aware that this will take some 
         time and will use {\sim}15 GB of storage.
-  \item noinv.tea: Atmospheric model used by Transit.
-  \item noinv{\_}emission.trc: Configuration file for Transit. Produces 
+  \item make{\_}noinv{\_}uni.py: Script to produce the atmospheric model.
+  \item noinv{\_}uni.atm: Atmospheric model used by Transit.
+  \item noinv{\_}uni{\_}emission.trc: Configuration file for Transit. Produces 
         emission spectrum.
-  \item noinv{\_}transmission.trc: Configuration file for Transit. Produces 
+  \item noinv{\_}uni{\_}transmission.trc: Configuration file for Transit. Produces 
         transmission spectrum.
+  \item pt{\_}noinv.png: Plot of the temperature--pressure profile.
 \end{itemize}
 
 \subsubsection{c03hjclearinv}
 \label{sec:comp-inv}
 This test generates forward models for an HD 189733b-like planet with an inverted PT profile in both eclipse and transit geometry. The atmosphere contains H, He, C, N, O, H\sb{2}, 
-CO, CO\sb{2}, CH\sb{4}, H\sb{2}O, N\sb{2}, and NH\sb{3}. Line lists are 
+CO, CO\sb{2}, CH\sb{4}, H\sb{2}O, and NH\sb{3}. Line lists are 
 included for H\sb{2}, CO, CO\sb{2}, CH\sb{4}, H\sb{2}O, and NH\sb{3}. CIAs 
 are included for H\sb{2}-H\sb{2} and H\sb{2}-He.\\
 
@@ -584,109 +604,145 @@ Files in c03hjclearinv/:
         Section \ref{sec:commands} for information on downloading line lists if 
         the user wishes to download them. Be aware that this will take some 
         time and will use {\sim}15 GB of storage.
-  \item inv.tea: Atmospheric model used by Transit.
-  \item inv{\_}emission.trc: Configuration file for Transit. Produces 
+  \item make{\_}inv{\_}uni.py: Script to produce the atmospheric model.
+  \item inv{\_}uni.atm: Atmospheric model used by Transit.
+  \item inv{\_}uni{\_}emission.trc: Configuration file for Transit. Produces 
         emission spectrum.
-  \item inv{\_}transmission.trc: Configuration file for Transit. Produces 
+  \item inv{\_}uni{\_}transmission.trc: Configuration file for Transit. Produces 
         transmission spectrum.
+  \item pt{\_}inv.png: Plot of the temperature--pressure profile.
+\end{itemize}
+
+\subsubsection{c04hjclearisoBarstowEtal}
+\label{sec:comp-barstow-clear}
+This test follows four of the setups described in Barstow et al. (2020).  It 
+includes three of the CO-only atmospheres and Model 0, an HD 189733b-like 
+planet, in transit geometry.\\
+
+Files in c04hjclearisoBarstowEtal/:
+\begin{itemize} \itemsep0pt
+  \item BarstowEtal_CO_1e-4_1000K.trc: Configuration file for Transit, 1000 K atmosphere with CO abundance of 1e-4.
+  \item BarstowEtal_CO_1e-4_1500K.trc: Configuration file for Transit, 1500 K atmosphere with CO abundance of 1e-4.
+  \item BarstowEtal_CO_1e-5_1000K.trc: Configuration file for Transit, 1000 K atmosphere with CO abundance of 1e-5.
+  \item BarstowEtal_model0.trc: Configuration file for Transit, Model 0.
+  \item CO_1e-4_1000K.atm: Atmospheric model used by Transit, 1000 K atmosphere with CO abundance of 1e-4.
+  \item CO_1e-4_1500K.atm: Atmospheric model used by Transit, 1500 K atmosphere with CO abundance of 1e-4.
+  \item CO_1e-5_1000K.atm: Atmospheric model used by Transit, 1000 K atmosphere with CO abundance of 1e-5.
+  \item model0.atm: Atmospheric model used by Transit, Model 0.
+  \item pyline_BarstowEtal_CO.plc: Configuration file for Pylineread, CO-only cases.
+  \item pyline_BarstowEtal_model0_H2O_CO.plc: Configuration file for Pylineread, Model 0.
+\end{itemize}
+
+\subsubsection{c05hjcloudisoBarstowEtal}
+\label{sec:comp-barstow-cloud}
+This test follows the Model 1 setup described in Barstow et al. (2020).\\
+
+Files in c05hjcloudisoBarstowEtal/:
+\begin{itemize} \itemsep0pt
+  \item BarstowEtal_model1.trc: Configuration file for Transit, Model 1.
 \end{itemize}
 
 \subsubsection{s01hjcleariso}
 \label{sec:retrievals}
 For this test, the isothermal emission and transmission spectra generated for 
-f09comparison were binned according to 47 filters spanning 
+c01hjcleariso were binned according to 47 filters spanning 
 1.97 -- 4.95 \microns (see BARTTest/tests/00inputs/filters/). 
-Noise was added to the eclipse/transit 
-depths by calculating the theoretical photon noise and pulling from a Gaussian 
-centered on zero with a standard deviation equal to the photon noise. The test 
+The test 
 is to perform a retrieval of atmospheric parameters and abundances using this 
 eclipse/transit depth data and compare the result to the known inputs.
 
 Note that for the isothermal emission retrieval, the retrieved abundances will 
 likely not match the known inputs. This is because, in principle, the 
-abundances do not affect the resulting spectrum. Due to noise being added to 
-an otherwise perfect blackbody, retrieval algorithms will try to 
-fit the noise. The important result is that the retrieval PT profile is 
+abundances do not affect the resulting spectrum. 
+The important result is that the retrieval PT profile is 
 isothermal within 3$\sigma$, preferably within 1$\sigma$.\\
 
 Files in s01hjcleariso/:
 \begin{itemize} \itemsep0pt
-  \item iso{\_}ecldepths.txt: Text file containing the eclipse depths 
-        corresponding to the 47 filters.
-  \item iso{\_}ecl{\_}noiseless.txt: Text file containing the noiseless eclipse depths.
-  \item iso{\_}ecluncs.txt: Text file containing the eclipse depth 
+  \item iso{\_}uni{\_}ecldepths.txt: Text file containing the eclipse 
+        depths corresponding to the 47 filters.
+  \item iso{\_}uni{\_}ecluncs.txt: Text file containing the eclipse depth 
         uncertainties corresponding to the 47 filters.
-  \item iso{\_}emission.brt: BART configuration file to perform the retrieval. 
+  \item iso{\_}uni{\_}emission.brt: BART configuration file to perform the retrieval. 
         Isothermal emission case.
-  \item iso{\_}filters.txt: Text file containing the paths to the filter files corresponding to the depths.
-  \item iso{\_}tradepths.txt: Text file containing the transit depths. Order 
-        corresponds to the filter filters in 00inputs/filters/.
-  \item iso{\_}tra{\_}noiseless.txt: Text file containing the noiseless transit depths.
-  \item iso{\_}trauncs.txt: Text file containing the transit depth 
+  \item iso{\_}uni{\_}filters.txt: Text file containing the paths to the filter files corresponding to the depths.
+  \item iso{\_}uni{\_}tradepths.txt: Text file containing the transit depths.
+  \item iso{\_}uni{\_}trauncs.txt: Text file containing the transit depth 
         uncertainties. 
-  \item iso{\_}transmission.brt: BART configuration file to perform the 
+  \item iso{\_}uni{\_}transmission.brt: BART configuration file to perform the 
         retrieval. Isothermal transmission case.
   \item retrievals.plc: Configuration file for Pylineread. Creatse line list input file for Transit.
 \end{itemize}
 
 \subsubsection{s02hjclearnoinv}
 For this test, the noninverted emission and transmission spectra generated for 
-f09comparison were binned according to 47 filters spanning 
+c02hjclearnoinv were binned according to 47 filters spanning 
 1.97 -- 4.95 \microns (see BARTTest/tests/00inputs/filters/). 
-Noise was added to the eclipse/transit 
-depths by calculating the theoretical photon noise and pulling from a Gaussian 
-centered on zero with a standard deviation equal to the photon noise. The test 
+The test 
 is to perform a retrieval of atmospheric parameters and abundances using this 
 eclipse/transit depth data and compare the result to the known inputs.\\
 
 Files in s02hjclearnoinv/:
 \begin{itemize} \itemsep0pt
-  \item noinv{\_}ecldepths.txt: Text file containing the eclipse depths 
+  \item noinv{\_}uni{\_}ecldepths.txt: Text file containing the eclipse depths 
         corresponding to the 47 filters.
-  \item noinv{\_}ecl{\_}noiseless.txt: Text file containing the noiseless eclipse depths.
-  \item noinv{\_}ecluncs.txt: Text file containing the eclipse depth 
+  \item noinv{\_}uni{\_}ecluncs.txt: Text file containing the eclipse depth 
         uncertainties corresponding to the 47 filters.
-  \item noinv{\_}emission.brt: BART configuration file to perform the 
+  \item noinv{\_}uni{\_}emission.brt: BART configuration file to perform the 
         retrieval. Noninverted emission case.
-  \item noinv{\_}filters.txt: Text file containing the paths to the filter files corresponding to the depths.
-  \item noinv{\_}tradepths.txt: Text file containing the transit depths. Order 
-        corresponds to the filter filters in 00inputs/filters/.
-  \item noinv{\_}tra{\_}noiseless.txt: Text file containing the noiseless transit depths.
-  \item noinv{\_}trauncs.txt: Text file containing the transit depth 
+  \item noinv{\_}uni{\_}filters.txt: Text file containing the paths to the filter files corresponding to the depths.
+  \item noinv{\_}uni{\_}tradepths.txt: Text file containing the transit depths.
+  \item noinv{\_}uni{\_}trauncs.txt: Text file containing the transit depth 
         uncertainties. 
-  \item noinv{\_}transmission.brt: BART configuration file to perform the 
+  \item noinv{\_}uni{\_}transmission.brt: BART configuration file to perform the 
         retrieval. Noninverted transmission case.
   \item retrievals.plc: Configuration file for Pylineread. Creatse line list input file for Transit.
 \end{itemize}
 
 \subsubsection{s03hjclearinv}
 For this test, the inverted emission and transmission spectra generated for 
-f09comparison were binned according to 47 filters spanning 
+c03hjclearinv were binned according to 47 filters spanning 
 1.97 -- 4.95 \microns (see BARTTest/tests/00inputs/filters/). 
-Noise was added to the eclipse/transit 
-depths by calculating the theoretical photon noise and pulling from a Gaussian 
-centered on zero with a standard deviation equal to the photon noise. The test 
+The test 
 is to perform a retrieval of atmospheric parameters and abundances using this 
 eclipse/transit depth data and compare the result to the known inputs.\\
 
 Files in s03hjclearinv/:
 \begin{itemize} \itemsep0pt
-  \item inv{\_}ecldepths.txt: Text file containing the eclipse depths 
+  \item inv{\_}uni{\_}ecldepths.txt: Text file containing the eclipse depths 
         corresponding to the 47 filters.
-  \item inv{\_}ecl{\_}noiseless.txt: Text file containing the noiseless eclipse depths.
-  \item inv{\_}ecluncs.txt: Text file containing the eclipse depth 
+  \item inv{\_}uni{\_}ecluncs.txt: Text file containing the eclipse depth 
         uncertainties corresponding to the 47 filters.
-  \item inv{\_}emission.brt: BART configuration file to perform the retrieval. 
+  \item inv{\_}uni{\_}emission.brt: BART configuration file to perform the retrieval. 
         Inverted emission case.
-  \item inv{\_}filters.txt: Text file containing the paths to the filter files corresponding to the depths.
-  \item inv{\_}tradepths.txt: Text file containing the transit depths. Order 
+  \item inv{\_}uni{\_}filters.txt: Text file containing the paths to the filter files corresponding to the depths.
+  \item inv{\_}uni{\_}tradepths.txt: Text file containing the transit depths. Order 
         corresponds to the filter filters in 00inputs/filters/.
-  \item inv{\_}tra{\_}noiseless.txt: Text file containing the noiseless transit depths.
-  \item inv{\_}trauncs.txt: Text file containing the transit depth 
+  \item inv{\_}uni{\_}trauncs.txt: Text file containing the transit depth 
         uncertainties. 
-  \item inv{\_}transmission.brt: BART configuration file to perform the 
+  \item inv{\_}uni{\_}transmission.brt: BART configuration file to perform the 
         retrieval. Inverted transmission case.
   \item retrievals.plc: Configuration file for Pylineread. Creatse line list input file for Transit.
+\end{itemize}
+
+\subsubsection{s04hjclearisoBarstowEtal}
+This test performs a synthetic retrieval on Model 0 of Barstow et al. (2020).\\
+
+Files in s04hjclearisoBarstowEtal/:
+\begin{itemize} \itemsep0pt
+  \item BarstowEtal_model0_chimera.brt: BART configuration file, for CHIMERA data.
+  \item BarstowEtal_model0_nemesis.brt: BART configuration file, for NEMESIS data.
+  \item BarstowEtal_model0_taurex.brt:  BART configuration file, for Tau-REx data.
+\end{itemize}
+
+\subsubsection{s05hjcloudisoBarstowEtal}
+This test performs a synthetic retrieval on Model 1 of Barstow et al. (2020).\\
+
+Files in s05hjcloudisoBarstowEtal/:
+\begin{itemize} \itemsep0pt
+  \item BarstowEtal_model1_chimera.brt: BART configuration file, for CHIMERA data.
+  \item BarstowEtal_model1_nemesis.brt: BART configuration file, for NEMESIS data.
+  \item BarstowEtal_model1_taurex.brt:  BART configuration file, for Tau-REx data.
 \end{itemize}
 
 \subsubsection{r01hd189733b}
@@ -699,15 +755,20 @@ dayside emission of HD 189733b to perform a retrieval of atmospheric parameters
 and abundances. Data presented in the following publications are used:
 \begin{itemize} \itemsep0pt
   \item Charbonneau et al. 2008, "The Broadband Infrared Emission Spectrum of the Exoplanet HD 189733b"
+  \item Grillmair et al. 2008, "Strong water absorption in the dayside emission spectrum of the planet HD189733b"
   \item Swain et al. 2009, "Molecular Signatures in the Near Infrared Dayside Spectrum of HD 189733b"
   \item Agol et al. 2010, "The Climate of HD 189733b from Fourteen Transit and Eclipses Measured by Spitzer"
-  \item Knutson et al. 2012, "3.6 and 4.5 \micron Phase Curves and Evidence for Non-equilibrium Chemistry in the Atmosphere of Extrasolar Planet HD 189733b"
-  \item Todrov et al. 2014, "Updated Spitzer Emission Spectroscopy of Bright Transiting Hot Jupiter HD 189733b"
+\end{itemize}
+
+Following the setup of Line et al. (2014, verified by M. Line priv. comm.), 
+we use the following data for Spitzer IRAC channels 1 and 2:
+\begin{itemize} \itemsep0pt
+  \item 0.001533 \pm 0.000029
+  \item 0.001886 \pm 0.000071
 \end{itemize}
 
 Files in r01hd189733b/:
 \begin{itemize} \itemsep0pt
-  \item ecl_data.txt: Text file containing the eclipse data, with references for each.
   \item HD189733b.brt: Configuration file for BART.
   \item HD189733b.plc: Configuration file for Pylineread. Creates 
         line list input file for Transit. Note: requires line lists. See 
@@ -740,7 +801,7 @@ make clean
 into the terminal to delete all of the existing output from BART. Note that 
 reproducing all of that output will take many, many CPU hours, so it will 
 be easier to re-clone BARTTest than to run the code if the user wishes to 
-un-do the deletion of that output.
+undo the deletion of that output.
 
 From here, the execution method will be dependent on what test(s) the user 
 wishes to execute. The common step to (almost) all of the options is
@@ -790,8 +851,10 @@ into the terminal. \textbf{Be aware of the hardware requirements for this}
 If the user wishes to run, e.g., the synthetic retrievals on a non-inverted 
 atmosphere in only eclipse geometry, type
 \beginverbatim
-make noinv_retrieval_e
+make noinv_retrieval{\_}e
 \endverbatim
+
+For additional options, see Table \ref{tbl:makecommands}.
 
 \section{How to Use This Software to Test RT and Retrieval Codes}
 \label{sec:howto}
@@ -799,19 +862,19 @@ We would like you to contribute the results of your code to BARTTest!
 
 BARTTest has been designed with one main goal in mind: to provide verification 
 that RT and retrieval codes work as intended. To do so, there are numerous 
-tests that are offered in the package (see Section \ref{sec:tests}).
+tests that are offered in the package, described above in Section \ref{sec:tests}.
 
-It is not absolutely necessary for all tests to be executed by some RT code. 
-Rather, the comparison tests (see Sections \ref{sec:comp-iso} -- \ref{sec:comp-inv}) are the most important 
-of the forward modeling tests due to the realistic setup; this best reflects 
-the real cases RT codes are used for. Similarly, the HD 189733b case is the most 
-important of the retrieval tests since it is based on real data. The more 
-codes that yield the same (or similar) answer, the more confident we as a 
-community can be that our codes are all implementing the same mathematics, 
-and thus the more confident we can be in the results of our codes. If there 
-are discrepancies between the results of different codes, the simpler forward 
-modeling tests and synthetic retrieval tests may be able to diagnose the origin 
-of those differences.
+To contribute, it is not absolutely necessary for all tests to be executed by 
+some RT code. Rather, the comparison tests (see Sections \ref{sec:comp-iso} -- 
+\ref{sec:comp-barstow-cloud}) are the most important of the forward modeling 
+tests due to the realistic setup; this best reflects the real cases RT codes 
+are used for. Similarly, the HD 189733b case is the most important of the 
+retrieval tests since it is based on real data. The more codes that yield the 
+same (or similar) answer, the more confident we as a community can be that our 
+codes are all implementing the same mathematics, and thus the more confident 
+we can be in the results of our codes. If there are discrepancies between the 
+results of different codes, the simpler forward modeling tests and synthetic 
+retrieval tests may be able to diagnose the origin of those differences.
 
 In order to contribute results, the user must run their code for the exact 
 same cases as BARTTest. The user may provide a file 
@@ -837,14 +900,15 @@ a number but it may be changed depending on the order it is received (e.g., if
 two users submit results around the same time). If the user does not pick 
 a brief name for their code, the authors will pick one as they see fit, 
 whether based on the name of the code (e.g., BART) or based on the name of 
-the author(s) if no name exists. \textbf{Note that we do not ask the user 
-to submit their RT/retrieval code itself! We only want the output of the code, as well as any other 
-necessary files such as code used to convert the output to BART's format or 
-code to produce plots of the output if it has not been re-formatted to 
-BART's format.} Users that convert the output of their code to the same format 
-as BART can use the existing plotting routines to produce plots of the 
-results if they wish to save the maintainers of BARTTest some time. Note that 
-if the re-formatted output is incorrect, the maintainers of BARTTest will not 
-fix that and will leave the pull request open until the user fixes it.
+the author(s) if no code name exists. \textbf{Note that we do not ask the user 
+to submit their RT/retrieval code itself! We only want the output of the code, 
+as well as any other necessary files such as code used to convert the output 
+to BART's format or code to produce plots of the output if it has not been 
+re-formatted to BART's format.} Users that convert the output of their code 
+to the same format as BART can use the existing plotting routines to produce 
+plots of the results if they wish to save the maintainers of BARTTest some 
+time. Note that if the re-formatted output is incorrect, the maintainers of 
+BARTTest will not fix that and will leave the pull request open until the user 
+fixes it.
 
 \end{document}

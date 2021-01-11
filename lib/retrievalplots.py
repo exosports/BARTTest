@@ -10,6 +10,8 @@ import constants as c
 import bestFit as bf
 import makeatm as ma
 import PT as pt
+sys.path.append("../../BART/modules/MCcubed/MCcubed/plots/")
+import mcplots as mcp
 
 
 plt.ion()
@@ -209,7 +211,7 @@ def retrievedabun(datadir, outname, atminput,
     ignore = {'H', 'C', 'N', 'O', 'He', 'H2', 'N2'}
 
     # Colors for plotting
-    cols = ['deep pink', 'medium purple', 'indian red', 'teal', 'gray', \
+    cols = ['deep pink', 'medium purple', 'indianred', 'teal', 'gray', \
             'green', 'blue', 'red', 'purple', 'lime', 'black', 'maroon', 'aqua']
 
     # Plot abundances
@@ -236,120 +238,189 @@ def retrievedabun(datadir, outname, atminput,
     plt.close()
 
 
+def retrievedpost(datadir, outname, pnames, true, shift, 
+                  fpost='output.npy', outdir=None):
+    """
+    datadir : string. Path/to/directory containing BART-formatted output.
+    outname : string. File name of resulting plot. Do not include path, use 
+                      `outdir` for that purpose.
+    pnames  : list, strings. Parameter names.
+    true    : array.  True values.
+    shift   : array.  Shift values of the posterior 
+                      (e.g., to correct for the assumed starting abundance)
+    fpost   : string. File name of .NPY file containing the posterior.
+    outdir  : string. Path/to/dir to save `outname`. If None, defaults 
+                      to the results directory of BARTTest.
+    """
+    # Make sure datadir has a trailing /
+    if datadir[-1] != '/':
+        datadir = datadir + '/'
+    # Set outdir if not specified. If it is, ensure trailing /
+    if outdir is None:
+        try:
+            outdir = 'results'.join(datadir.rsplit('code-output',            \
+                                                   1)).rsplit('/', 2)[0] + '/'
+        except:
+            print("Data directory not located within BARTTest.")
+            print("Please specify an output directory `outdir` and try again.")
+            sys.exit(1)
+    elif outdir[-1] != '/':
+        outdir = outdir + '/'
+
+    # Read MCMC output file
+    MCfile = datadir + 'MCMC.log'
+    bestP, uncer = bf.read_MCMC_out(MCfile)
+    allParams = bestP
+    # Get number of burned iterations
+    foo   = open(MCfile, 'r')
+    lines = foo.readlines()
+    foo.close()
+    line = [foop for foop in lines if " Burned in iterations per chain:" in foop]
+    burnin = int(line[0].split()[-1])
+
+    # Load the data
+    data = np.load(datadir+fpost)
+    data_stack = data[0,:,burnin:]
+    for c in np.arange(1, data.shape[0]):
+        data_stack = np.hstack((data_stack, data[c, :, burnin:]))
+    # Remove T(p) profiles
+    data_stack = data_stack[5:]
+    # Shift
+    data_stack += shift[:,None]
+
+    if data_stack.shape[0] != len(pnames):
+        raise ValueError("Posterior dimensionality does not match number of parameter names.")
+
+    # Plot it
+    #mcp.histogram(data_stack, parname=pnames, truepars=true, savefile=outdir+outname)
+    mcp.pairwise(data_stack, parname=pnames, truepars=true, savefile=outdir+outname)
+
+
 if __name__ == '__main__':
     # Common inputs
     datadirbase = '../code-output/01BART/'
     testdirbase = '../tests/'
     tepfile     = '../tests/00inputs/HD189733b.tep'
     outdir      = '../results/01BART/'
+    fext        = '.pdf' #'.png'
+
     # Make the plots
+
+    # Posteriors
+    print("Making posterior plots w/ true values...\n")
+    pnames_ecl = ['H$_2$O', 'CO$_2$', 'CO', 'CH$_4$', 'NH$_3$']
+    pnames_tra = ['R$_P$', 'H$_2$O', 'CO$_2$', 'CO', 'CH$_4$', 'NH$_3$']
+    try:
+        print('  s01hjcleariso...\n')
+        retrievedpost(datadirbase+'s01hjcleariso-ecl-uni/', 
+                      's01hjcleariso-ecl-uni-post'+fext, pnames_ecl, 
+                      true=np.array([np.log10(5e-5), -5, -4, np.log10(5e-6), -6]), 
+                      shift=np.array([-6, -6, -6, -6, -9]), 
+                      outdir=outdir)
+    except Exception as e:
+        print(e)
+        pass
+
+    try:
+        retrievedpost(datadirbase+'s01hjcleariso-tra-uni/', 
+                      's01hjcleariso-tra-uni-post'+fext, pnames_tra, 
+                      true=np.array([8.13579e4, np.log10(5e-5), -5, -4, np.log10(5e-6), -6]), 
+                      shift=np.array([0, -6, -6, -6, -6, -9]), 
+                      outdir=outdir)
+    except Exception as e:
+        print(e)
+        pass
+
+    try:
+        print('  s02hjclearnoinv...\n')
+        retrievedpost(datadirbase+'s02hjclearnoinv-ecl-uni/', 
+                      's02hjclearnoinv-ecl-uni-post'+fext, pnames_ecl, 
+                      true=np.array([np.log10(5e-5), -5, -4, np.log10(5e-6), -6]), 
+                      shift=np.array([-6, -6, -6, -6, -9]), 
+                      outdir=outdir)
+    except Exception as e:
+        print(e)
+        pass
+
+    try:
+        retrievedpost(datadirbase+'s02hjclearnoinv-tra-uni/', 
+                      's02hjclearnoinv-tra-uni-post'+fext, pnames_tra, 
+                      true=np.array([8.13579e4, np.log10(5e-5), -5, -4, np.log10(5e-6), -6]), 
+                      shift=np.array([0, -6, -6, -6, -6, -9]), 
+                      outdir=outdir)
+    except Exception as e:
+        print(e)
+        pass
+
+    try:
+        print('  s03hjclearinv...\n')
+        retrievedpost(datadirbase+'s03hjclearinv-ecl-uni/', 
+                      's03hjclearinv-ecl-uni-post'+fext, pnames_ecl, 
+                      true=np.array([np.log10(5e-5), -5, -4, np.log10(5e-6), -6]), 
+                      shift=np.array([-6, -6, -6, -6, -9]), 
+                      outdir=outdir)
+    except Exception as e:
+        print(e)
+        pass
+
+    try:
+        retrievedpost(datadirbase+'s03hjclearinv-tra-uni/', 
+                      's03hjclearinv-tra-uni-post'+fext, pnames_tra, 
+                      true=np.array([8.13579e4, np.log10(5e-5), -5, -4, np.log10(5e-6), -6]), 
+                      shift=np.array([0, -6, -6, -6, -6, -9]), 
+                      outdir=outdir)
+    except Exception as e:
+        print(e)
+        pass
+
     print('Plotting the PT profiles...\n')
     try:
         print('  s01hjcleariso...\n')
-        retrievedPT(datadirbase+'s01hjcleariso-ecl/', 
-                    testdirbase+'c01hjcleariso/iso.tea', 
-                    tepfile, 5, 'eclipse', 's01hjcleariso-ecl-PT.png', outdir)
+        retrievedPT(datadirbase+'s01hjcleariso-ecl-uni/', 
+                    testdirbase+'c01hjcleariso/iso_uni.atm', 
+                    tepfile, 5, 'eclipse', 's01hjcleariso-ecl-uni-PT'+fext, outdir)
     except Exception as e:
         print(e)
         pass
 
     try:
-        retrievedPT(datadirbase+'s01hjcleariso-tra/', 
-                    testdirbase+'c01hjcleariso/iso.tea', 
-                    tepfile, 5, 'transit', 's01hjcleariso-tra-PT.png', outdir)
-    except Exception as e:
-        print(e)
-        pass
-
-    try:
-        print('  s02hjclearnoinv...\n')
-        retrievedPT(datadirbase+'s02hjclearnoinv-ecl/', 
-                    testdirbase+'c02hjclearnoinv/noinv.tea', 
-                    tepfile, 5, 'eclipse', 's02hjclearnoinv-ecl-PT.png', outdir)
-    except Exception as e:
-        print(e)
-        pass
-
-    try:
-        retrievedPT(datadirbase+'s02hjclearnoinv-tra/', 
-                    testdirbase+'c02hjclearnoinv/noinv.tea', 
-                    tepfile, 5, 'transit', 's02hjclearnoinv-tra-PT.png', outdir)
-    except Exception as e:
-        print(e)
-        pass
-
-    try:
-        print('  s03hjclearinv...\n')
-        retrievedPT(datadirbase+'s03hjclearinv-ecl/', 
-                    testdirbase+'c03hjclearinv/inv.tea', 
-                    tepfile, 5, 'eclipse', 's03hjclearinv-ecl-PT.png', outdir)
-    except Exception as e:
-        print(e)
-        pass
-
-    try:
-        retrievedPT(datadirbase+'s03hjclearinv-tra/', 
-                    testdirbase+'c03hjclearinv/inv.tea', 
-                    tepfile, 5, 'transit', 's03hjclearinv-tra-PT.png', outdir)
-    except Exception as e:
-        print(e)
-        pass
-
-    print('Plotting the vertical abundance profiles...\n')
-
-    try:
-        print('  s01hjcleariso...\n')
-        retrievedabun(datadirbase+'s01hjcleariso-ecl/', 
-                      's01hjcleariso-ecl-abun.png', 
-                      testdirbase+'c01hjcleariso/iso.tea', 
-                      outdir=outdir)
-    except Exception as e:
-        print(e)
-        pass
-
-    try:
-        retrievedabun(datadirbase+'s01hjcleariso-tra/', 
-                      's01hjcleariso-tra-abun.png', 
-                      testdirbase+'c01hjcleariso/iso.tea', 
-                      outdir=outdir)
+        retrievedPT(datadirbase+'s01hjcleariso-tra-uni/', 
+                    testdirbase+'c01hjcleariso/iso_uni.atm', 
+                    tepfile, 5, 'transit', 's01hjcleariso-tra-uni-PT'+fext, outdir)
     except Exception as e:
         print(e)
         pass
 
     try:
         print('  s02hjclearnoinv...\n')
-        retrievedabun(datadirbase+'s02hjclearnoinv-ecl/', 
-                      's02hjclearnoinv-ecl-abun.png', 
-                      testdirbase+'c02hjclearnoinv/noinv.tea', 
-                      outdir=outdir)
+        retrievedPT(datadirbase+'s02hjclearnoinv-ecl-uni/', 
+                    testdirbase+'c02hjclearnoinv/noinv_uni.atm', 
+                    tepfile, 5, 'eclipse', 's02hjclearnoinv-ecl-uni-PT'+fext, outdir)
     except Exception as e:
         print(e)
         pass
 
     try:
-        retrievedabun(datadirbase+'s02hjclearnoinv-tra/', 
-                      's02hjclearnoinv-tra-abun.png', 
-                      testdirbase+'c02hjclearnoinv/noinv.tea', 
-                      outdir=outdir)
+        retrievedPT(datadirbase+'s02hjclearnoinv-tra-uni/', 
+                    testdirbase+'c02hjclearnoinv/noinv_uni.atm', 
+                    tepfile, 5, 'transit', 's02hjclearnoinv-tra-uni-PT'+fext, outdir)
     except Exception as e:
         print(e)
         pass
 
     try:
         print('  s03hjclearinv...\n')
-        retrievedabun(datadirbase+'s03hjclearinv-ecl/', 
-                      's03hjclearinv-ecl-abun.png', 
-                      testdirbase+'c03hjclearinv/inv.tea', 
-                      outdir=outdir)
+        retrievedPT(datadirbase+'s03hjclearinv-ecl-uni/', 
+                    testdirbase+'c03hjclearinv/inv_uni.atm', 
+                    tepfile, 5, 'eclipse', 's03hjclearinv-ecl-uni-PT'+fext, outdir)
     except Exception as e:
         print(e)
         pass
 
     try:
-        retrievedabun(datadirbase+'s03hjclearinv-tra/', 
-                      's03hjclearinv-tra-abun.png', 
-                      testdirbase+'c03hjclearinv/inv.tea', 
-                      outdir=outdir)
+        retrievedPT(datadirbase+'s03hjclearinv-tra-uni/', 
+                    testdirbase+'c03hjclearinv/inv_uni.atm', 
+                    tepfile, 5, 'transit', 's03hjclearinv-tra-uni-PT'+fext, outdir)
     except Exception as e:
         print(e)
         pass

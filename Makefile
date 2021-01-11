@@ -6,9 +6,11 @@ quicktests: oneline fewline multiline broadening abundance blending multicia plo
 
 forwardtests: oneline fewline multiline broadening abundance blending multicia isothermal energycons plots fin
 
-comparisontests: comparison_tli comparison_iso comparison_noinv comparison_inv comparison_plots fin
+comparisontests: comparison_tli comparison_iso comparison_noinv comparison_inv comparison_BarstowEtal BarstowEtal_OSF comparison_plots fin
 
-synthretrievals: retrieval_tli retrieval_iso_e retrieval_iso_t retrieval_noinv_e retrieval_noinv_t retrieval_inv_e retrieval_inv_t fin
+synthretrievals: retrieval_tli retrieval_iso_e retrieval_iso_t retrieval_noinv_e retrieval_noinv_t retrieval_inv_e retrieval_inv_t retrieval_BarstowEtal_NEMESIS_clear retrieval_BarstowEtal_NEMESIS_cloud retrieval_BarstowEtal_CHIMERA_clear retrieval_BarstowEtal_CHIMERA_cloud retrieval_BarstowEtal_TauREx_clear retrieval_BarstowEtal_TauREx_cloud fin
+
+BarstowEtalretrievals: retrieval_tli retrieval_BarstowEtal_NEMESIS_clear retrieval_BarstowEtal_NEMESIS_cloud retrieval_BarstowEtal_CHIMERA_clear retrieval_BarstowEtal_CHIMERA_cloud retrieval_BarstowEtal_TauREx_clear retrieval_BarstowEtal_TauREx_cloud fin
 
 hd189: hd189_tli hd189_retrieval fin
 
@@ -196,6 +198,33 @@ comparison_inv:
 	../../../BART/modules/transit/transit/transit -c inv_transmission.trc
 	@echo "Inverted comparison test complete. \n"
 
+comparison_BarstowEtal:
+	@echo "Running comparison test, Barstow et al. (2020) cases: \n"
+	@cd tests/c04hjclearisoBarstowEtal/                                     &&\
+	../../../BART/modules/transit/pylineread/src/pylineread.py -c             \
+	   pyline_BarstowEtal_CO.plc                                            &&\
+	../../../BART/modules/transit/pylineread/src/pylineread.py -c             \
+	   pyline_BarstowEtal_model0_H2O_CO.plc                                 &&\
+	../../../BART/modules/transit/transit/transit -c                          \
+	   BarstowEtal_CO_1e-4_1000K.trc                                        &&\
+	../../../BART/modules/transit/transit/transit -c                          \
+	   BarstowEtal_CO_1e-4_1500K.trc                                        &&\
+	../../../BART/modules/transit/transit/transit -c                          \
+	   BarstowEtal_CO_1e-5_1500K.trc                                        &&\
+	../../../BART/modules/transit/transit/transit -c BarstowEtal_model0.trc
+	@cd tests/c05hjcloudisoBarstowEtal/                                     &&\
+	../../../BART/modules/transit/transit/transit -c BarstowEtal_model1.trc
+	@echo "Barstow et al. (2020) comparison test cases complete. \n"
+
+BarstowEtal_OSF:
+	@if [ ! -d "../BarstowEtal2020" ]; then                                   \
+		@echo "\nCloning Barstow et al. (2020) OSF repo..."                   \
+		osf -p 5hg6y clone .;                                                 \
+		echo "Finished cloning Barstow et al. (2020) OSF repo to a directory parallel to BARTTest.\n";  \
+	else                                                                      \
+		echo "Barstow et al. (2020) OSF repo already exists in a directory parallel to BARTTest.\n";    \
+	fi
+
 comparison_plots:
 	@echo "Making plots for comparison test...\n"
 	@cd ./lib/ && ./comparison.py
@@ -241,15 +270,49 @@ retrieval_inv_t:
 	@cd tests/s03hjclearinv/                                                &&\
 	../../../BART/BART.py -c inv_transmission.brt
 
+retrieval_BarstowEtal_NEMESIS_clear:
+	@echo "Running retrieval, Barstow et al. (2020) NEMESIS Model 0: \n"
+	@cd tests/s04hjclearisoBarstowEtal/                                     &&\
+	../../../BART/BART.py -c BarstowEtal_model0_nemesis.brt
+
+retrieval_BarstowEtal_NEMESIS_cloud:
+	@echo "Running retrieval, Barstow et al. (2020) NEMESIS Model 1: \n"
+	@cd tests/s05hjcloudisoBarstowEtal/                                     &&\
+	../../../BART/BART.py -c BarstowEtal_model1_nemesis.brt
+
+retrieval_BarstowEtal_CHIMERA_clear:
+	@echo "Running retrieval, Barstow et al. (2020) CHIMERA Model 0: \n"
+	@cd tests/s04hjclearisoBarstowEtal/                                     &&\
+	../../../BART/BART.py -c BarstowEtal_model0_chimera.brt
+
+retrieval_BarstowEtal_CHIMERA_cloud:
+	@echo "Running retrieval, Barstow et al. (2020) CHIMERA Model 1: \n"
+	@cd tests/s05hjcloudisoBarstowEtal/                                     &&\
+	../../../BART/BART.py -c BarstowEtal_model1_chimera.brt
+
+retrieval_BarstowEtal_TauREx_clear:
+	@echo "Running retrieval, Barstow et al. (2020) Tau-REx Model 0: \n"
+	@cd tests/s04hjclearisoBarstowEtal/                                     &&\
+	../../../BART/BART.py -c BarstowEtal_model0_taurex.brt
+
+retrieval_BarstowEtal_TauREx_cloud:
+	@echo "Running retrieval, Barstow et al. (2020) Tau-REx Model 1: \n"
+	@cd tests/s05hjcloudisoBarstowEtal/                                     &&\
+	../../../BART/BART.py -c BarstowEtal_model1_taurex.brt
 
 hd189_tli:
-	@echo "Running retrieval, HD 189733b: \n"
+	@echo "Running retrieval, HD 189733 b: \n"
 	@cd tests/r01hd189733b/                                                 &&\
 	../../../BART/modules/transit/pylineread/src/pylineread.py -c             \
 	HD189733b.plc
 
+hd189_opacity:
+	@echo "Generating opacity table for HD 189733 b retrieval: \n"
+	@cd tests/r01hd189733b/                                                 &&\
+	../../../BART/BART.py -c HD189733b.brt --justOpacity
+
 hd189_retrieval:
-	@echo "Running retrieval, HD 189733b: \n"
+	@echo "Running retrieval, HD 189733 b: \n"
 	@cd tests/r01hd189733b/                                                 &&\
 	../../../BART/BART.py -c HD189733b.brt
 
@@ -260,7 +323,7 @@ plots:
 
 retrievalplots:
 	@echo "Making synthetic retrieval plots..."
-	@cd lib/ && ./retrievalplots.py
+	@cd lib/ && ./retrievalplots.py && ./retrievalplots_BarstowEtal.py
 	@echo "Plotting complete.\n"
 
 fin:

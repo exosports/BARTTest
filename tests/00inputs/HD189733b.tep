@@ -39,7 +39,7 @@ Ttrans    2454279.436714     0.000015   HJD             Exoplanets.org          
 transdur        -1            -1        sec             -                             # A transit duration, T4-T1
 translimbtime   -1            -1        sec             -                             # A limb-crossing time, T2-T1
 impactpar       -1            -1        -               -                             #   impact parameter
-a               0.03100      0.00062    AU              Exoplanets.org                # S semimajor axis
+a               0.03099      0.00062    AU              Exoplanets.org                # S semimajor axis
 i              85.71         0.0023     deg             Exoplanets.org                #   inclination
 e               0.0041        0.002     -               Exoplanet.eu                  #   eccentricity - adopted 0 -> uncert=0
 omega          90             0         deg             -                             #   longitude of pericenter

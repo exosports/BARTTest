@@ -28,3 +28,4 @@ https://hitran.org/hitemp/data/HITEMP-2010/H2O_line_list/01_07500-08000_HITEMP20
 https://hitran.org/hitemp/data/HITEMP-2010/H2O_line_list/01_08000-08500_HITEMP2010.zip
 https://hitran.org/hitemp/data/HITEMP-2010/H2O_line_list/01_08500-09000_HITEMP2010.zip
 https://hitran.org/hitemp/data/HITEMP-2010/H2O_line_list/01_09000-11000_HITEMP2010.zip
+https://hitran.org/hitemp/data/HITEMP-2010/H2O_line_list/01_11000-30000_HITEMP2010.zip
