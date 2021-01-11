@@ -210,7 +210,7 @@ BarstowEtal{\_}OSF & Downloads the Barstow et al. (2020) OSF archive, which cont
 comparison{\_}plots & Produces the plots that compare Transit's results to the Barstow et al. (2020) cases.\\
 comparisontests & Generates TLI file, runs all of the cases for the c01hjcleariso, c02hjclearnoinv, and c03hjclearinv tests, and produces plots (see see Sections \ref{sec:comp-iso} -- \ref{sec:comp-inv}). Note: this takes on the order of hours.\\
 synthretrievals & Runs all of the synthetic retrievals (s01 -- s05; see Section \ref{sec:retrievals}). Note: this may take on the order of weeks.\\
-BarstowEtalretrievals & Runs all of the Barstow et al. (2020) synthetic retrievals (s04 and s05; see Section \ref{sec:ret-barstow}). Note: this may take on the order of a week.\\
+BarstowEtalretrievals & Runs all of the Barstow et al. (2020) synthetic retrievals (s04 and s05; see Sections \ref{sec:ret-barstow-clear} and \ref{sec:ret-barstow-cloud}). Note: this may take on the order of a week.\\
 retrieval{\_}tli & Generates the TLI file for the s01 -- s03 tests. Note: equivalent to comparison{\_}tli.\\
 retrieval{\_}iso{\_}e & Runs emission retrieval for the s01hjcleariso test. Note: this takes on the order of days.\\
 retrieval{\_}iso{\_}t & Runs transmission retrieval for the s01hjcleariso test. Note: this takes on the order of days.\\
@@ -218,12 +218,12 @@ retrieval{\_}noinv{\_}e & Runs emission retrieval for the s02hjclearnoinv test. 
 retrieval{\_}noinv{\_}t & Runs transmission retrieval for the s02hjclearnoinv test. Note: this takes on the order of days.\\
 retrieval{\_}inv{\_}e & Runs emission retrieval for the s03hjclearinv test. Note: this takes on the order of days.\\
 retrieval{\_}inv{\_}t & Runs transmission retrieval for the s03hjclearinv test. Note: this takes on the order of days.\\
-retrieval{\_}BarstowEtal{\_}NEMESIS{\_}clear & Runs transmission retrieval on NEMESIS spectrum for Barstow et al. (2020) Model 0 (see Section \ref{sec:ret-barstow}).\\
-retrieval{\_}BarstowEtal{\_}NEMESIS{\_}cloud & Runs transmission retrieval on NEMESIS spectrum for Barstow et al. (2020) Model 1 (see Section \ref{sec:ret-barstow}).\\
-retrieval{\_}BarstowEtal{\_}CHIMERA{\_}clear & Runs transmission retrieval on CHIMERA spectrum for Barstow et al. (2020) Model 0 (see Section \ref{sec:ret-barstow}).\\
-retrieval{\_}BarstowEtal{\_}CHIMERA{\_}cloud & Runs transmission retrieval on CHIMERA spectrum for Barstow et al. (2020) Model 1 (see Section \ref{sec:ret-barstow}).\\
-retrieval{\_}BarstowEtal{\_}TauREx{\_}clear  & Runs transmission retrieval on Tau-REx spectrum for Barstow et al. (2020) Model 0 (see Section \ref{sec:ret-barstow}).\\
-retrieval{\_}BarstowEtal{\_}TauREx{\_}cloud  & Runs transmission retrieval on Tau-REx spectrum for Barstow et al. (2020) Model 1 (see Section \ref{sec:ret-barstow}).\\
+retrieval{\_}BarstowEtal{\_}NEMESIS{\_}clear & Runs transmission retrieval on NEMESIS spectrum for Barstow et al. (2020) Model 0 (see Sections \ref{sec:ret-barstow-clear} and \ref{sec:ret-barstow-cloud}).\\
+retrieval{\_}BarstowEtal{\_}NEMESIS{\_}cloud & Runs transmission retrieval on NEMESIS spectrum for Barstow et al. (2020) Model 1 (see Sections \ref{sec:ret-barstow-clear} and \ref{sec:ret-barstow-cloud}).\\
+retrieval{\_}BarstowEtal{\_}CHIMERA{\_}clear & Runs transmission retrieval on CHIMERA spectrum for Barstow et al. (2020) Model 0 (see Sections \ref{sec:ret-barstow-clear} and \ref{sec:ret-barstow-cloud}).\\
+retrieval{\_}BarstowEtal{\_}CHIMERA{\_}cloud & Runs transmission retrieval on CHIMERA spectrum for Barstow et al. (2020) Model 1 (see Sections \ref{sec:ret-barstow-clear} and \ref{sec:ret-barstow-cloud}).\\
+retrieval{\_}BarstowEtal{\_}TauREx{\_}clear  & Runs transmission retrieval on Tau-REx spectrum for Barstow et al. (2020) Model 0 (see Sections \ref{sec:ret-barstow-clear} and \ref{sec:ret-barstow-cloud}).\\
+retrieval{\_}BarstowEtal{\_}TauREx{\_}cloud  & Runs transmission retrieval on Tau-REx spectrum for Barstow et al. (2020) Model 1 (see Sections \ref{sec:ret-barstow-clear} and \ref{sec:ret-barstow-cloud}).\\
 hd189{\_}tli & Generates the TLI file for the HD 189733b retrieval (see Section \ref{sec:hd189}).\\
 hd189{\_}retrieval & Runs a retrieval using HD 189733b secondary eclipse data. Note: this takes on the order of days (see Section \ref{sec:hd189}).\\
 hd189 & Equivalent to executing hd189{\_}tli and hd189{\_}retrieval Note: this takes on the order of days (see Section \ref{sec:hd189}).\\
@@ -534,7 +534,7 @@ Files in f08isothermal/:
 
 \subsubsection{f09energycons}
 \label{sec:energycons}
-This test runs forward models for a 60\% H\sb{2}, 10\% CO, 10\% CO\sb{2}, 10\% CH\sb{4}, and 10\% H\sb{2}O non-inverted atmosphere at different resolutions, integrates each spectrum, and compares the values. Since the spectra are not sampled at true line-by-line resolution, there should be minor (\lt 1\%) differences.
+This test runs forward models for a 60\% H\sb{2}, 10\% CO, 10\% CO\sb{2}, 10\% CH\sb{4}, and 10\% H\sb{2}O non-inverted atmosphere at different resolutions, integrates each spectrum, and compares the values. Since the spectra are not sampled at true line-by-line resolution, there should be minor (\textless 1\%) differences.
 
 Files in f09energycons/:
 \begin{itemize} \itemsep0pt
@@ -726,6 +726,7 @@ Files in s03hjclearinv/:
 \end{itemize}
 
 \subsubsection{s04hjclearisoBarstowEtal}
+\label{sec:ret-barstow-clear}
 This test performs a synthetic retrieval on Model 0 of Barstow et al. (2020).\\
 
 Files in s04hjclearisoBarstowEtal/:
@@ -736,6 +737,7 @@ Files in s04hjclearisoBarstowEtal/:
 \end{itemize}
 
 \subsubsection{s05hjcloudisoBarstowEtal}
+\label{sec:ret-barstow-cloud}
 This test performs a synthetic retrieval on Model 1 of Barstow et al. (2020).\\
 
 Files in s05hjcloudisoBarstowEtal/:
@@ -746,6 +748,7 @@ Files in s05hjcloudisoBarstowEtal/:
 \end{itemize}
 
 \subsubsection{r01hd189733b}
+\label{sec:hd189}
 HD 189733b is one of the most observed exoplanets, with observations across the NIR and MIR. 
 It is therefore a good testcase for retrieval algorithms as the plethora of 
 data points allows for the constraining of some parameters. 
