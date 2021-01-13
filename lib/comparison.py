@@ -178,7 +178,7 @@ def compspec(specs, codes, geo, atm, outdir=None, titles=False, fext='.pdf'):
     plt.close()
 
 
-def compBarstow(fout, ftransit, fnemesis, fchimera, ftaurex, title=None, fct=1):
+def compBarstow(fout, ftransit, fnemesis, fchimera, ftaurex, title=None, CO_only=True):
     """
     Plots comparisons between Transit, NEMESIS, CHIMERA, and TauREx
 
@@ -190,7 +190,7 @@ def compBarstow(fout, ftransit, fnemesis, fchimera, ftaurex, title=None, fct=1):
     fchimera: string. path/to/file for CHIMERA spectrum data.
     ftaurex : string. path/to/file for TauREx  spectrum data.
     title   : bool.   Determines whether to plot a title
-    fct     : int.    Factor to multiply the NEMESIS spectrum by.
+    CO_only : bool.   Determines whether it is the CO-only cases or not.
     """
     # Load the data
     transit = np.loadtxt(ftransit)
@@ -198,20 +198,26 @@ def compBarstow(fout, ftransit, fnemesis, fchimera, ftaurex, title=None, fct=1):
     chimera = np.loadtxt(fchimera)
     taurex  = np.loadtxt(ftaurex)
 
+    if not CO_only:
+        nemesis[:,1] *= 100
+    transit[:,1] *= 100
+    chimera[:,1] *= 100
+    taurex [:,1] *= 100
+
     # Bin to 0.01um resolution
-    if fct==1:
+    if CO_only:
         bins = np.arange(0.5, 10.01, 0.01)
         tr_ibin = np.digitize(transit[:,0], bins)
-        tr_bin = np.array([np.mean(100*transit[tr_ibin==i,1]) for i in range(len(bins))])
+        tr_bin = np.array([np.mean(transit[tr_ibin==i,1]) for i in range(len(bins))])
         ne_ibin = np.digitize(nemesis[:,0], bins)
         ch_ibin = np.digitize(chimera[:,0], bins)
         ta_ibin = np.digitize(taurex [:,0], bins)
-        ne_bin = np.array([np.mean(fct*nemesis[ne_ibin==i,1]) for i in range(len(bins))])
-        ch_bin = np.array([np.mean(100*chimera[ch_ibin==i,1]) for i in range(len(bins))])
-        ta_bin = np.array([np.mean(100*taurex [ta_ibin==i,1]) for i in range(len(bins))])
+        ne_bin = np.array([np.mean(nemesis[ne_ibin==i,1]) for i in range(len(bins))])
+        ch_bin = np.array([np.mean(chimera[ch_ibin==i,1]) for i in range(len(bins))])
+        ta_bin = np.array([np.mean(taurex [ta_ibin==i,1]) for i in range(len(bins))])
     else:
-        # use nemesis grid for bin midpoints
-        midbins = nemesis[:,0][nemesis[:,0] > 0.5]
+        # use chimera grid for bin midpoints, since it matches nemesis but higher precision
+        midbins = chimera[:,0]
         lftbins = np.zeros(len(midbins))
         rgtbins = np.zeros(len(midbins))
         lftbins[ 0 ] = midbins[ 0 ] - (midbins[ 1] - midbins[ 0 ])/2.
@@ -220,34 +226,30 @@ def compBarstow(fout, ftransit, fnemesis, fchimera, ftaurex, title=None, fct=1):
         rgtbins[:-1] = midbins[:-1] + (midbins[1:] - midbins[:-1])/2.
         bins    = np.concatenate((lftbins, rgtbins[-1:]))
         tr_ibin = np.digitize(transit[:,0], bins)
-        tr_bin  = np.array([np.mean(100*transit[tr_ibin==i,1]) for i in range(len(bins))])
+        tr_bin  = np.array([np.mean(transit[tr_ibin==i,1]) for i in range(len(bins))])
         bins    = bins[:-1]
-        tr_bin  = tr_bin[:-1]
-        ne_bin  = fct*nemesis[:,1]
-        ch_bin  = 100*chimera[:,1]
-        ta_bin  = 100*taurex [:,1]
+        tr_bin  = tr_bin[1:]
+        ne_bin  = nemesis[:,1]
+        ch_bin  = chimera[:,1]
+        ta_bin  = taurex [:,1]
 
     # Plot
     fig0 = plt.figure(0, (8,5))
     plt.clf()
     frame1 = fig0.add_axes((.14, .3, .8, .65))
 
-    plt.semilogx(bins, tr_bin, label='Transit')
-    if fct==1:
+    if CO_only:
+        plt.semilogx(bins, tr_bin, label='Transit')
         plt.semilogx(bins, ta_bin, label='TauREx')
         plt.semilogx(bins, ne_bin, label='NEMESIS')
         plt.semilogx(bins, ch_bin, label='CHIMERA')
     else:
-        plt.semilogx(taurex [:,0], 100*taurex [:,1], label='TauREx')
-        plt.semilogx(nemesis[:,0], fct*nemesis[:,1], label='NEMESIS')
-        plt.semilogx(chimera[:,0], 100*chimera[:,1], label='CHIMERA')
+        plt.semilogx(midbins     , tr_bin, label='Transit')
+        plt.semilogx(taurex [:,0], ta_bin, label='TauREx')
+        plt.semilogx(nemesis[:,0], ne_bin, label='NEMESIS')
+        plt.semilogx(chimera[:,0], ch_bin, label='CHIMERA')
 
-    if fct==1:
-        plt.xlim(0.5, 10.0)
-    elif fct==100:
-        plt.xlim(1.0, 10.0)
-    else:
-        raise ValueError("`fct` must be 1 or 100.  Value: "+str(fct))
+    plt.xlim(0.5, 10.0)
     frame1.set_xticklabels([])
     plt.ylabel('(Rp/Rs)$^2$ (%)')
     if title is not None:
@@ -256,21 +258,22 @@ def compBarstow(fout, ftransit, fnemesis, fchimera, ftaurex, title=None, fct=1):
 
     # Residuals
     frame2 = fig0.add_axes((.14, .1, .8, .2))
-    if fct==1:
+    if CO_only:
         meanspec = (ta_bin + ne_bin + ch_bin) / 3.
         plt.semilogx(bins, tr_bin - meanspec, label='Transit')
         plt.semilogx(bins, ta_bin - meanspec, label='TauREx')
         plt.semilogx(bins, ne_bin - meanspec, label='NEMESIS')
         plt.semilogx(bins, ch_bin - meanspec, label='CHIMERA')
     else:
-        meanspec = (100*taurex[:,1] + fct*nemesis[:,1] + 100*chimera[:,1]) / 3.
-        plt.semilogx(bins, tr_bin - meanspec[nemesis[:,0] > 0.5], label='Transit')
-        plt.semilogx(taurex [:,0], 100*taurex [:,1] - meanspec, label='TauREx')
-        plt.semilogx(nemesis[:,0], fct*nemesis[:,1] - meanspec, label='NEMESIS')
-        plt.semilogx(chimera[:,0], 100*chimera[:,1] - meanspec, label='CHIMERA')
+        meanspec = (ta_bin + ne_bin + ch_bin) / 3.
+        plt.semilogx(midbins     , tr_bin       - meanspec, label='Transit')
+        plt.semilogx(taurex [:,0], taurex [:,1] - meanspec, label='TauREx')
+        plt.semilogx(nemesis[:,0], nemesis[:,1] - meanspec, label='NEMESIS')
+        plt.semilogx(chimera[:,0], chimera[:,1] - meanspec, label='CHIMERA')
+
     plt.xlim(0.5, 10.0)
     plt.xlabel(u'Wavelength (\u00b5m)')
-    plt.ylabel('($\Delta$Rp/Rs)$^2$ (%)')
+    plt.ylabel('$\Delta$(Rp/Rs)$^2$ (%)')
     formatter = mpl.ticker.FuncFormatter(lambda y, _: '{:.8g}'.format(y))
     frame2.get_xaxis().set_major_formatter(formatter)
     frame2.get_xaxis().set_minor_formatter(formatter)
@@ -314,36 +317,37 @@ if __name__ == "__main__":
              '../results/plots/')
 
     # For Harrington et al. (2021) plots
-    compBarstow('../results/01BART/c04_CO_1e-4_1000K.pdf', 
+    fext = '.pdf'
+    compBarstow('../results/01BART/c04_CO_1e-4_1000K'+fext, 
                 '../code-output/01BART/c04hjclearisoBarstowEtal/CO_1e-4_1000K_transmission_spectrum.dat', 
                 '../../BarstowEtal2020/osfstorage/forward_models/single_gas/nemesis_files/nemesis_spectrum_CO_1e-4_1000K_noCIA-noRayleigh.dat', 
                 '../../BarstowEtal2020/osfstorage/forward_models/single_gas/chimera_files/chimera_spectrum_CO_1e-4_1000K_noCIA-noRayleigh.dat',
                 '../../BarstowEtal2020/osfstorage/forward_models/single_gas/taurex_files/taurex_spectrum_CO_1e-4_1000K_noCIA-noRayleigh.dat')
-    compBarstow('../results/01BART/c04_CO_1e-4_1500K.pdf', 
+    compBarstow('../results/01BART/c04_CO_1e-4_1500K'+fext, 
                 '../code-output/01BART/c04hjclearisoBarstowEtal/CO_1e-4_1500K_transmission_spectrum.dat', 
                 '../../BarstowEtal2020/osfstorage/forward_models/single_gas/nemesis_files/nemesis_spectrum_CO_1e-4_1500K_noCIA-noRayleigh.dat', 
                 '../../BarstowEtal2020/osfstorage/forward_models/single_gas/chimera_files/chimera_spectrum_CO_1e-4_1500K_noCIA-noRayleigh.dat',
                 '../../BarstowEtal2020/osfstorage/forward_models/single_gas/taurex_files/taurex_spectrum_CO_1e-4_1500K_noCIA-noRayleigh.dat')
 
-    compBarstow('../results/01BART/c04_CO_1e-5_1500K.pdf', 
+    compBarstow('../results/01BART/c04_CO_1e-5_1500K'+fext, 
                 '../code-output/01BART/c04hjclearisoBarstowEtal/CO_1e-5_1500K_transmission_spectrum.dat', 
                 '../../BarstowEtal2020/osfstorage/forward_models/single_gas/nemesis_files/nemesis_spectrum_CO_1e-5_1500K_noCIA-noRayleigh.dat', 
                 '../../BarstowEtal2020/osfstorage/forward_models/single_gas/chimera_files/chimera_spectrum_CO_1e-5_1500K_noCIA-noRayleigh.dat',
                 '../../BarstowEtal2020/osfstorage/forward_models/single_gas/taurex_files/taurex_spectrum_CO_1e-5_1500K_noCIA-noRayleigh.dat')
 
-    compBarstow('../results/01BART/c04_model0.pdf', 
+    compBarstow('../results/01BART/c04_model0'+fext, 
                 '../code-output/01BART/c04hjclearisoBarstowEtal/model0_transmission_spectrum.dat', 
                 '../../BarstowEtal2020/osfstorage/forward_models/realistic/nemesis_hd189733b-cloudfree_jwst_60.dat', 
                 '../../BarstowEtal2020/osfstorage/forward_models/realistic/chimera_hd189733b-cloudfree_jwst_60.dat', 
                 '../../BarstowEtal2020/osfstorage/forward_models/realistic/taurex_hd189733b-cloudfree_jwst_60.dat', 
-                fct=100)
+                CO_only=False)
 
-    compBarstow('../results/01BART/c05_model1.pdf', 
+    compBarstow('../results/01BART/c05_model1'+fext, 
                 '../code-output/01BART/c05hjcloudisoBarstowEtal/model1_transmission_spectrum.dat', 
                 '../../BarstowEtal2020/osfstorage/forward_models/realistic/nemesis_hd189733b-clouds_jwst_60.dat', 
                 '../../BarstowEtal2020/osfstorage/forward_models/realistic/chimera_hd189733b-clouds_jwst_60.dat', 
                 '../../BarstowEtal2020/osfstorage/forward_models/realistic/taurex_hd189733b-clouds_jwst_60.dat', 
-                fct=100)
+                CO_only=False)
 
 
 
