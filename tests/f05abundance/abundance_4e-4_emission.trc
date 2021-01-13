@@ -1,0 +1,60 @@
+# Transit Configuration-File Template:
+# Comment (# or ;) and empty lines are allowed.
+# To set an argument, write the argument name, followed by the
+# argument value (white−space separated). No need for the ’equal’
+# sign, nor quotes for string values.
+# For the full list of arguments see Transit User Guide or type transit --help
+
+# :::::::::: Input files :::::::::::::::::::::::::::::::::::::::::::::
+# Path to atmospheric file:
+atm     ./atm/4e-4_uniform.atm
+# Path to transit-line-information (TLI) file:
+linedb  ../00inputs/TLI/abundance_2-4um.tli
+# Path to cross-section (CS) files (comma-separated if more than one file):
+
+# Path to molecular information file:
+molfile ../00inputs/molecules.dat
+
+# :::::::::: Spectrum sampling :::::::::::::::::::::::::::::::::::::::
+# Lowest wavelength boundary (see also wnhigh):
+wllow   2.0
+# Highest wavelength boundary (see also wnlow):
+wlhigh  4.0
+# Wavelength conversion factor to cm (default: 1e-4, microns)
+wlfct  1e-4
+
+wnlow  4365
+wnhigh 4371
+# Wavenumber sampling interval for output:
+wndelt  0.005
+# Wavenumber oversampling factor:
+wnosamp 1080
+# Wavenumber conversion factor to cm-1 (default: 1.0):
+wnfct 1.0
+
+# :::::::::: Geometry ::::::::::::::::::::::::::::::::::::::::::::::::
+# Raypath geometry (transit, for transmission; or
+#                   eclipse, for dayside emission):
+solution eclipse
+# For eclipse mode, set the angle of the incident ray-paths:
+raygrid 0 20 40 60 80
+
+# :::::::::: Optical Depth :::::::::::::::::::::::::::::::::::::::::::
+# Maximum optical depth:
+toomuch 10
+# Line-strength threshold:
+ethresh 1e-6
+
+# :::::::::: Line Broadening :::::::::::::::::::::::::::::::::::::::::
+# Voigt profile half width (in Doppler or Lorentz HWHM):
+nwidth 20
+
+# :::::::::: Verbosity :::::::::::::::::::::::::::::::::::::::::::::::
+# Verbosity level for on-screen display (1 -- 5):
+verb 1
+
+# :::::::::: Output files ::::::::::::::::::::::::::::::::::::::::::::
+# Radius (at each wavelength sample) where the optical depth == toomuch:
+#outtoomuch ../../code-output/01BART/f05abundance/abundance_4e-4_emission_toomuch.dat
+# Emission (eclipse) spectrum:
+outspec    ../../code-output/01BART/f05abundance/abundance_4e-4_emission_spectrum.dat

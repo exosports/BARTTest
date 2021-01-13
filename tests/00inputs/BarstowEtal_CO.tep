@@ -1,0 +1,13 @@
+# Spitzer Space Telescope Exoplanetary Secondary Eclipse and Transit Data
+# Format version 4, Sat Jul 24 01:09:46 EDT 2010
+# See format rules at bottom.
+
+# parameter     value         uncert    unit            origin/reference        comment
+
+planetname      model-0b      -1        -               -                       # no spaces
+Rs              1.000         -1        Rsun            Exoplanets.org                # S stellar radius
+
+# Planet (only one of Rp, RpRs, or RpRssq, give what you fit):
+Rp              0.9778856375538522 -1   Rjup            BarstowEtal2020 converted from Rjup_mean to Rjup_IAU  # S planetary radius
+Mp              1.000         -1        Mjup            Anderson2011arXiv:1101.5620v1  #   planetary mass
+

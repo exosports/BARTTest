@@ -1,0 +1,25 @@
+Welcome, person interested in BARTTest.  This file will help you locate anything you are interested in finding within BARTTest.
+
+Q: Where do I find all of the test setups?
+A: They are located within the 'tests' directory.  Inside, you will find subdirectories for each test that is described in the paper, named exactly as in the paper.
+
+Q: Where do I find the setup of a particular test?
+A: Navigate to the directory of the test you are interested in.  For example, c01hjcleariso.  Inside, it contains some files.  For example, the atmospheric model contains a .atm extension.  Files with a .trc extension is the Transit configuration file.  For retrieval tests, the BART configuration file will have a .brt extension.  Configuration files for pylineread to process the line lists have a .plc extension.  For information about these configuration files, see the Transit and BART User Manuals, respectively.
+
+Q: What line lists are used?  What about other inputs, like stellar models, molecular constants, and filter bandpasses?
+A: Within the 'tests' directory, there is a subdirectory called '00inputs'.  It contains input files common to tests, such as collision-induced absorption file, Kurucz stellar model, Transit inputs (molecular constants), filters, text files to pull the HITRAN .par line lists, etc.  For details about the files or pulling the line lists, see the BARTTest and Transit User Manuals.
+
+Q: Where do I find the output from each test?
+A: Within the 'code-output' directory, there are subdirectories for each code that has executed BARTTest.  For example, the first code to do so is, unsurprisingly, BART, so its subdirectory is 01BART.  Within that subdirectory are subdirectories containing the outputs of each test.
+
+Q: I found the subdirectory for the output from the test I am interested in.  What are these files?
+A: Forward model tests outputs are text files of spectra.  Retrieval tests have many more outputs -- a logfile, the output posterior approximation, plots, etc.  See the Transit and BART User Manuals for details.
+
+Q: Where do I find statistics about the retrieval tests, such as chi squared, BIC, and credible regions?
+A: Within the subdirectory containing the test outputs (e.g., code-outputs/01BART/), there is a file called MCMC.log.  Near the end of this file, you will find statistics about the run, include those mentioned in the question.
+
+Q: What is the difference between the 'code-output' and 'results' directories?  They sound the same!
+A: 'code-output' contains, as described above, the output from running the code.  The 'results' directory contains results that are derived from those outputs, such as comparison plots, numerical calculations derived from spectra, etc.
+
+Q: What if my question isn't answered here?
+A: We first direct to the BARTTest, BART, and Transit User Manuals, which contain far greater detail than here.  If the question is still not answered, contact BARTTest's corresponding author with the question so that it can be added to this file and/or the User Manual.  As of Jan 2021, that would be Michael Himes (mhimes@knights.ucf.edu).
