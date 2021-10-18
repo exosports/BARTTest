@@ -1,0 +1,388 @@
+[MCMC]
+# Location of the output directory:
+loc_dir = ../../code-output/01BART/r01hd189733b_ref1bar_lessdata_15max_grid1.0_STDS-HIT08/
+
+# Tepfile name:
+tep_name = ../00inputs/HD189733b.tep
+
+# Kurucz stellar spectrum file:
+kurucz   = ../00inputs/hd189733b-fp00k2odfnew.pck
+
+
+# Atmospheric pressure layers: :::::::::::::::::::::::::::::::::::::::
+# Pressure filename (.pres extenesion):
+press_file = ./HD189733b.pres
+
+# Number of layers:
+n_layers = 100
+
+# Pressure at the top of the atmosphere (in bars):
+p_top    = 1e-8
+
+# Pressure at the bottom of the atmosphere (in bars):
+p_bottom = 100.0
+
+# Use log (True) or linear (False) pressure scale:
+log = True
+
+
+# Elemental-abundances file ::::::::::::::::::::::::::::::::::::::::::
+# Basic elemental abundances file:
+abun_basic = ../../../BART/inputs/abundances_Asplund2009.txt
+# FINDME: in TEA.cfg this parameter is named abun_file.
+
+# Multiplication factor for heavy-element abundances:
+solar_times = 1
+    
+# Swap C/O abundance ratio (True) or not (False):
+COswap = False
+
+# Elemental abundances file name (.abn extension):
+abun_file = solar1x.abn 
+
+
+# Temperature profile ::::::::::::::::::::::::::::::::::::::::::::::::
+
+# Set the type of model ('line' or 'madhu'):
+PTtype = line
+# Set the parameters for the initial profile:
+#  Line Etal 2013:  [log10(kappa)  log10(gamma1)  log10(gamma2)  alpha  beta]
+#  Madhu Etal 2009 non-inverted:  [a1 a2 p1 p3 T3]
+#  Madhu Etal 2009 inverted:      [a1 a2 p1 p2 p3 T3]
+PTinit = -3.0  -0.45  1.0  0.0  1.0
+#PTinit =  0.993  0.20 0.05 3.0 1700   ; for madhu
+
+
+# Atmospheric Elemental Abundances (pre-atmospheric) File ::::::::::::
+# Pre atmospheric filename (.atm extenstion):
+preatm_file = ./HD189733b_preatm.atm
+
+# Elemental species:
+in_elem  = H He C N O
+
+# Output species:
+#   - MUST use names produced by JANAF.py
+#   - see TEA/conversion-record-sort.txt for the correct names
+#   - MUST include all elemental species
+out_spec = H_g He_ref C_g N_g O_g H2_ref CO_g CO2_g H2O_g CH4_g
+
+# If not None, set uniform mole mixing ratios for each out_spec, e.g.:
+uniform = 1e-10 0.149996 1e-10 1e-10 1e-10 0.85 1e-6 1e-6 1e-6 1e-6
+#uniform = None
+
+# Atmospheric File (P, T, species-abundances) ::::::::::::::::::::::::
+# TEA output file (the 'atmospheric file') name:
+atmfile = ./HD189733b.tea
+
+
+# MCMC arguments :::::::::::::::::::::::::::::::::::::::::::::::::::::
+# The data (eclipse or transit depths):
+data   = 0.000452
+        0.000532
+        0.000331
+        0.000389
+        0.000128
+        0.000030
+        0.000122
+        0.000250
+        0.000452
+        0.000714
+        0.000860
+        0.000592
+        0.000633
+        0.00233550
+        0.00257425
+        0.00272350
+        0.00270675
+        0.00264850
+        0.00310100
+        0.00311900
+        0.00277250
+        0.00324800
+        0.00316575
+        0.00275225
+        0.00273900
+        0.00303725
+        0.00273100
+        0.00299175
+        0.00300400
+        0.00269475
+        0.00346000
+        0.00323075
+        0.00298025
+        0.00312200
+        0.00337475
+        0.00381200
+        0.00329075
+        0.00384425
+        0.00376375
+        0.00416175
+        0.00407400
+        0.00432750
+        0.00383375
+        0.00438950
+        0.00441275
+        0.00456025
+        0.00404450
+        0.00438825
+        0.00473700
+        0.00383875
+        0.00463775
+        0.00504725
+        0.00505050
+        0.00434050
+        0.00485325
+        0.00517300
+        0.00424425
+        0.00457800
+        0.00371100
+        0.00410825
+        0.001533
+        0.001886
+        0.00310
+        0.00344
+        0.00519
+        0.00598
+
+# Data uncertainties:
+uncert = 0.00007
+        0.00006
+        0.00006
+        0.00006
+        0.00007
+        0.00007
+        0.00006
+        0.00007
+        0.00007
+        0.00008
+        0.00008
+        0.00008
+        0.00009
+        0.000222524
+        0.000217480
+        0.000226438
+        0.000149055
+        0.000217201
+        0.000212961
+        0.000203676
+        0.000205404
+        0.000269946
+        0.000191583
+        0.000169537
+        0.000238450
+        0.000196680
+        0.000193915
+        0.000184723
+        0.000189252
+        0.000205299
+        0.000264607
+        0.000215977
+        0.000252743
+        0.000202418
+        0.000146430
+        0.000182605
+        0.000284285
+        0.000130645
+        0.000103984
+        0.000178544
+        0.000284449
+        0.000137827
+        0.000119044
+        0.000171849
+        0.000193799
+        0.000231821
+        0.000184172
+        0.000237546
+        0.000294217
+        0.000175840
+        0.000261032
+        0.000272065
+        0.000236382
+        0.000267394
+        0.000274058
+        0.000288286
+        0.000259899
+        0.000381903
+        0.000348530
+        0.000405995
+        0.000029
+        0.000071
+        0.00034
+        0.000036
+        0.00020
+        0.00038
+
+# The waveband filters:
+filters = ../00inputs/filters/NICMOS_05.dat
+        ../00inputs/filters/NICMOS_06.dat
+        ../00inputs/filters/NICMOS_07.dat
+        ../00inputs/filters/NICMOS_08.dat
+        ../00inputs/filters/NICMOS_09.dat
+        ../00inputs/filters/NICMOS_10.dat
+        ../00inputs/filters/NICMOS_11.dat
+        ../00inputs/filters/NICMOS_12.dat
+        ../00inputs/filters/NICMOS_13.dat
+        ../00inputs/filters/NICMOS_14.dat
+        ../00inputs/filters/NICMOS_15.dat
+        ../00inputs/filters/NICMOS_16.dat
+        ../00inputs/filters/NICMOS_17.dat
+        ../00inputs/filters/IRS_GrillmairEtal2008_01.dat
+        ../00inputs/filters/IRS_GrillmairEtal2008_02.dat
+        ../00inputs/filters/IRS_GrillmairEtal2008_03.dat
+        ../00inputs/filters/IRS_GrillmairEtal2008_04.dat
+        ../00inputs/filters/IRS_GrillmairEtal2008_05.dat
+        ../00inputs/filters/IRS_GrillmairEtal2008_06.dat
+        ../00inputs/filters/IRS_GrillmairEtal2008_07.dat
+        ../00inputs/filters/IRS_GrillmairEtal2008_08.dat
+        ../00inputs/filters/IRS_GrillmairEtal2008_09.dat
+        ../00inputs/filters/IRS_GrillmairEtal2008_10.dat
+        ../00inputs/filters/IRS_GrillmairEtal2008_11.dat
+        ../00inputs/filters/IRS_GrillmairEtal2008_12.dat
+        ../00inputs/filters/IRS_GrillmairEtal2008_13.dat
+        ../00inputs/filters/IRS_GrillmairEtal2008_14.dat
+        ../00inputs/filters/IRS_GrillmairEtal2008_15.dat
+        ../00inputs/filters/IRS_GrillmairEtal2008_16.dat
+        ../00inputs/filters/IRS_GrillmairEtal2008_17.dat
+        ../00inputs/filters/IRS_GrillmairEtal2008_18.dat
+        ../00inputs/filters/IRS_GrillmairEtal2008_19.dat
+        ../00inputs/filters/IRS_GrillmairEtal2008_20.dat
+        ../00inputs/filters/IRS_GrillmairEtal2008_21.dat
+        ../00inputs/filters/IRS_GrillmairEtal2008_22.dat
+        ../00inputs/filters/IRS_GrillmairEtal2008_23.dat
+        ../00inputs/filters/IRS_GrillmairEtal2008_24.dat
+        ../00inputs/filters/IRS_GrillmairEtal2008_25.dat
+        ../00inputs/filters/IRS_GrillmairEtal2008_26.dat
+        ../00inputs/filters/IRS_GrillmairEtal2008_27.dat
+        ../00inputs/filters/IRS_GrillmairEtal2008_28.dat
+        ../00inputs/filters/IRS_GrillmairEtal2008_29.dat
+        ../00inputs/filters/IRS_GrillmairEtal2008_30.dat
+        ../00inputs/filters/IRS_GrillmairEtal2008_31.dat
+        ../00inputs/filters/IRS_GrillmairEtal2008_32.dat
+        ../00inputs/filters/IRS_GrillmairEtal2008_33.dat
+        ../00inputs/filters/IRS_GrillmairEtal2008_34.dat
+        ../00inputs/filters/IRS_GrillmairEtal2008_35.dat
+        ../00inputs/filters/IRS_GrillmairEtal2008_36.dat
+        ../00inputs/filters/IRS_GrillmairEtal2008_37.dat
+        ../00inputs/filters/IRS_GrillmairEtal2008_38.dat
+        ../00inputs/filters/IRS_GrillmairEtal2008_39.dat
+        ../00inputs/filters/IRS_GrillmairEtal2008_40.dat
+        ../00inputs/filters/IRS_GrillmairEtal2008_41.dat
+        ../00inputs/filters/IRS_GrillmairEtal2008_42.dat
+        ../00inputs/filters/IRS_GrillmairEtal2008_43.dat
+        ../00inputs/filters/IRS_GrillmairEtal2008_44.dat
+        ../00inputs/filters/IRS_GrillmairEtal2008_45.dat
+        ../00inputs/filters/IRS_GrillmairEtal2008_46.dat
+        ../00inputs/filters/IRS_GrillmairEtal2008_47.dat
+        ../../../BART/inputs/filters/spitzer_irac1_fa.dat
+	    ../../../BART/inputs/filters/spitzer_irac2_fa.dat
+	    ../../../BART/inputs/filters/spitzer_irac3_fa.dat
+	    ../../../BART/inputs/filters/spitzer_irac4_fa.dat
+        ../../../BART/inputs/filters/spitzer_irsblue.dat
+        ../../../BART/inputs/filters/spitzer_mips24.dat
+
+# The fitting function (3-element tuple with function name, module name,
+#  and path to module):
+# (Absolute path or relative path from loc_dir)
+func = hack BARTfunc ../../../BART/code/
+
+# List of molecules being fit:
+molfit = H2O CO2 CO CH4
+
+# Temperature boundaries:
+Tmin =  600.0
+Tmax = 3000.0
+
+# The model fitting parameters:
+# The 'Mi' parameters are the log10 of an abundance scale factor:
+#      log(kappa)  log(g1) log(g2) alpha   beta  log(M1) log(M2) ...
+parnames = $\kappa$   $\gamma_1$   $\gamma_2$   $\alpha$  $\beta$    H$_2$O   CO$_2$   CO    CH$_4$
+params   = -0.5        -0.2          0.0           0.0     1.0        0.0       0.0    0.0    0.0
+pmin     = -5.0        -2.0         -1.3           0.0     0.5       -7.0      -7.0   -7.0   -7.0
+pmax     =  1.0         2.0          1.3           1.0     1.3        5.5       5.5    5.5    5.5
+stepsize =  0.1         0.1          0.3           0.3     0.1        0.4       0.4    0.4    0.4
+
+# Total number of MCMC samples (burn-in + final MCMC):
+numit       = 1e6
+resume      = True
+# Number of parallel MCMC chains (= number of processors):
+nchains     = 10
+# Number of burn-in iterations per chain:
+burnin      = 50000
+# MCMC algorithm ('demc' for Differential Evolution or 'mrw' for 
+#  Metropolis Random Walk with Gaussian proposals):
+walk        = snooker
+# Perform a least-square fit before the MCMC:
+leastsq     = False
+# Scale data uncertainties to enforce reduced chi-square == 1:
+chisqscale  = False
+# Perform the Gelman-Rubin convergence test along the MCMC:
+grtest      = True
+grexit      = False
+# Use MPI for parallel processing:
+mpi         = True
+# Filename to store the model fit for each MCMC evaluation:
+savemodel   = band_eclipse.npy
+# Make plots:
+plots       = True
+# MCMC log file:
+logfile     = MCMC.log
+
+# Verbosity level (0--20):
+verb = 1
+
+# Transit variables ::::::::::::::::::::::::::::::::::::::::::::::::::
+# Output transit configuration file name:
+tconfig = config_transit.cfg
+
+# Transit line information (TLI) file:
+linedb = ../00inputs/TLI/STDS-CH4_H2O_CO2_CO_H2_1-36um.tli
+
+# Collision induced absorption file:
+csfile    = ../../../BART/modules/transit/inputs/CIA_H2H2_400-7000K.dat
+            ../00inputs/CIA_HITRAN_H2He_0200-9900K_0.5-500um.dat
+
+# Spectrum's lower wavelength boundary (alternatively, use wnhigh):
+wnhigh   =  7100
+# Spectrum's higher wavelength boundary (alternatively, use wnlow):
+wnlow    =  280
+# Wavelength unit conversion to cm (default: 1e-4, microns):
+wlfct   = 1e-4
+# Wavenumber sampling interval:
+wndelt  = 1.0
+# Wavenumber oversampling factor:
+wnosamp = 2160
+# Wavenumber unit conversion to cm-1 (default: 1.0, inverse centimeters):
+wnfct   = 1.0
+
+# Eclipe or transit observing geometry:
+solution = eclipse
+# Maximum optical depth to calculate:
+toomuch  = 10.0
+# Number of HWHM:
+nwidth   = 20
+
+# Planetary surface gravity (cm/s^2):
+gsurf     = 2187.76162395
+# Reference pressure and radius level (surface-ish) where p(r0) = p0:
+refpress  = 1.0
+refradius = 81357.896
+
+# Opacity lines' strength threshold:
+ethresh = 1e-99
+
+# Opacity-grid temperature lower boundary (in Kelvin):
+tlow   =  600
+# Opacity-grid temperature higher boundary (in Kelvin):
+thigh  = 3000
+# Opacity-grid temperature sampling interval (in Kelvin):
+tempdelt = 100
+# Opacity-grid file name:
+opacityfile = opacity_HD189733b_testcase.dat
+
+# Output spectrum file name:
+outspec    = ./eclipse_out.dat
+# Output file with the radius where the optical depth reached toomuch:
+outtoomuch = ./eclipse_toom.dat
+# Output file with the samplings info:
+outsample  = ./eclipse_samp.dat
+outflux    = ./eclipse_flux.dat

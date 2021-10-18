@@ -1,6 +1,6 @@
 .PHONY: all quicktests forwardtests comparisontests synth_retrievals hd189 oneline fewline multiline abundance broadening blending multicia isothermal energycons plots fin clean
 
-all: bart hitran_linelists oneline fewline multiline broadening abundance blending multicia isothermal energycons comparisontests plots fin
+all: bart linelists oneline fewline multiline broadening abundance blending multicia isothermal energycons comparisontests plots fin
 
 quicktests: oneline fewline multiline broadening abundance blending multicia plots fin
 
@@ -18,6 +18,7 @@ bart:
 	@if [ ! -d "../BART" ]; then                                              \
 		@echo "\nCloning BART..."                                             \
 		git clone --recursive https://github.com/exosports/BART ../BART/;     \
+		@cd ../BART && git checkout a08ee09c67fc7c571efe51b55caba104720e0db2; \
 		echo "Finished cloning BART to a directory parallel to BARTTest.\n";  \
 	else                                                                      \
 		echo "BART already exists in a directory parallel to BARTTest.\n";    \
@@ -28,15 +29,13 @@ bart:
 	@echo "Finished compiling BART.\n"
 
 
-hitran_linelists:
-	@echo "Downloading HITRAN line lists...\n"
+linelists:
+	@echo "Downloading line lists...\n"
 	@cd tests/00inputs/par/                                                 &&\
-	wget --user=HITRAN --password=getdata -N -i wget-list_HITEMP-CO2.txt    &&\
-	wget --user=HITRAN --password=getdata -N -i wget-list_HITEMP-CO.txt     &&\
-	wget --user=HITRAN --password=getdata -N -i wget-list_HITEMP-H2O.txt    &&\
-	wget --user=HITRAN --password=getdata -N -i wget-list_HITRAN-CH4.txt    &&\
-	wget --user=HITRAN --password=getdata -N -i wget-list_HITRAN-NH3.txt    &&\
-	wget --user=HITRAN --password=getdata -N -i wget-list_HITRAN-H2.txt
+	wget https://hitran.org/hitemp/data/bzip2format/05_HITEMP2019.par.bz2   &&\
+	wget https://hitran.org/hitemp/data/bzip2format/06_HITEMP2020.par.bz2   &&\
+	wget https://zenodo.org/record/3768504/files/pcubillos/CO2_exomol_ucl4000_0.5-500.0um_100-3500K_threshold_0.01_lbl.dat             &&\
+	wget https://zenodo.org/record/3768504/files/pcubillos/H2O_exomol_pokazatel_0.24-500.0um_100-3500K_threshold_0.01_lbl.dat
 	@echo "Extracting archives...\n"
 	@cd tests/00inputs/par/                                                 &&\
 	unzip '01_*HITEMP2010.zip'                                              &&\
@@ -45,8 +44,10 @@ hitran_linelists:
 	unzip '06_hit12.zip'                                                    &&\
 	unzip '11_hit12.zip'                                                    &&\
 	unzip '45_hit12.zip'                                                    &&\
+	bunzip2 05_HITEMP2019.par.bz2                                           &&\
+	bunzip2 06_HITEMP2020.par.bz2                                           &&\
 	rm -f *.zip
-	@echo "Finished retrieving HITRAN line lists.\n"
+	@echo "Finished downloading line lists.\n"
 
 oneline:
 	@echo "Running oneline test...\n"

@@ -26,7 +26,7 @@ Plots will be saved into the directory where spectrum.dat file is located
 unless otherwise specified.
 """
 
-def plotspectrum(fname, geo, wl=True, oname=False, title=True):
+def plotspectrum(fname, geo, wl=True, oname=False, title=False):
     """
     This function produces a plot of the spectrum produced by Transit.
     
@@ -73,19 +73,19 @@ def plotspectrum(fname, geo, wl=True, oname=False, title=True):
     if geo=='eclipse':
         if title==True:
             plt.title(testname + " Emission Spectrum")
-        plt.ylabel("Flux  [erg s$^{-1}$ cm$^{-1}$]")
+        plt.ylabel("Flux  (erg s$^{-1}$ cm$^{-1}$)")
         plotname = testname + '_emission_spectrum.png'
     else:
         if title==True:
             plt.title(testname + " Transmission Spectrum")
-        plt.ylabel("Modulation  [$(R_p/R_s)^2$]")
+        plt.ylabel("Modulation  ($(R_p/R_s)^2$)")
         plotname = testname + '_transmission_spectrum.png'
     
     # Set X axis label to that specified
     if wl==True:
-        plt.xlabel("Wavelength  [microns]")
+        plt.xlabel(u"Wavelength  (\u00b5m)")
     else:
-        plt.xlabel("Wavenumber  [cm$^{-1}$]")
+        plt.xlabel("Wavenumber  (cm$^{-1}$)")
 
     # Set x limits
     plt.xlim(np.amin(wlength), np.amax(wlength))
@@ -157,20 +157,20 @@ def plotspeczoom(fname, geo, loc, wl=True, xlims=False, oname=False,
     if geo=='eclipse':
         if title==True:
             plt.title(testname + " Emission Spectrum")
-        plt.ylabel("Flux  [erg s$^{-1}$ cm$^{-1}$]")
+        plt.ylabel("Flux  (erg s$^{-1}$ cm$^{-1}$)")
         plotname = testname + '_emission_spectrum_zoom'
     else:
         if title==True:
             plt.title(testname + " Transmission Spectrum")
-        plt.ylabel("Modulation  [$(R_p/R_s)^2$]")
+        plt.ylabel("Modulation  ($(R_p/R_s)^2$)")
         plotname = testname + '_transmission_spectrum_zoom'
     
     # Set X axis label to that specified
     if wl==True:
-        plt.xlabel("Wavelength  [microns]")
+        plt.xlabel(u"Wavelength  (\u00b5m)")
         plotname += str(1000*loc)[:4] + 'nm'
     else:
-        plt.xlabel("Wavenumber  [cm$^{-1}$]")
+        plt.xlabel("Wavenumber  (cm$^{-1}$)")
         plotname += str(loc) + 'cm-1'
     
     # Set the X axis limits for the plot
@@ -184,7 +184,7 @@ def plotspeczoom(fname, geo, loc, wl=True, xlims=False, oname=False,
     plt.clf()
 
 
-def plotspeciso(fname, atm, geo, wl=True, oname=False, title=True):
+def plotspeciso(fname, atm, geo, wl=True, oname=False, title=False):
     """
     This function produces a plot of the isothermal spectrum produced by 
     the isothermal test with the Planck function overplotted.
@@ -200,7 +200,7 @@ def plotspeciso(fname, atm, geo, wl=True, oname=False, title=True):
     oname: string. If oname is False, the default plotting name is used when 
                    saving the file. If it is a string, then that 
                    path/to/plotname is used.
-    title: bool.   If True, plots w/ title. If false, it does not.
+    title: bool.   If True, plots w/ title. If False, it does not.
     
     Outputs
     -------
@@ -243,42 +243,38 @@ def plotspeciso(fname, atm, geo, wl=True, oname=False, title=True):
 
     # Load the data
     try:
-        if wl==True:
+        if wl:
             wlength, flux = rt.readspectrum(fname, 0)
         else:
             wlength, flux = rt.readspectrum(fname)
     except:
-        print("Isothermal plot: invalid specification for the data file name.\n")
+        print("\nIsothermal plot: invalid specification for the data file name.")
+        print("Problematic file:", fname, '\n')
         return
 
     # Get test name
     testname = fname.split('/')[-1].split('_')[0]
 
     # Plot the data
-    plt.figure(0, (8,5))
     plt.clf()
+    fig1   = plt.figure(1)
+    frame1 = fig1.add_axes((.1, .3, .8, .6))
     plt.plot(wlength, flux, color="k", lw=2, label='Transit')
     
     # Set title and plot filename based on the geometry
     if geo=='eclipse':
-        if title==True:
+        if title:
             plt.title(testname + " Emission Spectrum")
-        plt.ylabel("Flux  [erg s$^{-1}$ cm$^{-1}$]")
+        plt.ylabel("Flux  (erg s$^{-1}$ cm$^{-1}$)", fontsize=14)
         plotname = testname + '_emission_spectrum.png'
     else:
-        if title==True:
+        if title:
             plt.title(testname + " Transmission Spectrum")
-        plt.ylabel("Modulation  [$(R_p/R_s)^2$]")
+        plt.ylabel("Modulation  ($(R_p/R_s)^2$)", fontsize=14)
         plotname = testname + '_transmission_spectrum.png'
     
-    # Set X axis label to that specified
-    if wl==True:
-        plt.xlabel("Wavelength  [microns]")
-    else:
-        plt.xlabel("Wavenumber  [cm$^{-1}$]")
-    
     # Plot the Planck function
-    if wl==True:
+    if wl:
         # Convert to wavenumber
         wavenum = 10000./wlength
         # Calculate the Planck function
@@ -287,7 +283,7 @@ def plotspeciso(fname, atm, geo, wl=True, oname=False, title=True):
                  (const.k*1e7) / bgtemp) - 1)
         # Plot it. Multiply Planck by pi because of how Transit calcs flux
         # Reverse Planck to match wlength
-        plt.plot(wlength, np.pi*planck, color='#ffff00', lw=2, ls="--", 
+        plt.plot(wlength, np.pi*planck, color='goldenrod', lw=2, ls="--", 
                  label='Planck')
     else:
         planck = 2. * const.h*1e7 * (wlength**3) * (const.c*100)**2 /   \
@@ -295,19 +291,35 @@ def plotspeciso(fname, atm, geo, wl=True, oname=False, title=True):
                  (const.k*1e7) / bgtemp) - 1)
         plt.plot(wlength, np.pi*planck, color='#ffff00', lw=2, ls="--", 
                  label='Planck')
+    plt.legend(loc='upper right')
+
+    frame1.set_xticklabels([])
+
+    # Residuals
+    frame2 = fig1.add_axes((.1, .1, .8, .2))
+    plt.plot(wlength, 100*(flux - (np.pi*planck)) / (np.pi*planck))
+    plt.ylabel('Residuals (%)', fontsize=14)
+    yticks = frame2.yaxis.get_major_ticks()
+    yticks[-1].label1.set_visible(False)
+
+    # Set X axis label to that specified
+    if wl:
+        plt.xlabel(u"Wavelength  (\u00b5m)", fontsize=14)
+    else:
+        plt.xlabel("Wavenumber  (cm$^{-1}$)", fontsize=14)
+    
     
     # Save the plot
-    plt.legend(loc='upper right')
-    if oname==False:
-        plt.savefig(fname.split('/')[0] + '/' + plotname)
+    if not oname:
+        plt.savefig(fname.split('/')[0] + '/' + plotname, bbox_inches='tight')
     else:
-        plt.savefig(oname)
+        plt.savefig(oname, bbox_inches='tight')
     plt.clf()
 
 
 
 def plotspecabun(fnames, base, geo='eclipse', xlims=(2.28905,2.28945), 
-                 oname=False, title=True):
+                 oname=False, title=False, fext='.pdf'):
     """
     The function produces a plot of the spectra produced in abundance.
     All spectra are plotted together to show the difference in line depth.
@@ -350,15 +362,16 @@ def plotspecabun(fnames, base, geo='eclipse', xlims=(2.28905,2.28945),
     plt.ylim(flux[loc] - 5, fl[loc] + 5)
     
     # Label rest of plot, save
-    if title==True:
+    if title:
         plt.title('Varying Abundance of One Line, \n Optically Thin Regime')
-    plt.ylabel("Flux  [erg s$^{-1}$ cm$^{-1}$]")
-    plt.xlabel("Wavelength  [microns]")
-    plt.legend(loc="upper right")
-    if oname==False:
-        plt.savefig(base.split('/')[0] + '/' + 'abundance_emission_spectra.png')
+    plt.ylabel("Flux  (erg s$^{-1}$ cm$^{-1}$)", fontsize=14)
+    plt.xlabel(u"Wavelength  (\u00b5m)", fontsize=14)
+    plt.legend(loc="best")
+    if not oname:
+        plt.savefig(base.split('/')[0] + '/' + 'abundance_emission_spectra'+fext,
+                    bbox_inches='tight')
     else:
-        plt.savefig(oname)
+        plt.savefig(oname+fext, bbox_inches='tight')
     plt.clf()
 
 
@@ -428,7 +441,7 @@ def main():
     try:
         plotspecabun(fnames, 
                      odir+'f05abundance/abundance_0_emission_spectrum.dat', 
-                     oname=rdir+'f05abundance_emission_spectra.png')
+                     oname=rdir+'f05abundance_emission_spectra')
     except Exception as e:
         print(e)
         pass
@@ -458,7 +471,7 @@ def main():
     try:
         plotspeciso(odir+'f08isothermal/isothermal_emission_spectrum.dat', 
                     '../tests/f08isothermal/isothermal.atm', 'eclipse', 
-                    oname=rdir+'f08isothermal_emission_spectrum.png')
+                    oname=rdir+'f08isothermal_emission_spectrum.pdf')
     except Exception as e:
         print(e)
         pass

@@ -7,30 +7,26 @@
 
 # :::::::::: Input files :::::::::::::::::::::::::::::::::::::::::::::
 # Path to atmospheric file:
-atm     ./broadening.atm
+atm     ./noinv_uni_2.atm
 # Path to transit-line-information (TLI) file:
-linedb  ../00inputs/TLI/oneline_2-4um.tli
+linedb  ../00inputs/TLI/CH4_CO_CO2_H2O_NH3_H2_1-11um.tli
 # Path to cross-section (CS) files (comma-separated if more than one file):
-
+csfile  ../../../BART/modules/transit/inputs/CIA_H2H2_400-7000K.dat,../00inputs/CIA_HITRAN_H2He_0200-9900K_0.5-500um.dat
 # Path to molecular information file:
-molfile ../00inputs/molecules.dat
+molfile ../../../BART/modules/transit/inputs/molecules.dat
 
 # :::::::::: Spectrum sampling :::::::::::::::::::::::::::::::::::::::
 # Lowest wavelength boundary (see also wnhigh):
-#wllow   2.25
-wnhigh 4370
-
+wllow   1.0
 # Highest wavelength boundary (see also wnlow):
-#wlhigh  2.31
-wnlow  4366
-
+wlhigh  10.0
 # Wavelength conversion factor to cm (default: 1e-4, microns)
 wlfct  1e-4
 
 # Wavenumber sampling interval for output:
-wndelt  0.005
+wndelt  0.025
 # Wavenumber oversampling factor:
-wnosamp 1080
+wnosamp 2160
 # Wavenumber conversion factor to cm-1 (default: 1.0):
 wnfct 1.0
 
@@ -41,6 +37,11 @@ solution eclipse
 # For eclipse mode, set the angle of the incident ray-paths:
 raygrid 0 20 40 60 80
 
+starrad 0.756
+refradius 8.1357896e9
+refpress 0.1
+gsurf 2182.73
+
 # :::::::::: Optical Depth :::::::::::::::::::::::::::::::::::::::::::
 # Maximum optical depth:
 toomuch 10
@@ -50,18 +51,13 @@ ethresh 1e-50
 # :::::::::: Line Broadening :::::::::::::::::::::::::::::::::::::::::
 # Voigt profile half width (in Doppler or Lorentz HWHM):
 nwidth 20
-ndop 60
-nlor 60
 
 # :::::::::: Verbosity :::::::::::::::::::::::::::::::::::::::::::::::
 # Verbosity level for on-screen display (1 -- 5):
-verb 1
-
-# Path to opacity file:
-opacityfile ../../code-output/01BART/f04broadening/broadening.opt
+verb 2
 
 # :::::::::: Output files ::::::::::::::::::::::::::::::::::::::::::::
 # Radius (at each wavelength sample) where the optical depth == toomuch:
-#outtoomuch ../../code-output/01BART/f04broadening/broadening_emission_toomuch.dat
+#outtoomuch ../../code-output/01BART/c02hjclearnoinv/noinv_uni_emission_0.025grid_10max_toomuch.dat
 # Emission (eclipse) spectrum:
-outspec    ../../code-output/01BART/f04broadening/broadening_emission_spectrum.dat
+outspec    ../../code-output/01BART/c02hjclearnoinv/noinv_uni_emission_0.025grid_10max_spectrum.dat

@@ -17,13 +17,15 @@ the opacity table for comparison. The FWHMs of the profiles are calculated for
 comparison as well.
 """
 
-def comp(molmass=16.04, press=3.3516e-01, temp=1442.58, 
+def comp(molmass=18.0105646, press=3.3516e-01, temp=1442.58, 
          dia=np.array([3.2e-8, 1.55e-8]), 
-         wavenum=4368.350283, 
-         atm=np.array([[0.0001, 18.01528], [0.9999, 14.0067]]), 
+         wavenum=4368.0, 
+         atm=np.array([[0.0001, 18.0105646], [0.9999, 14.0067]]),
+         ratio=0.9973, 
+         Elow=2183.6851, gf=7.026386513565115e-08, Z=2525.51990555, 
          opacity='../code-output/01BART/f04broadening/broadening.opt', 
-         ipress=35, itemp=9, 
-         imol=0, savename='../results/01BART/f04voigt_comp'):
+         ipress=35, itemp=9, imol=0, title=False, 
+         savename='../results/01BART/f04voigt_comp', fext='.pdf'):
     """
     molmass : float.  Molar mass of the molecule responsible for the spectral 
 					  line.
@@ -33,10 +35,14 @@ def comp(molmass=16.04, press=3.3516e-01, temp=1442.58,
     wavenum : float.  Wavenumber of the line.
     atm     : array.  Contains the abundance and molar mass of each molecule 
                       present in the layer. Shape is (n_molecules, 2)
+    ratio   : float.  Ratio of the isotope.
+    Elow    : float.  Energy of the lower state.
+    gf      : float.  Weighted oscillator strength.
+    Z       : float.  Partition function for the given conditions.
     opacity : string of path/to/file for the binary opacity file produced by 
                       Transit.
     ipress  : int.    Index of the pressure in the opacity array.
-    itemp   : int.    Index of the temperature in the opacity array.
+    itemp   : int.    Index of the closest temperature in the opacity array.
     imol    : int.    Index of the molecule in the opacity array.
 	savename: string. Name of produced plot of comparison of profiles.
     """
@@ -55,49 +61,44 @@ def comp(molmass=16.04, press=3.3516e-01, temp=1442.58,
     presscgs = press * 1000000      # pressure in cgs units
     nd       = presscgs/(k*temp)    # number density in cm-3
 
-    # Line information
-    wvlen = 10000./wavenum  #wavelength in microns
-
     # Load Transit opacity file info
     hdr, molID, temps, press, wns, optable = bin2np(opacity, 
                                                     opacity.rsplit('/', 1)[0]+\
                                                     '/opacity')
 
-    # Transit profile
+    # Transit profile -- interpolate to the conditions
     opa   = optable[ipress,itemp,imol]
-    wnhmt = wns[opa > np.amax(opa)/2.0]
-    fwhmt = wnhmt[-1] - wnhmt[0]
+    if round(temp, -2) < temp:
+        weight = (temp - round(temp, -2)) / 100
+        opa    = (1-weight) * optable[ipress,itemp,imol] + \
+                    weight  * optable[ipress,itemp+1,imol]
+    else:
+        weight = (round(temp, -2) - temp) / 100
+        opa    = (1-weight) * optable[ipress,itemp,imol] + \
+                    weight  * optable[ipress,itemp-1,imol]
 
     # Theoretical Voigt profile calculation (in wavenumber space)
-    # Equation for alpha from the Transit Code Manual:
+    # Equation for Doppler HWHM:
     alpha = wavenum/c * (2.*k*temp*np.log(2)/mass)**0.5
-    
-    # Equation for gamma from the Transit Code Manual:
-    gamma = np.sum((np.pi * np.mean(dia)**2) * (2.*k*temp/np.pi**3/c**2)**0.5 *\
-                   (atm[:,0] * nd) *                                        \
-                   (1./(molmass*amu) + 1./(atm[:,1]*amu))**0.5)
-    #gamma = np.sum((np.pi * (dia)**2) * (2.*k*temp/np.pi**3/c**2)**0.5 *    \
-    #               (np.mean(atm[:,0]*atm[:,1]) * atm[:,0] * nd)/atm[:,1] *  \
-    #               (1./(molmass*amu) + 1./(atm[:,1]*amu))**0.5)
+    # Equation for Lorentzian HWHM:
+    gamma = np.sum((dia[0]/2. + dia/2.)**2 *                         \
+                   (2. * k * temp / np.pi)**0.5 / c *              \
+                   nd * atm[:,0] *                              \
+                   (1./mass + 1./(atm[:,1] * amu))**0.5)
 
     # Generate profile
     wnhires = np.linspace(wns[0], wns[-1], 10000)
-    prof  = voigt.V(wnhires, alpha, gamma, wavenum)
-
-    Elow = 2183.6851
-    gf   = 7.025259715158783e-08
-    Z    = 1939.68009857
-
-    prof  = prof * const.pi * e**2 / c**2 / me * nd * atm[0,0] * \
-            gf / Z * np.exp(-h*c*Elow/k/temp) * (1 - np.exp(-h*c*wavenum/k/temp))
-
-    # Bin down to `wns`
+    prof    = voigt.V(wnhires, alpha, gamma, wavenum)
+    # Extinction coefficient
+    K = const.pi * e**2 / c**2 / me            *     \
+        nd * ratio                             *     \
+        gf / Z * np.exp(-h*c*Elow/k/temp)      *     \
+        (1 - np.exp(-h*c*wavenum/k/temp))
+    # Divide by density -- extinction --> opacity
+    prof = K*prof / (presscgs * molmass / k / temp / Nava)
+    # Resample to `wns`
     resamp = si.interp1d(wnhires, prof, bounds_error=False, fill_value=0)
     prof2  = resamp(wns)
-
-    # Calculate FWHM for funsies
-    #wnhm  = wns[prof > np.amax(prof)/2.0]
-    #fwhm  = wnhm[-1] - wnhm[0]
 
     # Make plot
     fig1 = plt.figure(1)
@@ -106,18 +107,22 @@ def comp(molmass=16.04, press=3.3516e-01, temp=1442.58,
              color="blue", label="Theoretical")
     plt.plot(wns, opa, ":", lw=3.5, \
              color="red", label="Transit")
-    #plt.plot(wvrng, profc/np.amax(profc), "--", lw=1.5, color="black", \
-    #         label="Calculated")
-    plt.xlim(4368.12, 4368.5)
+    plt.xlim(4367.5, 4368.5)
     plt.legend(loc="upper left")
-    plt.title("Voigt Profile Comparison")
-    plt.xlabel("Wavelength  (um)")
+    if title:
+        plt.title("Voigt Profile Comparison")
+    plt.ylabel("Opacity (cm$^2$ g$^{-1}$)")
     frame1.set_xticklabels([])
+    yticks = frame1.yaxis.get_major_ticks()
+    yticks[0].label1.set_visible(False)
     frame2 = fig1.add_axes((.1, .1, .8, .2))
-    #frame2.set_yticklabels([-0.0010, -0.0005, 0.0000, 0.0005, 0.0010])
-    plt.plot(wns, prof2 - opa, 'or')
-    plt.xlim(4368.12, 4368.5)
-    plt.savefig(savename+".png")
+    plt.plot(wns[opa!=0], ((prof2 - opa)/prof2)[opa!=0], 'or')
+    plt.xlim(4367.5, 4368.5)
+    plt.xlabel("Wavenumber (cm$^{-1}$)")
+    plt.ylabel("Difference (%)")
+    yticks = frame2.yaxis.get_major_ticks()
+    yticks[-2].label1.set_visible(False)
+    plt.savefig(savename+fext, bbox_inches='tight')
     plt.close()
 
 

@@ -190,8 +190,7 @@ Table \ref{tbl:makecommands}.
 Command & Description\\
 \hline
 bart & Downloads BART from Github to BARTTest/../BART/ and compiles.\\
-hitran{\_}linelists & Downloads necessary line lists from HITRAN for the 
-isothermal, energy conservation, comparison, and retrieval tests.\\
+linelists & Downloads necessary line lists for the tests, except STDS's CH4 list.\\
 oneline    & Executes the f01oneline test (see Section \ref{sec:oneline}).\\
 fewline    & Executes the f02fewline test (see Section \ref{sec:fewline}).\\
 multiline  & Executes the f03multiline test (see Section \ref{sec:multiline}).\\
@@ -229,7 +228,7 @@ hd189{\_}retrieval & Runs a retrieval using HD 189733b secondary eclipse data. N
 hd189 & Equivalent to executing hd189{\_}tli and hd189{\_}retrieval Note: this takes on the order of days (see Section \ref{sec:hd189}).\\
 quicktests & Runs f01 -- f07.\\
 forwardtests & Runs f01 -- f09.\\
-all & Downloads BART and HITRAN/HITEMP line lists, and runs f01 -- f09 and c01 -- c05. Note: does not execute the retrievals due to the time involved.\\
+all & Downloads BART and HITRAN/HITEMP/ExoMol line lists, and runs f01 -- f09 and c01 -- c05. Note: does not execute the retrievals due to the time involved.\\
 plots & Produces plots of the code output for f01 -- f09, c01 -- c03, and s01 -- s03.\\
 retrievalplots & Produces plots that compare the retrieved results to the known ground-truth for the synthetic retrieval cases.\\
 clean & Deletes everything in BARTTest/code-output/01BART/ and BARTTest/results/01BART/.\\
@@ -826,9 +825,9 @@ files missing for other tests, like f08 and f09.
 If the user wishes to run all of the forward modeling tests (f01 -- f09), full line lists are required.
 Type
 \begin{verbatim}
-make hitran{\_}linelists
+make linelists
 \end{verbatim}
-to download all of the necessary line lists. Then, type
+to download most of the necessary line lists. Then, type
 \begin{verbatim}
 make forwardtests
 \end{verbatim}
