@@ -181,14 +181,11 @@ commands to execute BARTTest thus take the form of
 from the top-level directory. The configured commands are listed in 
 Table \ref{tbl:makecommands}.
 
-\begin{longtable}[ht]
-\label{tbl:makecommands}
-\centering
-\caption{Makefile Commands}
-\begin{tabular}{p{7cm}p{12cm}}
-\hline\hline
+\begin{longtable}{p{7cm}p{12cm}
+\caption{Makefile Commands}\label{tbl:makecommands}\\
+ \toprule
 Command & Description\\
-\hline
+\hline\endhead
 bart & Downloads BART from Github to BARTTest/../BART/ and compiles.\\
 linelists & Downloads necessary line lists for the tests, except STDS's CH4 list.\\
 oneline    & Executes the f01oneline test (see Section \ref{sec:oneline}).\\
@@ -233,7 +230,6 @@ plots & Produces plots of the code output for f01 -- f09, c01 -- c03, and s01 --
 retrievalplots & Produces plots that compare the retrieved results to the known ground-truth for the synthetic retrieval cases.\\
 clean & Deletes everything in BARTTest/code-output/01BART/ and BARTTest/results/01BART/.\\
 \hline
-\end{tabular}
 \end{longtable}
 
 These are the built-in methods of executing BARTTest. If the user wishes to 
