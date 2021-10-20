@@ -1,0 +1,143 @@
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+  Multi-Core Markov-Chain Monte Carlo (MC3).
+  Version 1.3.2.
+  Copyright (c) 2015-2020 Patricio Cubillos and collaborators.
+  MC3 is open-source software under the MIT license (see LICENSE).
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+Start MCMC chains  (Sun Nov 22 10:43:08 2020)
+
+[:         ]  10.0% completed  (Sun Nov 22 14:07:25 2020)
+Out-of-bound Trials:
+ [ 840   91 2434 1180 1639]
+Best Parameters:   (chisq=60.2683)
+[1.46333636e+03 7.95934539e+04 7.89101997e-02 0.00000000e+00
+ 2.55904296e+00 2.63063815e+00]
+
+[::        ]  20.0% completed  (Sun Nov 22 17:28:53 2020)
+Out-of-bound Trials:
+ [1084  100 4210 1713 3571]
+Best Parameters:   (chisq=59.4175)
+[1.47200238e+03 7.96070590e+04 1.08038291e+00 0.00000000e+00
+ 2.49222037e+00 2.57403887e+00]
+
+[:::       ]  30.0% completed  (Sun Nov 22 20:47:36 2020)
+Out-of-bound Trials:
+ [1223  105 5893 2025 5035]
+Best Parameters:   (chisq=59.3988)
+[1.47723803e+03 7.96039427e+04 1.19449383e+00 0.00000000e+00
+ 2.47848627e+00 2.55736527e+00]
+
+[::::      ]  40.0% completed  (Mon Nov 23 00:06:02 2020)
+Out-of-bound Trials:
+ [1333  112 7511 2264 6113]
+Best Parameters:   (chisq=59.3988)
+[1.47723803e+03 7.96039427e+04 1.19449383e+00 0.00000000e+00
+ 2.47848627e+00 2.55736527e+00]
+
+[:::::     ]  50.0% completed  (Mon Nov 23 03:23:27 2020)
+Out-of-bound Trials:
+ [1409  115 9061 2442 7010]
+Best Parameters:   (chisq=59.3988)
+[1.47723803e+03 7.96039427e+04 1.19449383e+00 0.00000000e+00
+ 2.47848627e+00 2.55736527e+00]
+
+[::::::    ]  60.0% completed  (Mon Nov 23 06:40:49 2020)
+Out-of-bound Trials:
+ [ 1477   119 10470  2588  7744]
+Best Parameters:   (chisq=59.3988)
+[1.47723803e+03 7.96039427e+04 1.19449383e+00 0.00000000e+00
+ 2.47848627e+00 2.55736527e+00]
+Gelman-Rubin statistic for free parameters:
+[1.01914137 1.02047185 1.0134499  1.02289716 1.01068463]
+
+[:::::::   ]  70.0% completed  (Mon Nov 23 09:57:34 2020)
+Out-of-bound Trials:
+ [ 1534   122 11808  2730  8387]
+Best Parameters:   (chisq=59.3908)
+[1.48162077e+03 7.96132067e+04 3.36558623e-01 0.00000000e+00
+ 2.41808701e+00 2.20478991e+00]
+Gelman-Rubin statistic for free parameters:
+[1.00499547 1.00378919 1.00458599 1.00763661 1.00509057]
+All parameters have converged to within 1% of unity.
+
+[::::::::  ]  80.0% completed  (Mon Nov 23 13:14:22 2020)
+Out-of-bound Trials:
+ [ 1584   124 13222  2844  8981]
+Best Parameters:   (chisq=59.3908)
+[1.48162077e+03 7.96132067e+04 3.36558623e-01 0.00000000e+00
+ 2.41808701e+00 2.20478991e+00]
+Gelman-Rubin statistic for free parameters:
+[1.00267841 1.00256556 1.00673521 1.00530017 1.00260095]
+All parameters have converged to within 1% of unity.
+
+[::::::::: ]  90.0% completed  (Mon Nov 23 16:31:10 2020)
+Out-of-bound Trials:
+ [ 1623   126 14640  2937  9504]
+Best Parameters:   (chisq=59.3877)
+[1.47049930e+03 7.96053700e+04 3.64483635e-01 0.00000000e+00
+ 2.50145088e+00 2.63970679e+00]
+Gelman-Rubin statistic for free parameters:
+[1.00251682 1.00279721 1.00286858 1.00381194 1.00307738]
+All parameters have converged to within 1% of unity.
+
+[::::::::::] 100.0% completed  (Mon Nov 23 19:48:04 2020)
+Out-of-bound Trials:
+ [ 1669   126 16124  3036 10007]
+Best Parameters:   (chisq=59.3715)
+[1.47976610e+03 7.96025628e+04 2.42686273e-01 0.00000000e+00
+ 2.47244666e+00 2.59707513e+00]
+Gelman-Rubin statistic for free parameters:
+[1.00172477 1.00148148 1.00192526 1.00303888 1.00240586]
+All parameters have converged to within 1% of unity.
+
+Fin, MCMC Summary:
+------------------
+ Burned in iterations per chain:  5000
+ Number of iterations per chain: 10000
+ MCMC sample size:               50000
+ Acceptance rate:   19.42%
+
+ Best-fit params   Uncertainties        S/N      Sample Mean   Note
+   1.4797661e+03   1.9484757e+01      75.94    1.4770635e+03
+   7.9602563e+04   2.1501407e+01    3702.20    7.9599516e+04
+   2.4268627e-01   4.9644152e-01       0.49    6.2498841e-01
+   0.0000000e+00             0.0        ---              ---   Fixed
+   2.4724467e+00   7.2239320e-02      34.23    2.4912875e+00
+   2.5970751e+00   2.3564163e-01      11.02    2.5737528e+00
+
+ Best-parameter's chi-squared:     59.3715
+ Bayesian Information Criterion:   87.9070
+ Reduced chi-squared:               0.2006
+ Standard deviation of residuals:  2.66466e-05
+
+ SPEIS: 65
+ ESS  : 769
+
+ T(K) credible regions:
+  68.27 +- 1.6751 %:  ( 1.4577e+03,  1.4969e+03)
+  95.45 +- 0.7500 %:  ( 1.4379e+03,  1.5159e+03)
+  99.73 +- 0.1868 %:  ( 1.4211e+03,  1.5391e+03)
+
+ R$_p$ credible regions:
+  68.27 +- 1.6751 %:  ( 7.9581e+04,  7.9621e+04)
+  95.45 +- 0.7500 %:  ( 7.9557e+04,  7.9643e+04)
+  99.73 +- 0.1868 %:  ( 7.9471e+04,  7.9474e+04)
+                    U ( 7.9512e+04,  7.9660e+04)
+
+ log$P_{cloud}$ credible regions:
+  68.27 +- 1.6751 %:  ( 4.8704e-02,  1.1708e+00)
+  95.45 +- 0.7500 %:  (-1.8410e-01,  1.4904e+00)
+  99.73 +- 0.1868 %:  (-4.6535e-01,  1.4999e+00)
+
+ logH$_2$O credible regions:
+  68.27 +- 1.6751 %:  ( 2.4163e+00,  2.5613e+00)
+  95.45 +- 0.7500 %:  ( 2.3460e+00,  2.6355e+00)
+  99.73 +- 0.1868 %:  ( 2.2573e+00,  2.7063e+00)
+                    U ( 2.7223e+00,  2.7282e+00)
+
+ logCO credible regions:
+  68.27 +- 1.6751 %:  ( 2.3590e+00,  2.8256e+00)
+  95.45 +- 0.7500 %:  ( 2.0946e+00,  3.0350e+00)
+  99.73 +- 0.1868 %:  ( 1.7991e+00,  3.2497e+00)
+

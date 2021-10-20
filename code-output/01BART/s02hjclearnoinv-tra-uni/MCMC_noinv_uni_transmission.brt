@@ -1,0 +1,209 @@
+[MCMC]
+loc_dir = /home/u1/BARTTest_rev1/BARTTest/code-output/01BART/s02hjclearnoinv-tra-uni
+tep_name = /home/u1/BARTTest_rev1/BARTTest/tests/00inputs/HD189733b.tep
+kurucz = /home/u1/BARTTest_rev1/BARTTest/tests/00inputs/hd189733b-fp00k2odfnew.pck
+press_file = /home/u1/BARTTest_rev1/BARTTest/code-output/01BART/s02hjclearnoinv-tra-uni/s02hjclearnoinv.pres
+n_layers = 100
+p_top = 1e-8
+p_bottom = 100.0
+log = True
+abun_basic = /home/u1/BARTTest_rev1/BARTTest/code-output/01BART/s02hjclearnoinv-tra-uni/abundances_Asplund2009.txt
+solar_times = 1
+COswap = False
+abun_file = /home/u1/BARTTest_rev1/BARTTest/code-output/01BART/s02hjclearnoinv-tra-uni/solar1x.abn
+PTtype = line
+PTinit = -1.52  -0.8  -0.8  0.5  0.85
+preatm_file = /home/u1/BARTTest_rev1/BARTTest/code-output/01BART/s02hjclearnoinv-tra-uni/s02hjclearnoinv_preatm.atm
+in_elem = H He C N O
+out_spec = He_ref H2_ref CO_g CO2_g CH4_g H2O_g NH3_g
+uniform = 0.1498 0.85 1e-6 1e-6 1e-6 1e-6 1e-9
+atmfile = /home/u1/BARTTest_rev1/BARTTest/code-output/01BART/s02hjclearnoinv-tra-uni/noinv_uni.tea
+data = 0.024124134551104293
+	0.024125610369374082
+	0.024068734551977417
+	0.024036793430279528
+	0.024026053762115758
+	0.024044464407734067
+	0.024082846273838675
+	0.02410940187028604
+	0.024142086617468785
+	0.024141741050862652
+	0.024126393547002776
+	0.024134599067785895
+	0.024161285236232944
+	0.024186291395175318
+	0.024160612774312126
+	0.024303878917240448
+	0.024354841268030523
+	0.02430277668937058
+	0.024330778018073703
+	0.024272424189757474
+	0.024217165122621953
+	0.024187699164421476
+	0.02413045276272282
+	0.02413959376915864
+	0.02423632413920071
+	0.02417391816908806
+	0.024297731903252223
+	0.024181057334702015
+	0.02418974083400032
+	0.024153187785192192
+	0.024091846092299522
+	0.02402730088938462
+	0.023996221607204705
+	0.023969138027045672
+	0.023966251228791424
+	0.023962271775806322
+	0.0239652909105001
+	0.0239858464138481
+	0.024238517771795382
+	0.02452821149130288
+	0.02455894020310325
+	0.02448142990187951
+	0.024378533373347812
+	0.02425013554002277
+	0.024173299873382813
+	0.0241502849169832
+	0.024136242247689652
+uncert = 8.041378183701431e-05
+	8.041870123124694e-05
+	8.022911517325805e-05
+	8.012264476759843e-05
+	8.008684587371919e-05
+	8.014821469244689e-05
+	8.027615424612892e-05
+	8.036467290095347e-05
+	8.047362205822928e-05
+	8.047247016954217e-05
+	8.042131182334259e-05
+	8.044866355928632e-05
+	8.053761745410982e-05
+	8.062097131725106e-05
+	8.053537591437375e-05
+	8.101292972413483e-05
+	8.118280422676842e-05
+	8.100925563123527e-05
+	8.110259339357901e-05
+	8.090808063252491e-05
+	8.072388374207318e-05
+	8.062566388140492e-05
+	8.04348425424094e-05
+	8.046531256386213e-05
+	8.078774713066903e-05
+	8.057972723029352e-05
+	8.099243967750741e-05
+	8.060352444900671e-05
+	8.063246944666773e-05
+	8.051062595064064e-05
+	8.03061536409984e-05
+	8.00910029646154e-05
+	7.998740535734901e-05
+	7.98971267568189e-05
+	7.988750409597142e-05
+	7.987423925268774e-05
+	7.988430303500033e-05
+	7.995282137949366e-05
+	8.079505923931793e-05
+	8.17607049710096e-05
+	8.186313401034418e-05
+	8.160476633959837e-05
+	8.126177791115938e-05
+	8.083378513340923e-05
+	8.057766624460938e-05
+	8.050094972327734e-05
+	8.045414082563217e-05
+filters = /home/u1/BARTTest_rev1/BARTTest/tests/00inputs/filters/053.dat
+	/home/u1/BARTTest_rev1/BARTTest/tests/00inputs/filters/054.dat
+	/home/u1/BARTTest_rev1/BARTTest/tests/00inputs/filters/055.dat
+	/home/u1/BARTTest_rev1/BARTTest/tests/00inputs/filters/056.dat
+	/home/u1/BARTTest_rev1/BARTTest/tests/00inputs/filters/057.dat
+	/home/u1/BARTTest_rev1/BARTTest/tests/00inputs/filters/058.dat
+	/home/u1/BARTTest_rev1/BARTTest/tests/00inputs/filters/059.dat
+	/home/u1/BARTTest_rev1/BARTTest/tests/00inputs/filters/060.dat
+	/home/u1/BARTTest_rev1/BARTTest/tests/00inputs/filters/061.dat
+	/home/u1/BARTTest_rev1/BARTTest/tests/00inputs/filters/062.dat
+	/home/u1/BARTTest_rev1/BARTTest/tests/00inputs/filters/063.dat
+	/home/u1/BARTTest_rev1/BARTTest/tests/00inputs/filters/064.dat
+	/home/u1/BARTTest_rev1/BARTTest/tests/00inputs/filters/065.dat
+	/home/u1/BARTTest_rev1/BARTTest/tests/00inputs/filters/066.dat
+	/home/u1/BARTTest_rev1/BARTTest/tests/00inputs/filters/067.dat
+	/home/u1/BARTTest_rev1/BARTTest/tests/00inputs/filters/068.dat
+	/home/u1/BARTTest_rev1/BARTTest/tests/00inputs/filters/069.dat
+	/home/u1/BARTTest_rev1/BARTTest/tests/00inputs/filters/070.dat
+	/home/u1/BARTTest_rev1/BARTTest/tests/00inputs/filters/071.dat
+	/home/u1/BARTTest_rev1/BARTTest/tests/00inputs/filters/072.dat
+	/home/u1/BARTTest_rev1/BARTTest/tests/00inputs/filters/073.dat
+	/home/u1/BARTTest_rev1/BARTTest/tests/00inputs/filters/074.dat
+	/home/u1/BARTTest_rev1/BARTTest/tests/00inputs/filters/075.dat
+	/home/u1/BARTTest_rev1/BARTTest/tests/00inputs/filters/076.dat
+	/home/u1/BARTTest_rev1/BARTTest/tests/00inputs/filters/077.dat
+	/home/u1/BARTTest_rev1/BARTTest/tests/00inputs/filters/078.dat
+	/home/u1/BARTTest_rev1/BARTTest/tests/00inputs/filters/079.dat
+	/home/u1/BARTTest_rev1/BARTTest/tests/00inputs/filters/080.dat
+	/home/u1/BARTTest_rev1/BARTTest/tests/00inputs/filters/081.dat
+	/home/u1/BARTTest_rev1/BARTTest/tests/00inputs/filters/082.dat
+	/home/u1/BARTTest_rev1/BARTTest/tests/00inputs/filters/083.dat
+	/home/u1/BARTTest_rev1/BARTTest/tests/00inputs/filters/084.dat
+	/home/u1/BARTTest_rev1/BARTTest/tests/00inputs/filters/085.dat
+	/home/u1/BARTTest_rev1/BARTTest/tests/00inputs/filters/086.dat
+	/home/u1/BARTTest_rev1/BARTTest/tests/00inputs/filters/087.dat
+	/home/u1/BARTTest_rev1/BARTTest/tests/00inputs/filters/088.dat
+	/home/u1/BARTTest_rev1/BARTTest/tests/00inputs/filters/089.dat
+	/home/u1/BARTTest_rev1/BARTTest/tests/00inputs/filters/090.dat
+	/home/u1/BARTTest_rev1/BARTTest/tests/00inputs/filters/091.dat
+	/home/u1/BARTTest_rev1/BARTTest/tests/00inputs/filters/092.dat
+	/home/u1/BARTTest_rev1/BARTTest/tests/00inputs/filters/093.dat
+	/home/u1/BARTTest_rev1/BARTTest/tests/00inputs/filters/094.dat
+	/home/u1/BARTTest_rev1/BARTTest/tests/00inputs/filters/095.dat
+	/home/u1/BARTTest_rev1/BARTTest/tests/00inputs/filters/096.dat
+	/home/u1/BARTTest_rev1/BARTTest/tests/00inputs/filters/097.dat
+	/home/u1/BARTTest_rev1/BARTTest/tests/00inputs/filters/098.dat
+	/home/u1/BARTTest_rev1/BARTTest/tests/00inputs/filters/099.dat
+func = hack BARTfunc /home/u1/BARTTest_rev1/BARTTest/tests/s02hjclearnoinv/../../../BART/code/
+molfit = H2O CO2 CO CH4 NH3
+Tmin = 400.0
+Tmax = 3000.0
+parnames = kappa  g1    g2   alpha  beta   R_p        H2O   CO2  CO   CH4   NH3
+params = -1.52 -0.8  -1.0   0.1   0.75  8.13579e4   1.0   1.0  2.0  3.0   0.0
+pmin = -4.0  -4.0  -4.0   0.0   0.5   7.80000e4  -8.0  -8.0 -8.0 -8.0  -8.0
+pmax = 1.0   1.0   2.5   1.0   1.3   8.45000e4   5.0   5.0  5.0  5.0   8.0
+stepsize = 0.1   0.1   0.1   0.1   0.1   0.05e4      0.4   0.4  0.4  0.4   0.4
+numit = 2e6
+nchains = 10
+burnin = 50000
+walk = snooker
+leastsq = False
+chisqscale = False
+grtest = True
+grexit = False
+mpi = True
+savemodel = /home/u1/BARTTest_rev1/BARTTest/code-output/01BART/s02hjclearnoinv-tra-uni/band_eclipse.npy
+plots = True
+logfile = /home/u1/BARTTest_rev1/BARTTest/code-output/01BART/s02hjclearnoinv-tra-uni/MCMC.log
+verb = 1
+tconfig = /home/u1/BARTTest_rev1/BARTTest/code-output/01BART/s02hjclearnoinv-tra-uni/config_transit.cfg
+linedb = /home/u1/BARTTest_rev1/BARTTest/tests/00inputs/TLI/CH4_CO_CO2_H2O_NH3_H2_1-11um.tli
+csfile = /home/u1/BARTTest_rev1/BART/modules/transit/inputs/CIA_H2H2_400-7000K.dat
+	/home/u1/BARTTest_rev1/BARTTest/tests/00inputs/CIA_HITRAN_H2He_0200-9900K_0.5-500um.dat
+wnhigh = 5500
+wnlow = 2000
+wlfct = 1e-4
+wndelt = 0.1
+wnosamp = 2160
+wnfct = 1.0
+solution = transit
+toomuch = 10.0
+nwidth = 20
+gsurf = 2182.73
+refpress = 0.1
+starrad = 0.75630444
+ethresh = 1e-50
+tlow = 400
+thigh = 3000
+tempdelt = 100
+opacityfile = /home/u1/BARTTest_rev1/BARTTest/code-output/01BART/s02hjclearnoinv-tra-uni/opacity_hjclear.dat
+outspec = /home/u1/BARTTest_rev1/BARTTest/code-output/01BART/s02hjclearnoinv-tra-uni/transit_out.dat
+outtoomuch = ./transit_toom.dat
+outsample = ./transit_samp.dat
+outflux = ./transit_flux.dat
+

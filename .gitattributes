@@ -1,0 +1,13 @@
+code-output/01BART/s01hjcleariso-ecl-uni/output.npy filter=lfs diff=lfs merge=lfs -text
+code-output/01BART/s01hjcleariso-tra-uni/output.npy filter=lfs diff=lfs merge=lfs -text
+code-output/01BART/s02hjclearnoinv-ecl-uni/output.npy filter=lfs diff=lfs merge=lfs -text
+code-output/01BART/s02hjclearnoinv-tra-uni/output.npy filter=lfs diff=lfs merge=lfs -text
+code-output/01BART/s03hjclearinv-ecl-uni/output.npy filter=lfs diff=lfs merge=lfs -text
+code-output/01BART/s03hjclearinv-tra-uni/output.npy filter=lfs diff=lfs merge=lfs -text
+code-output/01BART/s04hjcleariso-BarstowEtal-model0-chimera/output.npy filter=lfs diff=lfs merge=lfs -text
+code-output/01BART/s04hjcleariso-BarstowEtal-model0-nemesis/output.npy filter=lfs diff=lfs merge=lfs -text
+code-output/01BART/s04hjcleariso-BarstowEtal-model0-taurex/output.npy filter=lfs diff=lfs merge=lfs -text
+code-output/01BART/s05hjcloudiso-BarstowEtal-model1-chimera/output.npy filter=lfs diff=lfs merge=lfs -text
+code-output/01BART/s05hjcloudiso-BarstowEtal-model1-nemesis/output.npy filter=lfs diff=lfs merge=lfs -text
+code-output/01BART/s05hjcloudiso-BarstowEtal-model1-taurex/output.npy filter=lfs diff=lfs merge=lfs -text
+code-output/01BART/r01hd189733b/output.npy filter=lfs diff=lfs merge=lfs -text
