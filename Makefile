@@ -16,7 +16,7 @@ hd189: hd189_tli hd189_retrieval fin
 
 bart:
 	@if [ ! -d "../BART" ]; then                                              \
-		@echo "\nCloning BART..."                                             \
+		@echo "\nCloning BART...";                                            \
 		git clone --recursive https://github.com/exosports/BART ../BART/;     \
 		@cd ../BART && git checkout a08ee09c67fc7c571efe51b55caba104720e0db2; \
 		echo "Finished cloning BART to a directory parallel to BARTTest.\n";  \
