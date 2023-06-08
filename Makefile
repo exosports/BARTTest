@@ -34,10 +34,16 @@ linelists:
 	@cd tests/00inputs/par/                                                 &&\
 	wget https://hitran.org/hitemp/data/bzip2format/05_HITEMP2019.par.bz2   &&\
 	wget https://hitran.org/hitemp/data/bzip2format/06_HITEMP2020.par.bz2   &&\
-	wget https://zenodo.org/record/3768504/files/pcubillos/CO2_exomol_ucl4000_0.5-500.0um_100-3500K_threshold_0.01_lbl.dat             &&\
-	wget https://zenodo.org/record/3768504/files/pcubillos/H2O_exomol_pokazatel_0.24-500.0um_100-3500K_threshold_0.01_lbl.dat
+	wget https://zenodo.org/record/3768504/files/CO2_exomol_ucl4000_0.5-500.0um_100-3500K_threshold_0.01_lbl.dat             &&\
+	wget https://zenodo.org/record/3768504/files/H2O_exomol_pokazatel_0.24-500.0um_100-3500K_threshold_0.01_lbl.dat
 	@echo "Extracting archives...\n"
 	@cd tests/00inputs/par/                                                 &&\
+	wget -i wget-list_HITEMP-H2O.txt                                        &&\
+	wget -i wget-list_HITEMP-CO2.txt                                        &&\
+	wget -i wget-list_HITEMP-CO.txt                                         &&\
+	wget -i wget-list_HITRAN-CH4.txt                                        &&\
+	wget -i wget-list_HITRAN-NH3.txt                                        &&\
+	wget -i wget-list_HITRAN-H2.txt                                         &&\
 	unzip '01_*HITEMP2010.zip'                                              &&\
 	unzip '02_*HITEMP2010.zip'                                              &&\
 	unzip '05_*HITEMP2010.zip'                                              &&\
