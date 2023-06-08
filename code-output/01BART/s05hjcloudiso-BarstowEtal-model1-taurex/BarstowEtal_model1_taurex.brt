@@ -1,0 +1,1096 @@
+[MCMC]
+# Location of the output directory:
+loc_dir = ../../code-output/01BART/s05hjcloudiso-BarstowEtal-model1-taurex/
+
+# Tepfile name:
+tep_name = ../00inputs/BarstowEtal_model0.tep
+
+# Kurucz stellar spectrum file:
+kurucz   = ../00inputs/hd189733b-fp00k2odfnew.pck
+
+
+# Atmospheric pressure layers: :::::::::::::::::::::::::::::::::::::::
+# Pressure filename (.pres extenesion):
+press_file = ./s05hjcloudiso-model1-taurex.pres
+
+# Number of layers:
+n_layers = 100
+
+# Pressure at the top of the atmosphere (in bars):
+p_top    = 1e-8
+
+# Pressure at the bottom of the atmosphere (in bars):
+p_bottom = 10.0
+
+# Use log (True) or linear (False) pressure scale:
+log = True
+
+
+# Elemental-abundances file ::::::::::::::::::::::::::::::::::::::::::
+# Basic elemental abundances file:
+abun_basic = ../../../BART/inputs/abundances_Asplund2009.txt
+# FINDME: in TEA.cfg this parameter is named abun_file.
+
+# Multiplication factor for heavy-element abundances:
+solar_times = 1
+    
+# Swap C/O abundance ratio (True) or not (False):
+COswap = False
+
+# Elemental abundances file name (.abn extension):
+abun_file = solar1x.abn 
+
+
+# Temperature profile ::::::::::::::::::::::::::::::::::::::::::::::::
+
+# Set the type of model ('line' or 'madhu'):
+PTtype = iso
+# Set the parameters for the initial profile:
+#  Line Etal 2013:  [log10(kappa)  log10(gamma1)  log10(gamma2)  alpha  beta]
+#  Madhu Etal 2009 non-inverted:  [a1 a2 p1 p3 T3]
+#  Madhu Etal 2009 inverted:      [a1 a2 p1 p2 p3 T3]
+PTinit = 1300
+
+# Atmospheric Elemental Abundances (pre-atmospheric) File ::::::::::::
+# Pre atmospheric filename (.atm extenstion):
+preatm_file = ./s05hjcloudiso-model1-taurex_preatm.atm
+
+# Elemental species:
+in_elem  = H He C N O
+
+# Output species:
+#   - MUST use names produced by JANAF.py
+#   - see TEA/conversion-record-sort.txt for the correct names
+#   - MUST include all elemental species
+out_spec = He_ref H2_ref CO_g H2O_g
+
+# If not None, set uniform mole mixing ratios for each out_spec, e.g.:
+uniform = 0.15 0.85 1e-6 1e-6
+#uniform = None
+
+# Atmospheric File (P, T, species-abundances) ::::::::::::::::::::::::
+# TEA output file (the 'atmospheric file') name:
+atmfile = ./s05hjcloudiso-model1.tea
+
+
+# MCMC arguments :::::::::::::::::::::::::::::::::::::::::::::::::::::
+# The data (eclipse or transit depths):
+data   = 2.234539829067383812e-02
+        2.234508134910826935e-02
+        2.234474768923597199e-02
+        2.234443730030866160e-02
+        2.234414166574962696e-02
+        2.234387426190170486e-02
+        2.234362147690764633e-02
+        2.234338585707550812e-02
+        2.234314914070719554e-02
+        2.234291258863694424e-02
+        2.234267409796104539e-02
+        2.234245746519961454e-02
+        2.234230306109169159e-02
+        2.234209703334633090e-02
+        2.234193780728202516e-02
+        2.234200176924806477e-02
+        2.234190394531671703e-02
+        2.234171146351458456e-02
+        2.234156413574932623e-02
+        2.234129622423654954e-02
+        2.234100851525716927e-02
+        2.234084872496577487e-02
+        2.234075934332311469e-02
+        2.234058625465979234e-02
+        2.234049251890118937e-02
+        2.234065899352214585e-02
+        2.234053045582011510e-02
+        2.234039330562485187e-02
+        2.234011030279348109e-02
+        2.234001038040286241e-02
+        2.233986516769131958e-02
+        2.233976414157941293e-02
+        2.234023990441690380e-02
+        2.233998471017423562e-02
+        2.234014131790008559e-02
+        2.234272145449184635e-02
+        2.234394969573748335e-02
+        2.234374417196153401e-02
+        2.234150954214064039e-02
+        2.234132940481175361e-02
+        2.234135556733483213e-02
+        2.234014890093808173e-02
+        2.233978079465600078e-02
+        2.233948809878792338e-02
+        2.233943564277917487e-02
+        2.233957674482195052e-02
+        2.233956756812007644e-02
+        2.234152645224506128e-02
+        2.234606623630618766e-02
+        2.234360260900142628e-02
+        2.234408522825946652e-02
+        2.234396736277664136e-02
+        2.234293643762813933e-02
+        2.234199889328873992e-02
+        2.234038126891376222e-02
+        2.233977806575965577e-02
+        2.233957806592322404e-02
+        2.234361855078698458e-02
+        2.234443424110338361e-02
+        2.234550558889945859e-02
+        2.234854603002657189e-02
+        2.237549008252451982e-02
+        2.238511543477639948e-02
+        2.237724164084937267e-02
+        2.238684938665201629e-02
+        2.238324762636514920e-02
+        2.237481060630230542e-02
+        2.237375253312313614e-02
+        2.236239988242034668e-02
+        2.235376062274466169e-02
+        2.235079271721106611e-02
+        2.234863885717055382e-02
+        2.234391789264026859e-02
+        2.234303687320320433e-02
+        2.234194699856166880e-02
+        2.234114516190351118e-02
+        2.234315421661423745e-02
+        2.235027730996248102e-02
+        2.238561377101500049e-02
+        2.242192596055363196e-02
+        2.241440982910119367e-02
+        2.242778664954000675e-02
+        2.241424660631322757e-02
+        2.239818564848710183e-02
+        2.243123158322546731e-02
+        2.241217434374643755e-02
+        2.239995777639901264e-02
+        2.238089639319888746e-02
+        2.237395925241947650e-02
+        2.236216158940301790e-02
+        2.235957509918480232e-02
+        2.235412060107090648e-02
+        2.235097571808664085e-02
+        2.235693861050664505e-02
+        2.236422698364105843e-02
+        2.237177524473910398e-02
+        2.238315805879153783e-02
+        2.241091445066507870e-02
+        2.252987871225049787e-02
+        2.252950113714819944e-02
+        2.260470319785350124e-02
+        2.258261698389144034e-02
+        2.260170179875605617e-02
+        2.258159899095066314e-02
+        2.263309239288961022e-02
+        2.260606142187628412e-02
+        2.259488756993219966e-02
+        2.259173814115350912e-02
+        2.255579873782203801e-02
+        2.255101874654186905e-02
+        2.252133322995014328e-02
+        2.250344190943331241e-02
+        2.249425244855521658e-02
+        2.246499281231986375e-02
+        2.244717643478847183e-02
+        2.241490421725835652e-02
+        2.239689521702952629e-02
+        2.238004260213974014e-02
+        2.237536492391354465e-02
+        2.236720823120219581e-02
+        2.237066170300318346e-02
+        2.236235093353960632e-02
+        2.237782405103268257e-02
+        2.242144858153671122e-02
+        2.241746268658322688e-02
+        2.248332580239925660e-02
+        2.251354974544599388e-02
+        2.256044940105747867e-02
+        2.259369954568185221e-02
+        2.257489471296561523e-02
+        2.263062602219310937e-02
+        2.261423849470838715e-02
+        2.258550461581376734e-02
+        2.257567917687069992e-02
+        2.258678716075595422e-02
+        2.257735895121167069e-02
+        2.260102442468493386e-02
+        2.259968686038473298e-02
+        2.261327160754864063e-02
+        2.257345670977452604e-02
+        2.255681994003137791e-02
+        2.253096138502952428e-02
+        2.249140045552331171e-02
+        2.246957969937509944e-02
+        2.242736928590052109e-02
+        2.242180315406859178e-02
+        2.239437469462957769e-02
+        2.239262676045332412e-02
+        2.238245841693819321e-02
+        2.239889052892465870e-02
+        2.238547540649737586e-02
+        2.240132353478667404e-02
+        2.244602908990407653e-02
+        2.243349459121107142e-02
+        2.241895445041265297e-02
+        2.250520132513694413e-02
+        2.251285416733705275e-02
+        2.253921567302113321e-02
+        2.253195371550838558e-02
+        2.263822944553681160e-02
+        2.268983861227645213e-02
+        2.271403792244098760e-02
+        2.269396639139324018e-02
+        2.271589660123062362e-02
+        2.267727809189558699e-02
+        2.268380416212281703e-02
+        2.274953588442991254e-02
+        2.267919085669243412e-02
+        2.276759509167769827e-02
+        2.272293435483321161e-02
+        2.273613333282085980e-02
+        2.279548985415923157e-02
+        2.274730052371564878e-02
+        2.277194951039434451e-02
+        2.273460929639101874e-02
+        2.277601469420182517e-02
+        2.279657307887005338e-02
+        2.273801924471604771e-02
+        2.276505523811387863e-02
+        2.276924669716712951e-02
+        2.276573090456716561e-02
+        2.273194895281591826e-02
+        2.266814356657931989e-02
+        2.268840980722959186e-02
+        2.268080135765647085e-02
+        2.262163226945801062e-02
+        2.263921595061707537e-02
+        2.262435507249433222e-02
+        2.256073344769403063e-02
+        2.256945549860708833e-02
+        2.258534047646493237e-02
+        2.253086964792870919e-02
+        2.252162369375953696e-02
+        2.249585753556692866e-02
+        2.250392430342442254e-02
+        2.249531543148386090e-02
+        2.249972216937624891e-02
+        2.246923331108002450e-02
+        2.244643068333752878e-02
+        2.245741569171524551e-02
+        2.243125069482127670e-02
+        2.241961352265287033e-02
+        2.241020706013361827e-02
+        2.240030820954747037e-02
+        2.242227151130667812e-02
+        2.238339186733293712e-02
+        2.238703042922840156e-02
+        2.238848300467410554e-02
+        2.240729198505810385e-02
+        2.240368518475319495e-02
+        2.245267980817248002e-02
+        2.245145684212451753e-02
+        2.244954612275770409e-02
+        2.246585416228966472e-02
+        2.250158799240735766e-02
+        2.253201982954474922e-02
+        2.251728077751055310e-02
+        2.252788693228415656e-02
+        2.256389620447204689e-02
+        2.255474277378981957e-02
+        2.259862369234954052e-02
+        2.258046497426345611e-02
+        2.256300441486688499e-02
+        2.258638583540665060e-02
+        2.261061818224575568e-02
+        2.259023740722075624e-02
+        2.266541997787345844e-02
+        2.260841452618118572e-02
+        2.257821181189266502e-02
+        2.264527847640016717e-02
+        2.265352962782945373e-02
+        2.258878898768862040e-02
+        2.261762550698106708e-02
+        2.265820012258232263e-02
+        2.264338786105885709e-02
+        2.264051711969207459e-02
+        2.266196626698322586e-02
+        2.264231608233409701e-02
+        2.270407198635347387e-02
+        2.268937887004189927e-02
+        2.269417608147749829e-02
+        2.265036534737446122e-02
+        2.263765752274352061e-02
+        2.265097371739610219e-02
+        2.270747255357290564e-02
+        2.266345735405940823e-02
+        2.265474163958975870e-02
+        2.262590467413922932e-02
+        2.264808662769901906e-02
+        2.261095114078843019e-02
+        2.261568493194970192e-02
+        2.259428730398845356e-02
+        2.258449317848993526e-02
+        2.257897949480604238e-02
+        2.251679648098983688e-02
+        2.253905737159073511e-02
+        2.265538298738861353e-02
+        2.276627787926226165e-02
+        2.273313084681746754e-02
+        2.278547274803702227e-02
+        2.274732409925471141e-02
+        2.277256651555697661e-02
+        2.278736593361514046e-02
+        2.274919988526534834e-02
+        2.270689912842502670e-02
+        2.274009871585835896e-02
+        2.268949908312751021e-02
+        2.268530611537708519e-02
+        2.268188979121725166e-02
+        2.268326232553256189e-02
+        2.271663956912496965e-02
+        2.268836293488313977e-02
+        2.262445116999486916e-02
+        2.269616572027523954e-02
+        2.264840525581585107e-02
+        2.267888746835384703e-02
+        2.271873784468751711e-02
+        2.268868301394442663e-02
+        2.269189410599972007e-02
+        2.263300440057300009e-02
+        2.268409754921980534e-02
+        2.268200093973047476e-02
+        2.268144082881976345e-02
+        2.262767761528483926e-02
+        2.266299187742006754e-02
+        2.267879397749587161e-02
+        2.267676027443531542e-02
+        2.260804857340184895e-02
+        2.256097163604798075e-02
+        2.258712413929118631e-02
+        2.257864996580453976e-02
+        2.257970326717705437e-02
+        2.255708515437325826e-02
+        2.255221842945984850e-02
+        2.255222346546545756e-02
+        2.254145456751319165e-02
+        2.253056443287361835e-02
+        2.251635323345284323e-02
+        2.251020624053319194e-02
+        2.252130197052461258e-02
+        2.251944633927645961e-02
+
+# Data uncertainties:
+uncert = 6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+        6.000000000000000152e-05
+
+# The waveband filters:
+filters   = ../00inputs/filters/taurex_under1um_002.dat
+            ../00inputs/filters/taurex_under1um_003.dat
+            ../00inputs/filters/taurex_under1um_004.dat
+            ../00inputs/filters/taurex_under1um_005.dat
+            ../00inputs/filters/taurex_under1um_006.dat
+            ../00inputs/filters/taurex_under1um_007.dat
+            ../00inputs/filters/taurex_under1um_008.dat
+            ../00inputs/filters/taurex_under1um_009.dat
+            ../00inputs/filters/taurex_under1um_010.dat
+            ../00inputs/filters/taurex_under1um_011.dat
+            ../00inputs/filters/taurex_under1um_012.dat
+            ../00inputs/filters/taurex_under1um_013.dat
+            ../00inputs/filters/taurex_under1um_014.dat
+            ../00inputs/filters/taurex_under1um_015.dat
+            ../00inputs/filters/taurex_under1um_016.dat
+            ../00inputs/filters/taurex_under1um_017.dat
+            ../00inputs/filters/taurex_under1um_018.dat
+            ../00inputs/filters/taurex_under1um_019.dat
+            ../00inputs/filters/taurex_under1um_020.dat
+            ../00inputs/filters/taurex_under1um_021.dat
+            ../00inputs/filters/taurex_under1um_022.dat
+            ../00inputs/filters/taurex_under1um_023.dat
+            ../00inputs/filters/taurex_under1um_024.dat
+            ../00inputs/filters/taurex_under1um_025.dat
+            ../00inputs/filters/taurex_under1um_026.dat
+            ../00inputs/filters/taurex_under1um_027.dat
+            ../00inputs/filters/taurex_under1um_028.dat
+            ../00inputs/filters/taurex_under1um_029.dat
+            ../00inputs/filters/taurex_under1um_030.dat
+            ../00inputs/filters/taurex_under1um_031.dat
+            ../00inputs/filters/taurex_under1um_032.dat
+            ../00inputs/filters/taurex_under1um_033.dat
+            ../00inputs/filters/taurex_under1um_034.dat
+            ../00inputs/filters/taurex_under1um_035.dat
+            ../00inputs/filters/taurex_under1um_036.dat
+            ../00inputs/filters/taurex_under1um_037.dat
+            ../00inputs/filters/taurex_under1um_038.dat
+            ../00inputs/filters/taurex_under1um_039.dat
+            ../00inputs/filters/taurex_under1um_040.dat
+            ../00inputs/filters/taurex_under1um_041.dat
+            ../00inputs/filters/taurex_under1um_042.dat
+            ../00inputs/filters/taurex_under1um_043.dat
+            ../00inputs/filters/taurex_under1um_044.dat
+            ../00inputs/filters/taurex_under1um_045.dat
+            ../00inputs/filters/taurex_under1um_046.dat
+            ../00inputs/filters/taurex_under1um_047.dat
+            ../00inputs/filters/taurex_under1um_048.dat
+            ../00inputs/filters/taurex_under1um_049.dat
+            ../00inputs/filters/taurex_under1um_050.dat
+            ../00inputs/filters/taurex_under1um_051.dat
+            ../00inputs/filters/taurex_under1um_052.dat
+            ../00inputs/filters/taurex_under1um_053.dat
+            ../00inputs/filters/taurex_under1um_054.dat
+            ../00inputs/filters/taurex_under1um_055.dat
+            ../00inputs/filters/taurex_under1um_056.dat
+            ../00inputs/filters/taurex_under1um_057.dat
+            ../00inputs/filters/taurex_under1um_058.dat
+            ../00inputs/filters/taurex_under1um_059.dat
+            ../00inputs/filters/taurex_under1um_060.dat
+            ../00inputs/filters/taurex_under1um_061.dat
+            ../00inputs/filters/taurex_under1um_062.dat
+            ../00inputs/filters/taurex_under1um_063.dat
+            ../00inputs/filters/taurex_under1um_064.dat
+            ../00inputs/filters/taurex_under1um_065.dat
+            ../00inputs/filters/taurex_under1um_066.dat
+            ../00inputs/filters/taurex_under1um_067.dat
+            ../00inputs/filters/taurex_under1um_068.dat
+            ../00inputs/filters/taurex_under1um_069.dat
+            ../00inputs/filters/taurex_under1um_070.dat
+            ../00inputs/filters/taurex_001.dat
+            ../00inputs/filters/taurex_002.dat
+            ../00inputs/filters/taurex_003.dat
+            ../00inputs/filters/taurex_004.dat
+            ../00inputs/filters/taurex_005.dat
+            ../00inputs/filters/taurex_006.dat
+            ../00inputs/filters/taurex_007.dat
+            ../00inputs/filters/taurex_008.dat
+            ../00inputs/filters/taurex_009.dat
+            ../00inputs/filters/taurex_010.dat
+            ../00inputs/filters/taurex_011.dat
+            ../00inputs/filters/taurex_012.dat
+            ../00inputs/filters/taurex_013.dat
+            ../00inputs/filters/taurex_014.dat
+            ../00inputs/filters/taurex_015.dat
+            ../00inputs/filters/taurex_016.dat
+            ../00inputs/filters/taurex_017.dat
+            ../00inputs/filters/taurex_018.dat
+            ../00inputs/filters/taurex_019.dat
+            ../00inputs/filters/taurex_020.dat
+            ../00inputs/filters/taurex_021.dat
+            ../00inputs/filters/taurex_022.dat
+            ../00inputs/filters/taurex_023.dat
+            ../00inputs/filters/taurex_024.dat
+            ../00inputs/filters/taurex_025.dat
+            ../00inputs/filters/taurex_026.dat
+            ../00inputs/filters/taurex_027.dat
+            ../00inputs/filters/taurex_028.dat
+            ../00inputs/filters/taurex_029.dat
+            ../00inputs/filters/taurex_030.dat
+            ../00inputs/filters/taurex_031.dat
+            ../00inputs/filters/taurex_032.dat
+            ../00inputs/filters/taurex_033.dat
+            ../00inputs/filters/taurex_034.dat
+            ../00inputs/filters/taurex_035.dat
+            ../00inputs/filters/taurex_036.dat
+            ../00inputs/filters/taurex_037.dat
+            ../00inputs/filters/taurex_038.dat
+            ../00inputs/filters/taurex_039.dat
+            ../00inputs/filters/taurex_040.dat
+            ../00inputs/filters/taurex_041.dat
+            ../00inputs/filters/taurex_042.dat
+            ../00inputs/filters/taurex_043.dat
+            ../00inputs/filters/taurex_044.dat
+            ../00inputs/filters/taurex_045.dat
+            ../00inputs/filters/taurex_046.dat
+            ../00inputs/filters/taurex_047.dat
+            ../00inputs/filters/taurex_048.dat
+            ../00inputs/filters/taurex_049.dat
+            ../00inputs/filters/taurex_050.dat
+            ../00inputs/filters/taurex_051.dat
+            ../00inputs/filters/taurex_052.dat
+            ../00inputs/filters/taurex_053.dat
+            ../00inputs/filters/taurex_054.dat
+            ../00inputs/filters/taurex_055.dat
+            ../00inputs/filters/taurex_056.dat
+            ../00inputs/filters/taurex_057.dat
+            ../00inputs/filters/taurex_058.dat
+            ../00inputs/filters/taurex_059.dat
+            ../00inputs/filters/taurex_060.dat
+            ../00inputs/filters/taurex_061.dat
+            ../00inputs/filters/taurex_062.dat
+            ../00inputs/filters/taurex_063.dat
+            ../00inputs/filters/taurex_064.dat
+            ../00inputs/filters/taurex_065.dat
+            ../00inputs/filters/taurex_066.dat
+            ../00inputs/filters/taurex_067.dat
+            ../00inputs/filters/taurex_068.dat
+            ../00inputs/filters/taurex_069.dat
+            ../00inputs/filters/taurex_070.dat
+            ../00inputs/filters/taurex_071.dat
+            ../00inputs/filters/taurex_072.dat
+            ../00inputs/filters/taurex_073.dat
+            ../00inputs/filters/taurex_074.dat
+            ../00inputs/filters/taurex_075.dat
+            ../00inputs/filters/taurex_076.dat
+            ../00inputs/filters/taurex_077.dat
+            ../00inputs/filters/taurex_078.dat
+            ../00inputs/filters/taurex_079.dat
+            ../00inputs/filters/taurex_080.dat
+            ../00inputs/filters/taurex_081.dat
+            ../00inputs/filters/taurex_082.dat
+            ../00inputs/filters/taurex_083.dat
+            ../00inputs/filters/taurex_084.dat
+            ../00inputs/filters/taurex_085.dat
+            ../00inputs/filters/taurex_086.dat
+            ../00inputs/filters/taurex_087.dat
+            ../00inputs/filters/taurex_088.dat
+            ../00inputs/filters/taurex_089.dat
+            ../00inputs/filters/taurex_090.dat
+            ../00inputs/filters/taurex_091.dat
+            ../00inputs/filters/taurex_092.dat
+            ../00inputs/filters/taurex_093.dat
+            ../00inputs/filters/taurex_094.dat
+            ../00inputs/filters/taurex_095.dat
+            ../00inputs/filters/taurex_096.dat
+            ../00inputs/filters/taurex_097.dat
+            ../00inputs/filters/taurex_098.dat
+            ../00inputs/filters/taurex_099.dat
+            ../00inputs/filters/taurex_100.dat
+            ../00inputs/filters/taurex_101.dat
+            ../00inputs/filters/taurex_102.dat
+            ../00inputs/filters/taurex_103.dat
+            ../00inputs/filters/taurex_104.dat
+            ../00inputs/filters/taurex_105.dat
+            ../00inputs/filters/taurex_106.dat
+            ../00inputs/filters/taurex_107.dat
+            ../00inputs/filters/taurex_108.dat
+            ../00inputs/filters/taurex_109.dat
+            ../00inputs/filters/taurex_110.dat
+            ../00inputs/filters/taurex_111.dat
+            ../00inputs/filters/taurex_112.dat
+            ../00inputs/filters/taurex_113.dat
+            ../00inputs/filters/taurex_114.dat
+            ../00inputs/filters/taurex_115.dat
+            ../00inputs/filters/taurex_116.dat
+            ../00inputs/filters/taurex_117.dat
+            ../00inputs/filters/taurex_118.dat
+            ../00inputs/filters/taurex_119.dat
+            ../00inputs/filters/taurex_120.dat
+            ../00inputs/filters/taurex_121.dat
+            ../00inputs/filters/taurex_122.dat
+            ../00inputs/filters/taurex_123.dat
+            ../00inputs/filters/taurex_124.dat
+            ../00inputs/filters/taurex_125.dat
+            ../00inputs/filters/taurex_126.dat
+            ../00inputs/filters/taurex_127.dat
+            ../00inputs/filters/taurex_128.dat
+            ../00inputs/filters/taurex_129.dat
+            ../00inputs/filters/taurex_130.dat
+            ../00inputs/filters/taurex_131.dat
+            ../00inputs/filters/taurex_132.dat
+            ../00inputs/filters/taurex_133.dat
+            ../00inputs/filters/taurex_134.dat
+            ../00inputs/filters/taurex_135.dat
+            ../00inputs/filters/taurex_136.dat
+            ../00inputs/filters/taurex_137.dat
+            ../00inputs/filters/taurex_138.dat
+            ../00inputs/filters/taurex_139.dat
+            ../00inputs/filters/taurex_140.dat
+            ../00inputs/filters/taurex_141.dat
+            ../00inputs/filters/taurex_142.dat
+            ../00inputs/filters/taurex_143.dat
+            ../00inputs/filters/taurex_144.dat
+            ../00inputs/filters/taurex_145.dat
+            ../00inputs/filters/taurex_146.dat
+            ../00inputs/filters/taurex_147.dat
+            ../00inputs/filters/taurex_148.dat
+            ../00inputs/filters/taurex_149.dat
+            ../00inputs/filters/taurex_150.dat
+            ../00inputs/filters/taurex_151.dat
+            ../00inputs/filters/taurex_152.dat
+            ../00inputs/filters/taurex_153.dat
+            ../00inputs/filters/taurex_154.dat
+            ../00inputs/filters/taurex_155.dat
+            ../00inputs/filters/taurex_156.dat
+            ../00inputs/filters/taurex_157.dat
+            ../00inputs/filters/taurex_158.dat
+            ../00inputs/filters/taurex_159.dat
+            ../00inputs/filters/taurex_160.dat
+            ../00inputs/filters/taurex_161.dat
+            ../00inputs/filters/taurex_162.dat
+            ../00inputs/filters/taurex_163.dat
+            ../00inputs/filters/taurex_164.dat
+            ../00inputs/filters/taurex_165.dat
+            ../00inputs/filters/taurex_166.dat
+            ../00inputs/filters/taurex_167.dat
+            ../00inputs/filters/taurex_168.dat
+            ../00inputs/filters/taurex_169.dat
+            ../00inputs/filters/taurex_170.dat
+            ../00inputs/filters/taurex_171.dat
+            ../00inputs/filters/taurex_172.dat
+            ../00inputs/filters/taurex_173.dat
+            ../00inputs/filters/taurex_174.dat
+            ../00inputs/filters/taurex_175.dat
+            ../00inputs/filters/taurex_176.dat
+            ../00inputs/filters/taurex_177.dat
+            ../00inputs/filters/taurex_178.dat
+            ../00inputs/filters/taurex_179.dat
+            ../00inputs/filters/taurex_180.dat
+            ../00inputs/filters/taurex_181.dat
+            ../00inputs/filters/taurex_182.dat
+            ../00inputs/filters/taurex_183.dat
+            ../00inputs/filters/taurex_184.dat
+            ../00inputs/filters/taurex_185.dat
+            ../00inputs/filters/taurex_186.dat
+            ../00inputs/filters/taurex_187.dat
+            ../00inputs/filters/taurex_188.dat
+            ../00inputs/filters/taurex_189.dat
+            ../00inputs/filters/taurex_190.dat
+            ../00inputs/filters/taurex_191.dat
+            ../00inputs/filters/taurex_192.dat
+            ../00inputs/filters/taurex_193.dat
+            ../00inputs/filters/taurex_194.dat
+            ../00inputs/filters/taurex_195.dat
+            ../00inputs/filters/taurex_196.dat
+            ../00inputs/filters/taurex_197.dat
+            ../00inputs/filters/taurex_198.dat
+            ../00inputs/filters/taurex_199.dat
+            ../00inputs/filters/taurex_200.dat
+            ../00inputs/filters/taurex_201.dat
+            ../00inputs/filters/taurex_202.dat
+            ../00inputs/filters/taurex_203.dat
+            ../00inputs/filters/taurex_204.dat
+            ../00inputs/filters/taurex_205.dat
+            ../00inputs/filters/taurex_206.dat
+            ../00inputs/filters/taurex_207.dat
+            ../00inputs/filters/taurex_208.dat
+            ../00inputs/filters/taurex_209.dat
+            ../00inputs/filters/taurex_210.dat
+            ../00inputs/filters/taurex_211.dat
+            ../00inputs/filters/taurex_212.dat
+            ../00inputs/filters/taurex_213.dat
+            ../00inputs/filters/taurex_214.dat
+            ../00inputs/filters/taurex_215.dat
+            ../00inputs/filters/taurex_216.dat
+            ../00inputs/filters/taurex_217.dat
+            ../00inputs/filters/taurex_218.dat
+            ../00inputs/filters/taurex_219.dat
+            ../00inputs/filters/taurex_220.dat
+            ../00inputs/filters/taurex_221.dat
+            ../00inputs/filters/taurex_222.dat
+            ../00inputs/filters/taurex_223.dat
+            ../00inputs/filters/taurex_224.dat
+            ../00inputs/filters/taurex_225.dat
+            ../00inputs/filters/taurex_226.dat
+            ../00inputs/filters/taurex_227.dat
+            ../00inputs/filters/taurex_228.dat
+            ../00inputs/filters/taurex_229.dat
+            ../00inputs/filters/taurex_230.dat
+            ../00inputs/filters/taurex_231.dat
+            ../00inputs/filters/taurex_232.dat
+
+# The fitting function (3-element tuple with function name, module name,
+#  and path to module):
+# (Absolute path or relative path from loc_dir)
+func = hack BARTfunc ../../../BART/code/
+
+# List of molecules being fit:
+molfit = H2O CO
+
+# Temperature boundaries:
+Tmin = 1000.1
+Tmax = 2499.0
+
+# The model fitting parameters:
+# The 'Mi' parameters are the log10 of an abundance scale factor:
+#      log(kappa)  log(g1) log(g2) alpha   beta  log(M1) log(M2) ...
+parnames = T(K)    R$_p$   log$P_{cloud}$  scattering  logH$_2$O logCO
+params   = 1300    71492.0    0.0             0.0         0.0     0.0
+pmin     = 1000.1  50000.0   -7.5            -1.0        -6.0    -6.0
+pmax     = 2499   128000.0    0.9             1.0         5.0     5.0
+stepsize =  100     5000.0    0.5             0.0         1.0     1.0
+
+# Total number of MCMC samples (burn-in + final MCMC):
+numit       = 3e5
+# Number of parallel MCMC chains (= number of processors):
+nchains     = 10
+# Number of burn-in iterations per chain:
+burnin      = 10000
+# MCMC algorithm ('demc' for Differential Evolution or 'mrw' for 
+#  Metropolis Random Walk with Gaussian proposals):
+walk        = snooker
+# Perform a least-square fit before the MCMC:
+leastsq     = False
+# Scale data uncertainties to enforce reduced chi-square == 1:
+chisqscale  = False
+# Perform the Gelman-Rubin convergence test along the MCMC:
+grtest      = True
+grexit      = False
+# Use MPI for parallel processing:
+mpi         = True
+# Filename to store the model fit for each MCMC evaluation:
+savemodel   = band_eclipse.npy
+# Make plots:
+plots       = True
+# MCMC log file:
+logfile     = MCMC.log
+
+# Verbosity level (0--20):
+verb = 1
+
+# Transit variables ::::::::::::::::::::::::::::::::::::::::::::::::::
+# Output transit configuration file name:
+tconfig = config_transit.cfg
+
+# Transit line information (TLI) file:
+linedb = ../00inputs/TLI/H2O_CO_0.48-12um.tli
+# Collision induced absorption file:
+csfile    = ../../../BART/modules/transit/inputs/CIA_H2H2_1000-7000K.dat
+            ../00inputs/CIA_HITRAN_H2He_0200-9900K_0.5-500um.dat
+
+# Scattering - log10(kappa_ray), where 0=solar-composition H2
+scattering = 0.0
+# Pressure of top of cloud
+cloudtop   = 0.0
+
+# Spectrum's lower wavelength boundary (alternatively, use wnhigh):
+wllow  = 0.5
+# Spectrum's higher wavelength boundary (alternatively, use wnlow):
+wlhigh = 10.1
+# Wavelength unit conversion to cm (default: 1e-4, microns):
+wlfct   = 1e-4
+# Wavenumber sampling interval:
+wndelt  = 0.1
+# Wavenumber oversampling factor:
+wnosamp = 1680
+# Wavenumber unit conversion to cm-1 (default: 1.0, inverse centimeters):
+wnfct = 1.0
+
+# Eclipe or transit observing geometry:
+solution = transit
+# Maximum optical depth to calculate:
+toomuch = 10.0
+# Number of HWHM:
+nwidth = 20
+
+# Planetary surface gravity (cm/s^2):
+gsurf = 2325.73922
+# Reference pressure and radius level (surface-ish) where p(r0) = p0:
+refpress  = 10.0
+
+# Set the star radius
+starrad = 0.781
+
+# Opacity lines' strength threshold:
+ethresh = 1e-50
+
+# Opacity-grid temperature lower boundary (in Kelvin):
+tlow   = 1000
+# Opacity-grid temperature higher boundary (in Kelvin):
+thigh  = 2500
+# Opacity-grid temperature sampling interval (in Kelvin):
+tempdelt = 100
+# Opacity-grid file name:
+opacityfile = opacity_hjclear-model1.dat
+
+# Output spectrum file name:
+outspec    = ./transit_out.dat
+# Output file with the radius where the optical depth reached toomuch:
+outtoomuch = ./transit_toom.dat
+# Output file with the samplings info:
+outsample  = ./transit_samp.dat
+outflux    = ./transit_flux.dat

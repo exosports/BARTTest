@@ -1,0 +1,43 @@
+This compendium does not include the raw line list files.
+This file will describe where to find those line list files.
+
+The raw line lists files are NOT required in order to run the RRC.
+The RRC includes intermediary files that have processed the line lists 
+into BART's desired format.  The information below is solely for curious 
+individuals interested in where to acquire the raw data.
+
+At the time of finalizing the compendium, BARTTest includes a convenient 
+command for users to acquire nearly all of the line lists used in the tests. 
+Simply enter 
+    make linelists
+from the BARTTest directory.  Then will download all HITRAN, HITEMP, and ExoMol 
+line lists used in the tests.  The STDS line lists will need to be acquired 
+separately; see the URL listed below in the relevant section.
+
+Below, we describe how users can acquire the line lists on their own.
+
+
+HITRAN/HITEMP
+-------------
+To download HITRAN data, users must create a free account at https://hitran.org/
+Then, the line lists for each molecule can be downloaded at 
+https://hitran.org/lbl/
+
+For HITEMP data, an account is not required.  The line lists for each molecule 
+can be found at https://hitran.org/hitemp/
+
+
+ExoMol
+------
+The line lists for each molecule can be found at 
+http://www.exomol.com/data/molecules/
+After downloading, they must be processed via REPACK 
+(https://github.com/pcubillos/repack) to be used in BART.
+
+
+STDS
+----
+The STDS line lists can be found at https://vamdc.icb.cnrs.fr/index.php
+
+
+

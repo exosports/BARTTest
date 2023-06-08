@@ -1,0 +1,21 @@
+This tests uses an optically thin atmosphere to explore the relationship 
+between increasing the abundance by some factor and the effect it has on the 
+depth of the line produced.
+
+The abundances are related by the following equation:
+factor = (flux_norm - flux_hi) / (flux_norm - flux_lo)
+
+where in the case of the 1e-4 spectrum
+factor  = greater abundance / 1e-4
+flux_lo = flux of 1e-4 spectrum in the channels where the line is present
+flux_hi = flux of the greater abundance spectrum in the above channels
+flux_norm = flux of those channels when no line is present
+
+
+In BARTTest/lib/, there are two related files:
+- abuncomp.py contains a function to compare a spectrum of a low abundance to 
+  spectra of greater abundances.
+
+- comparison.py contains a script to compare the 1e-4 spectrum to the rest of 
+  the spectra in the directory.
+

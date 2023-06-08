@@ -1,0 +1,39 @@
+===============================================================================
+
+This is BARTTest, the collection of tests for radiative-transfer codes. It is 
+configured by default to test BART, the Bayesian Atmospheric Radiative Transfer 
+code. After executing the tests on an RT code that has not yet been verified by
+BARTTest, please submit the results as a pull request on Github to be added 
+to the test suite.
+
+BARTTest can be found at 
+    https://github.com/exosports/BARTTest
+
+The BARTTest User Manual can be found at 
+    https://exosports.github.io/BARTTest/doc/BARTTest_User_Manual.html
+
+Authors:                Michael D. Himes, Joseph Harrington, 
+                        Patricio E. Cubillos, Jasmina Blecic, Ryan C. Challener,
+                        M. R. Green
+
+Test-case Contributors: You, hopefully!
+
+Contact: For general questions about BARTTest (or BART), users may open an issue
+         on Github, or email 
+            bart-user@planets.ucf.edu
+         or
+            bart-devel@planets.ucf.edu
+         depending on the nature of the question. BART-user handles general 
+         usage questions and suggestions, while BART-devel handles 
+         contributions, data, technical discussions, and the like. 
+         Note: these mailing lists require a simple registration to prevent
+         spam. You may sign up for each at the following links:
+            https://physics.ucf.edu/mailman/listinfo/bart-user
+            https://physics.ucf.edu/mailman/listinfo/bart-devel
+
+         For questions or issues specific to BARTTest, users may also contact 
+         the corresponding author at 
+            mhimes@knights.ucf.edu 
+
+===============================================================================
+

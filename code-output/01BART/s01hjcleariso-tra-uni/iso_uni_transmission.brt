@@ -1,0 +1,329 @@
+[MCMC]
+# Location of the output directory:
+loc_dir = ../../code-output/01BART/s01hjcleariso-tra-uni/
+
+# Tepfile name:
+tep_name = ../00inputs/HD189733b.tep
+
+# Kurucz stellar spectrum file:
+kurucz   = ../00inputs/hd189733b-fp00k2odfnew.pck
+
+
+# Atmospheric pressure layers: :::::::::::::::::::::::::::::::::::::::
+# Pressure filename (.pres extenesion):
+press_file = ./s01hjcleariso.pres
+
+# Number of layers:
+n_layers = 100
+
+# Pressure at the top of the atmosphere (in bars):
+p_top    = 1e-8
+
+# Pressure at the bottom of the atmosphere (in bars):
+p_bottom = 100.0
+
+# Use log (True) or linear (False) pressure scale:
+log = True
+
+
+# Elemental-abundances file ::::::::::::::::::::::::::::::::::::::::::
+# Basic elemental abundances file:
+abun_basic = ../../../BART/inputs/abundances_Asplund2009.txt
+# FINDME: in TEA.cfg this parameter is named abun_file.
+
+# Multiplication factor for heavy-element abundances:
+solar_times = 1
+    
+# Swap C/O abundance ratio (True) or not (False):
+COswap = False
+
+# Elemental abundances file name (.abn extension):
+abun_file = solar1x.abn 
+
+
+# Temperature profile ::::::::::::::::::::::::::::::::::::::::::::::::
+
+# Set the type of model ('line' or 'madhu'):
+PTtype = line
+# Set the parameters for the initial profile:
+#  Line Etal 2013:  [log10(kappa)  log10(gamma1)  log10(gamma2)  alpha  beta]
+#  Madhu Etal 2009 non-inverted:  [a1 a2 p1 p3 T3]
+#  Madhu Etal 2009 inverted:      [a1 a2 p1 p2 p3 T3]
+PTinit = -1.52  -0.8  0.4  0.5  0.85
+
+# Atmospheric Elemental Abundances (pre-atmospheric) File ::::::::::::
+# Pre atmospheric filename (.atm extenstion):
+preatm_file = ./s01hjcleariso_preatm.atm
+
+# Elemental species:
+in_elem  = H He C N O
+
+# Output species:
+#   - MUST use names produced by JANAF.py
+#   - see TEA/conversion-record-sort.txt for the correct names
+#   - MUST include all elemental species
+out_spec = He_ref H2_ref CO_g CO2_g CH4_g H2O_g NH3_g
+
+# If not None, set uniform mole mixing ratios for each out_spec, e.g.:
+uniform = 0.1498 0.85 1e-6 1e-6 1e-6 1e-6 1e-9
+#uniform = None
+
+# Atmospheric File (P, T, species-abundances) ::::::::::::::::::::::::
+# TEA output file (the 'atmospheric file') name:
+atmfile = ./iso.tea
+
+
+# MCMC arguments :::::::::::::::::::::::::::::::::::::::::::::::::::::
+# The data (eclipse or transit depths):
+data   = 0.024168198896588357
+        0.024172576844027543
+        0.02410895091682408
+        0.02405633688695506
+        0.024037842063861448
+        0.02405116869749894
+        0.024086406411742207
+        0.024112024216202368
+        0.02415303511364351
+        0.024157249419775553
+        0.024155078030804807
+        0.024177920452852386
+        0.024221992373020654
+        0.0242492847180792
+        0.024213309169882506
+        0.024392060914704618
+        0.024469603627155577
+        0.024411811917539702
+        0.024435673151717748
+        0.02438138134176869
+        0.02431840311398649
+        0.024267321356870396
+        0.024202510102697944
+        0.02419589144088255
+        0.024291475753916027
+        0.024209983219106765
+        0.024339256128882214
+        0.024214081801998362
+        0.024220539746100205
+        0.024182653432858928
+        0.024116672691254903
+        0.0240377130846499
+        0.02400358494352484
+        0.02397537265941761
+        0.023970555315045796
+        0.02396832061262332
+        0.02397301280871022
+        0.024004204889690756
+        0.02431570485299281
+        0.024686714892671283
+        0.024737850155189655
+        0.024671751875968546
+        0.02457591742737038
+        0.024408130029523946
+        0.024261109393766942
+        0.024217514189276847
+        0.024198538487153032
+
+# Data uncertainties:
+uncert = 8.056066298862785e-05
+        8.057525614675847e-05
+        8.036316972274693e-05
+        8.018778962318353e-05
+        8.012614021287149e-05
+        8.017056232499646e-05
+        8.028802137247402e-05
+        8.037341405400789e-05
+        8.051011704547837e-05
+        8.052416473258517e-05
+        8.051692676934936e-05
+        8.059306817617462e-05
+        8.073997457673552e-05
+        8.0830949060264e-05
+        8.071103056627502e-05
+        8.130686971568207e-05
+        8.156534542385193e-05
+        8.137270639179901e-05
+        8.145224383905915e-05
+        8.127127113922896e-05
+        8.10613437132883e-05
+        8.089107118956799e-05
+        8.067503367565982e-05
+        8.06529714696085e-05
+        8.097158584638675e-05
+        8.069994406368921e-05
+        8.113085376294072e-05
+        8.07136060066612e-05
+        8.073513248700068e-05
+        8.060884477619642e-05
+        8.038890897084967e-05
+        8.012571028216633e-05
+        8.001194981174946e-05
+        7.991790886472537e-05
+        7.990185105015265e-05
+        7.989440204207773e-05
+        7.991004269570073e-05
+        8.001401629896918e-05
+        8.105234950997602e-05
+        8.228904964223761e-05
+        8.245950051729885e-05
+        8.223917291989516e-05
+        8.191972475790128e-05
+        8.136043343174649e-05
+        8.087036464588981e-05
+        8.07250472975895e-05
+        8.066179495717678e-05
+
+# The waveband filters:
+filters   = ../00inputs/filters/053.dat
+            ../00inputs/filters/054.dat
+            ../00inputs/filters/055.dat
+            ../00inputs/filters/056.dat
+            ../00inputs/filters/057.dat
+            ../00inputs/filters/058.dat
+            ../00inputs/filters/059.dat
+            ../00inputs/filters/060.dat
+            ../00inputs/filters/061.dat
+            ../00inputs/filters/062.dat
+            ../00inputs/filters/063.dat
+            ../00inputs/filters/064.dat
+            ../00inputs/filters/065.dat
+            ../00inputs/filters/066.dat
+            ../00inputs/filters/067.dat
+            ../00inputs/filters/068.dat
+            ../00inputs/filters/069.dat
+            ../00inputs/filters/070.dat
+            ../00inputs/filters/071.dat
+            ../00inputs/filters/072.dat
+            ../00inputs/filters/073.dat
+            ../00inputs/filters/074.dat
+            ../00inputs/filters/075.dat
+            ../00inputs/filters/076.dat
+            ../00inputs/filters/077.dat
+            ../00inputs/filters/078.dat
+            ../00inputs/filters/079.dat
+            ../00inputs/filters/080.dat
+            ../00inputs/filters/081.dat
+            ../00inputs/filters/082.dat
+            ../00inputs/filters/083.dat
+            ../00inputs/filters/084.dat
+            ../00inputs/filters/085.dat
+            ../00inputs/filters/086.dat
+            ../00inputs/filters/087.dat
+            ../00inputs/filters/088.dat
+            ../00inputs/filters/089.dat
+            ../00inputs/filters/090.dat
+            ../00inputs/filters/091.dat
+            ../00inputs/filters/092.dat
+            ../00inputs/filters/093.dat
+            ../00inputs/filters/094.dat
+            ../00inputs/filters/095.dat
+            ../00inputs/filters/096.dat
+            ../00inputs/filters/097.dat
+            ../00inputs/filters/098.dat
+            ../00inputs/filters/099.dat
+
+# The fitting function (3-element tuple with function name, module name,
+#  and path to module):
+# (Absolute path or relative path from loc_dir)
+func = hack BARTfunc ../../../BART/code/
+
+# List of molecules being fit:
+molfit = H2O CO2 CO CH4 NH3
+
+# Temperature boundaries:
+Tmin =  400.0
+Tmax = 3000.0
+
+# The model fitting parameters:
+# The 'Mi' parameters are the log10 of an abundance scale factor:
+#      log(kappa)  log(g1) log(g2) alpha   beta  log(M1) log(M2) ...
+parnames = kappa  g1    g2   alpha  beta   R_p        H2O   CO2  CO   CH4   NH3
+params   = -2.32 -0.7   0.2   0.8   0.91  8.11579e4   0.5   0.5  0.5  0.2  -1.0
+pmin     = -4.0  -4.0  -4.0   0.0   0.5   7.80000e4  -8.0  -8.0 -8.0 -8.0  -8.0
+pmax     =  1.0   1.0   2.5   1.0   1.3   8.40000e4   5.0   5.0  5.0  5.0   8.0
+stepsize =  0.1   0.1   0.1   0.1   0.1   0.01e4      0.4   0.4  0.4  0.4   0.4
+
+# Total number of MCMC samples (burn-in + final MCMC):
+numit       = 2e6
+# Number of parallel MCMC chains (= number of processors):
+nchains     = 10
+# Number of burn-in iterations per chain:
+burnin      = 50000
+# MCMC algorithm ('demc' for Differential Evolution or 'mrw' for 
+#  Metropolis Random Walk with Gaussian proposals):
+walk        = snooker
+# Perform a least-square fit before the MCMC:
+leastsq     = False
+# Scale data uncertainties to enforce reduced chi-square == 1:
+chisqscale  = False
+# Perform the Gelman-Rubin convergence test along the MCMC:
+grtest      = True
+grexit      = False
+# Use MPI for parallel processing:
+mpi         = True
+# Filename to store the model fit for each MCMC evaluation:
+savemodel   = band_eclipse.npy
+# Make plots:
+plots       = True
+# MCMC log file:
+logfile     = MCMC.log
+
+# Verbosity level (0--20):
+verb = 1
+
+# Transit variables ::::::::::::::::::::::::::::::::::::::::::::::::::
+# Output transit configuration file name:
+tconfig = config_transit.cfg
+
+# Transit line information (TLI) file:
+linedb = ../00inputs/TLI/CH4_CO_CO2_H2O_NH3_H2_1-11um.tli
+# Collision induced absorption file:
+csfile    = ../../../BART/modules/transit/inputs/CIA_H2H2_400-7000K.dat
+            ../00inputs/CIA_HITRAN_H2He_0200-9900K_0.5-500um.dat
+
+# Spectrum's lower wavelength boundary (alternatively, use wnhigh):
+wnhigh   =  5500
+# Spectrum's higher wavelength boundary (alternatively, use wnlow):
+wnlow    =  2000
+# Wavelength unit conversion to cm (default: 1e-4, microns):
+wlfct   = 1e-4
+# Wavenumber sampling interval:
+wndelt  = 0.1
+# Wavenumber oversampling factor:
+wnosamp = 2160
+# Wavenumber unit conversion to cm-1 (default: 1.0, inverse centimeters):
+wnfct = 1.0
+
+# Eclipe or transit observing geometry:
+solution = transit
+# Maximum optical depth to calculate:
+toomuch = 10.0
+# Number of HWHM:
+nwidth = 20
+
+# Planetary surface gravity (cm/s^2):
+gsurf = 2182.73
+# Reference pressure and radius level (surface-ish) where p(r0) = p0:
+refpress  = 0.1
+
+# Set the star radius
+starrad = 0.75630444
+
+# Opacity lines' strength threshold:
+ethresh = 1e-50
+
+# Opacity-grid temperature lower boundary (in Kelvin):
+tlow   =  400
+# Opacity-grid temperature higher boundary (in Kelvin):
+thigh  = 3000
+# Opacity-grid temperature sampling interval (in Kelvin):
+tempdelt = 100
+# Opacity-grid file name:
+opacityfile = opacity_hjclear.dat
+
+# Output spectrum file name:
+outspec    = ./transit_out.dat
+# Output file with the radius where the optical depth reached toomuch:
+outtoomuch = ./transit_toom.dat
+# Output file with the samplings info:
+outsample  = ./transit_samp.dat
+outflux    = ./transit_flux.dat

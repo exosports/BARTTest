@@ -1,0 +1,1096 @@
+[MCMC]
+# Location of the output directory:
+loc_dir = ../../code-output/01BART/s04hjcleariso-BarstowEtal-model0-chimera/
+
+# Tepfile name:
+tep_name = ../00inputs/BarstowEtal_model0.tep
+
+# Kurucz stellar spectrum file:
+kurucz   = ../00inputs/hd189733b-fp00k2odfnew.pck
+
+
+# Atmospheric pressure layers: :::::::::::::::::::::::::::::::::::::::
+# Pressure filename (.pres extenesion):
+press_file = ./s04hjcleariso-model0-chimera.pres
+
+# Number of layers:
+n_layers = 100
+
+# Pressure at the top of the atmosphere (in bars):
+p_top    = 1e-8
+
+# Pressure at the bottom of the atmosphere (in bars):
+p_bottom = 10.0
+
+# Use log (True) or linear (False) pressure scale:
+log = True
+
+
+# Elemental-abundances file ::::::::::::::::::::::::::::::::::::::::::
+# Basic elemental abundances file:
+abun_basic = ../../../BART/inputs/abundances_Asplund2009.txt
+# FINDME: in TEA.cfg this parameter is named abun_file.
+
+# Multiplication factor for heavy-element abundances:
+solar_times = 1
+    
+# Swap C/O abundance ratio (True) or not (False):
+COswap = False
+
+# Elemental abundances file name (.abn extension):
+abun_file = solar1x.abn 
+
+
+# Temperature profile ::::::::::::::::::::::::::::::::::::::::::::::::
+
+# Set the type of model ('line' or 'madhu'):
+PTtype = iso
+# Set the parameters for the initial profile:
+#  Line Etal 2013:  [log10(kappa)  log10(gamma1)  log10(gamma2)  alpha  beta]
+#  Madhu Etal 2009 non-inverted:  [a1 a2 p1 p3 T3]
+#  Madhu Etal 2009 inverted:      [a1 a2 p1 p2 p3 T3]
+PTinit = 1300
+
+# Atmospheric Elemental Abundances (pre-atmospheric) File ::::::::::::
+# Pre atmospheric filename (.atm extenstion):
+preatm_file = ./s04hjcleariso-model0-chimera_preatm.atm
+
+# Elemental species:
+in_elem  = H He C N O
+
+# Output species:
+#   - MUST use names produced by JANAF.py
+#   - see TEA/conversion-record-sort.txt for the correct names
+#   - MUST include all elemental species
+out_spec = He_ref H2_ref CO_g H2O_g
+
+# If not None, set uniform mole mixing ratios for each out_spec, e.g.:
+uniform = 0.15 0.85 1e-6 1e-6
+#uniform = None
+
+# Atmospheric File (P, T, species-abundances) ::::::::::::::::::::::::
+# TEA output file (the 'atmospheric file') name:
+atmfile = ./s04hjcleariso-model0.tea
+
+
+# MCMC arguments :::::::::::::::::::::::::::::::::::::::::::::::::::::
+# The data (eclipse or transit depths):
+data   = 2.203376049815516241e-02
+        2.202843834904789216e-02
+        2.202293878118539994e-02
+        2.201744922599817647e-02
+        2.201216969020349662e-02
+        2.200689372904404695e-02
+        2.200178849095981229e-02
+        2.199753528946706005e-02
+        2.199199248344529609e-02
+        2.198663025284891548e-02
+        2.198119821071811697e-02
+        2.197594556744767239e-02
+        2.197431152541395177e-02
+        2.196793931200663810e-02
+        2.196319626420050602e-02
+        2.196195456472855093e-02
+        2.195985645531343261e-02
+        2.195392301402683197e-02
+        2.194757754116849827e-02
+        2.193871432999396770e-02
+        2.193229638271163712e-02
+        2.192689952158796696e-02
+        2.192315412343956785e-02
+        2.191801241112776785e-02
+        2.191773641416979237e-02
+        2.192334108281147886e-02
+        2.191540386562694509e-02
+        2.190951473564459184e-02
+        2.190196851514869883e-02
+        2.189399209485677275e-02
+        2.188653259886058633e-02
+        2.189436962241561244e-02
+        2.191745288855941401e-02
+        2.190030212460878159e-02
+        2.191086306564319144e-02
+        2.195848951213531450e-02
+        2.197200340922871725e-02
+        2.195650460028113551e-02
+        2.195229460638177532e-02
+        2.193874783447791535e-02
+        2.192623374432793593e-02
+        2.189691852223805274e-02
+        2.187929754935650367e-02
+        2.186826288198952598e-02
+        2.186868131362834991e-02
+        2.186272556041607418e-02
+        2.187507684342072586e-02
+        2.193990817526707271e-02
+        2.197739511316822852e-02
+        2.196436391580344760e-02
+        2.196079875501504020e-02
+        2.195767208838616397e-02
+        2.194894685746695898e-02
+        2.192219054383729923e-02
+        2.189238132654585528e-02
+        2.187215299270521204e-02
+        2.185956664262785759e-02
+        2.195572434316494376e-02
+        2.197133360353196313e-02
+        2.195633472379799125e-02
+        2.201654285563164545e-02
+        2.215905544863779747e-02
+        2.220481884911704173e-02
+        2.218643962660479113e-02
+        2.219038273092021826e-02
+        2.219544497380100678e-02
+        2.220159729840856522e-02
+        2.218666198146734825e-02
+        2.215201991772555723e-02
+        2.212481467655692466e-02
+        2.208914144359707538e-02
+        2.205198226061211297e-02
+        2.201081236910115355e-02
+        2.198958617959579850e-02
+        2.196792049577928410e-02
+        2.196104561590286192e-02
+        2.196121852986734208e-02
+        2.206217331756112759e-02
+        2.220414881036700261e-02
+        2.224875608225843418e-02
+        2.226561021380953423e-02
+        2.229152515369196147e-02
+        2.228549755490057821e-02
+        2.229116327667533121e-02
+        2.228567681442640558e-02
+        2.228461239249851511e-02
+        2.225306376717222506e-02
+        2.221609788251794129e-02
+        2.218156107438780389e-02
+        2.215511571673045924e-02
+        2.211829283831143189e-02
+        2.208101213263732876e-02
+        2.208312627766409811e-02
+        2.208306459809864994e-02
+        2.209759767328266580e-02
+        2.212258492295098022e-02
+        2.216081891133980797e-02
+        2.226658239915034823e-02
+        2.250122640001670643e-02
+        2.253785485139602612e-02
+        2.255126716883076865e-02
+        2.253547047015602017e-02
+        2.254996125584697239e-02
+        2.257314966056202243e-02
+        2.260497857780055866e-02
+        2.259240578462071852e-02
+        2.255907471153477742e-02
+        2.255331827862231894e-02
+        2.254050658942471225e-02
+        2.251571728608308190e-02
+        2.248695151257279132e-02
+        2.245767893884303978e-02
+        2.242242420865962760e-02
+        2.238798299587385285e-02
+        2.234460352903893526e-02
+        2.230488461786316393e-02
+        2.226790552964894379e-02
+        2.222807342378265924e-02
+        2.220237702076264391e-02
+        2.218369284105320763e-02
+        2.216238570389295059e-02
+        2.215191670852984657e-02
+        2.219749975622828386e-02
+        2.228761020606793292e-02
+        2.233768044207269654e-02
+        2.237890877072662432e-02
+        2.243618896802293886e-02
+        2.248759200614866213e-02
+        2.252229961308468628e-02
+        2.253938688234847706e-02
+        2.257154015416660414e-02
+        2.261268280130565925e-02
+        2.257025024105233091e-02
+        2.253782545551777372e-02
+        2.253565603292074712e-02
+        2.254416606651324720e-02
+        2.254463803141475153e-02
+        2.255421729587066618e-02
+        2.255996213444764337e-02
+        2.254553564479011216e-02
+        2.252191438410509547e-02
+        2.248174875671561310e-02
+        2.244555376231665428e-02
+        2.240182644065134843e-02
+        2.236161526818219655e-02
+        2.232122053201351930e-02
+        2.229541339147985551e-02
+        2.228320948363953641e-02
+        2.227233821990094037e-02
+        2.227188086327668362e-02
+        2.226570718599388612e-02
+        2.227061823024469034e-02
+        2.231203346551476410e-02
+        2.234029120435056942e-02
+        2.237077944991863396e-02
+        2.239535250553104789e-02
+        2.241977653301375009e-02
+        2.246799635788467378e-02
+        2.253271032340652125e-02
+        2.257076869683871320e-02
+        2.263235397931234044e-02
+        2.268076523015133752e-02
+        2.270426030015667770e-02
+        2.271328524332613327e-02
+        2.272442610567733390e-02
+        2.268384316696663017e-02
+        2.269230179730128555e-02
+        2.267897717943398450e-02
+        2.271365648986539698e-02
+        2.273989976497222537e-02
+        2.274143746005788738e-02
+        2.275819306358298211e-02
+        2.276100509366989558e-02
+        2.277418840999777608e-02
+        2.276157293403904824e-02
+        2.275580851957538162e-02
+        2.278798035890093610e-02
+        2.276400720214259363e-02
+        2.275832885380755372e-02
+        2.275292412781126233e-02
+        2.272683009379875690e-02
+        2.271415537711566138e-02
+        2.268205041063455982e-02
+        2.266389960636410947e-02
+        2.264809232599921188e-02
+        2.263485850597186932e-02
+        2.259796432417592038e-02
+        2.256432868238911899e-02
+        2.255008925695673946e-02
+        2.252341974602743366e-02
+        2.251238804463918247e-02
+        2.248767731446192283e-02
+        2.247908833549012650e-02
+        2.245407134455463041e-02
+        2.244666076631063670e-02
+        2.242857553285962369e-02
+        2.240597931034367732e-02
+        2.238876956156604300e-02
+        2.236440228371257971e-02
+        2.235764766161980541e-02
+        2.232224137453951707e-02
+        2.230355417303711910e-02
+        2.227729404403490029e-02
+        2.226813239080062054e-02
+        2.224892845750589890e-02
+        2.223654507174473507e-02
+        2.223746939382874668e-02
+        2.225042055520184622e-02
+        2.227391846368655115e-02
+        2.230345573838599799e-02
+        2.234742287958965332e-02
+        2.236700332449081952e-02
+        2.239703513205273250e-02
+        2.240293513186024377e-02
+        2.243021762644642481e-02
+        2.244177909661715375e-02
+        2.246486607483229314e-02
+        2.250083089840285502e-02
+        2.253276421284931483e-02
+        2.255508017074494415e-02
+        2.257327482844779729e-02
+        2.258322101907254270e-02
+        2.257785805441845511e-02
+        2.259291627658392351e-02
+        2.258171379835479872e-02
+        2.258375234784079991e-02
+        2.260013772154432360e-02
+        2.259207556900122080e-02
+        2.259792644337652381e-02
+        2.260342828876514901e-02
+        2.261066000974811668e-02
+        2.262722521129539172e-02
+        2.262449735028808362e-02
+        2.262446637727427712e-02
+        2.263423752963378277e-02
+        2.262360478929698743e-02
+        2.264056967498032785e-02
+        2.264395822423002566e-02
+        2.265173709358107856e-02
+        2.265374717637734861e-02
+        2.264690874925974484e-02
+        2.267248964297795266e-02
+        2.263243459890746864e-02
+        2.264788930696546784e-02
+        2.264494157248428396e-02
+        2.264801325750050165e-02
+        2.264378003621334012e-02
+        2.262916856854863684e-02
+        2.262763239257930062e-02
+        2.261277918135953802e-02
+        2.257870002829821116e-02
+        2.255428793458074885e-02
+        2.252995681648180260e-02
+        2.254688350018972665e-02
+        2.252718418115632823e-02
+        2.255994837686184362e-02
+        2.264745763803442669e-02
+        2.268521730213897414e-02
+        2.276160674272129092e-02
+        2.279617987646221158e-02
+        2.273633673315559461e-02
+        2.274560743919151057e-02
+        2.275112313206426387e-02
+        2.272217161414500849e-02
+        2.269657371334366652e-02
+        2.270783532461219043e-02
+        2.269903384738432631e-02
+        2.267258783239534808e-02
+        2.267767462705269979e-02
+        2.267421287577106245e-02
+        2.266127302856562817e-02
+        2.267012896186209811e-02
+        2.267004346561288936e-02
+        2.267037381994082765e-02
+        2.266924807504139619e-02
+        2.263868743809328149e-02
+        2.268883957082641623e-02
+        2.266891123594885066e-02
+        2.266062076717764023e-02
+        2.265995767477405748e-02
+        2.267138934463380079e-02
+        2.265546163101398933e-02
+        2.267763159829004616e-02
+        2.263594214426524476e-02
+        2.264322518278962318e-02
+        2.260595840881352708e-02
+        2.261486031678461642e-02
+        2.260268203651462013e-02
+        2.256739205964996414e-02
+        2.256721542839405445e-02
+        2.253857812721250450e-02
+        2.252721435221097940e-02
+        2.254209519733391121e-02
+        2.250583200046333762e-02
+        2.251775074654609535e-02
+        2.247200402702679428e-02
+        2.249815572758313495e-02
+        2.247354351449569465e-02
+        2.245602183303421068e-02
+        2.248470202354721850e-02
+        2.245186272997045512e-02
+
+# Data uncertainties:
+uncert = 5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+        5.999999999999999474e-05
+
+# The waveband filters:
+filters   = ../00inputs/filters/chimera_under1um_002.dat
+            ../00inputs/filters/chimera_under1um_003.dat
+            ../00inputs/filters/chimera_under1um_004.dat
+            ../00inputs/filters/chimera_under1um_005.dat
+            ../00inputs/filters/chimera_under1um_006.dat
+            ../00inputs/filters/chimera_under1um_007.dat
+            ../00inputs/filters/chimera_under1um_008.dat
+            ../00inputs/filters/chimera_under1um_009.dat
+            ../00inputs/filters/chimera_under1um_010.dat
+            ../00inputs/filters/chimera_under1um_011.dat
+            ../00inputs/filters/chimera_under1um_012.dat
+            ../00inputs/filters/chimera_under1um_013.dat
+            ../00inputs/filters/chimera_under1um_014.dat
+            ../00inputs/filters/chimera_under1um_015.dat
+            ../00inputs/filters/chimera_under1um_016.dat
+            ../00inputs/filters/chimera_under1um_017.dat
+            ../00inputs/filters/chimera_under1um_018.dat
+            ../00inputs/filters/chimera_under1um_019.dat
+            ../00inputs/filters/chimera_under1um_020.dat
+            ../00inputs/filters/chimera_under1um_021.dat
+            ../00inputs/filters/chimera_under1um_022.dat
+            ../00inputs/filters/chimera_under1um_023.dat
+            ../00inputs/filters/chimera_under1um_024.dat
+            ../00inputs/filters/chimera_under1um_025.dat
+            ../00inputs/filters/chimera_under1um_026.dat
+            ../00inputs/filters/chimera_under1um_027.dat
+            ../00inputs/filters/chimera_under1um_028.dat
+            ../00inputs/filters/chimera_under1um_029.dat
+            ../00inputs/filters/chimera_under1um_030.dat
+            ../00inputs/filters/chimera_under1um_031.dat
+            ../00inputs/filters/chimera_under1um_032.dat
+            ../00inputs/filters/chimera_under1um_033.dat
+            ../00inputs/filters/chimera_under1um_034.dat
+            ../00inputs/filters/chimera_under1um_035.dat
+            ../00inputs/filters/chimera_under1um_036.dat
+            ../00inputs/filters/chimera_under1um_037.dat
+            ../00inputs/filters/chimera_under1um_038.dat
+            ../00inputs/filters/chimera_under1um_039.dat
+            ../00inputs/filters/chimera_under1um_040.dat
+            ../00inputs/filters/chimera_under1um_041.dat
+            ../00inputs/filters/chimera_under1um_042.dat
+            ../00inputs/filters/chimera_under1um_043.dat
+            ../00inputs/filters/chimera_under1um_044.dat
+            ../00inputs/filters/chimera_under1um_045.dat
+            ../00inputs/filters/chimera_under1um_046.dat
+            ../00inputs/filters/chimera_under1um_047.dat
+            ../00inputs/filters/chimera_under1um_048.dat
+            ../00inputs/filters/chimera_under1um_049.dat
+            ../00inputs/filters/chimera_under1um_050.dat
+            ../00inputs/filters/chimera_under1um_051.dat
+            ../00inputs/filters/chimera_under1um_052.dat
+            ../00inputs/filters/chimera_under1um_053.dat
+            ../00inputs/filters/chimera_under1um_054.dat
+            ../00inputs/filters/chimera_under1um_055.dat
+            ../00inputs/filters/chimera_under1um_056.dat
+            ../00inputs/filters/chimera_under1um_057.dat
+            ../00inputs/filters/chimera_under1um_058.dat
+            ../00inputs/filters/chimera_under1um_059.dat
+            ../00inputs/filters/chimera_under1um_060.dat
+            ../00inputs/filters/chimera_under1um_061.dat
+            ../00inputs/filters/chimera_under1um_062.dat
+            ../00inputs/filters/chimera_under1um_063.dat
+            ../00inputs/filters/chimera_under1um_064.dat
+            ../00inputs/filters/chimera_under1um_065.dat
+            ../00inputs/filters/chimera_under1um_066.dat
+            ../00inputs/filters/chimera_under1um_067.dat
+            ../00inputs/filters/chimera_under1um_068.dat
+            ../00inputs/filters/chimera_under1um_069.dat
+            ../00inputs/filters/chimera_under1um_070.dat
+            ../00inputs/filters/chimera_001.dat
+            ../00inputs/filters/chimera_002.dat
+            ../00inputs/filters/chimera_003.dat
+            ../00inputs/filters/chimera_004.dat
+            ../00inputs/filters/chimera_005.dat
+            ../00inputs/filters/chimera_006.dat
+            ../00inputs/filters/chimera_007.dat
+            ../00inputs/filters/chimera_008.dat
+            ../00inputs/filters/chimera_009.dat
+            ../00inputs/filters/chimera_010.dat
+            ../00inputs/filters/chimera_011.dat
+            ../00inputs/filters/chimera_012.dat
+            ../00inputs/filters/chimera_013.dat
+            ../00inputs/filters/chimera_014.dat
+            ../00inputs/filters/chimera_015.dat
+            ../00inputs/filters/chimera_016.dat
+            ../00inputs/filters/chimera_017.dat
+            ../00inputs/filters/chimera_018.dat
+            ../00inputs/filters/chimera_019.dat
+            ../00inputs/filters/chimera_020.dat
+            ../00inputs/filters/chimera_021.dat
+            ../00inputs/filters/chimera_022.dat
+            ../00inputs/filters/chimera_023.dat
+            ../00inputs/filters/chimera_024.dat
+            ../00inputs/filters/chimera_025.dat
+            ../00inputs/filters/chimera_026.dat
+            ../00inputs/filters/chimera_027.dat
+            ../00inputs/filters/chimera_028.dat
+            ../00inputs/filters/chimera_029.dat
+            ../00inputs/filters/chimera_030.dat
+            ../00inputs/filters/chimera_031.dat
+            ../00inputs/filters/chimera_032.dat
+            ../00inputs/filters/chimera_033.dat
+            ../00inputs/filters/chimera_034.dat
+            ../00inputs/filters/chimera_035.dat
+            ../00inputs/filters/chimera_036.dat
+            ../00inputs/filters/chimera_037.dat
+            ../00inputs/filters/chimera_038.dat
+            ../00inputs/filters/chimera_039.dat
+            ../00inputs/filters/chimera_040.dat
+            ../00inputs/filters/chimera_041.dat
+            ../00inputs/filters/chimera_042.dat
+            ../00inputs/filters/chimera_043.dat
+            ../00inputs/filters/chimera_044.dat
+            ../00inputs/filters/chimera_045.dat
+            ../00inputs/filters/chimera_046.dat
+            ../00inputs/filters/chimera_047.dat
+            ../00inputs/filters/chimera_048.dat
+            ../00inputs/filters/chimera_049.dat
+            ../00inputs/filters/chimera_050.dat
+            ../00inputs/filters/chimera_051.dat
+            ../00inputs/filters/chimera_052.dat
+            ../00inputs/filters/chimera_053.dat
+            ../00inputs/filters/chimera_054.dat
+            ../00inputs/filters/chimera_055.dat
+            ../00inputs/filters/chimera_056.dat
+            ../00inputs/filters/chimera_057.dat
+            ../00inputs/filters/chimera_058.dat
+            ../00inputs/filters/chimera_059.dat
+            ../00inputs/filters/chimera_060.dat
+            ../00inputs/filters/chimera_061.dat
+            ../00inputs/filters/chimera_062.dat
+            ../00inputs/filters/chimera_063.dat
+            ../00inputs/filters/chimera_064.dat
+            ../00inputs/filters/chimera_065.dat
+            ../00inputs/filters/chimera_066.dat
+            ../00inputs/filters/chimera_067.dat
+            ../00inputs/filters/chimera_068.dat
+            ../00inputs/filters/chimera_069.dat
+            ../00inputs/filters/chimera_070.dat
+            ../00inputs/filters/chimera_071.dat
+            ../00inputs/filters/chimera_072.dat
+            ../00inputs/filters/chimera_073.dat
+            ../00inputs/filters/chimera_074.dat
+            ../00inputs/filters/chimera_075.dat
+            ../00inputs/filters/chimera_076.dat
+            ../00inputs/filters/chimera_077.dat
+            ../00inputs/filters/chimera_078.dat
+            ../00inputs/filters/chimera_079.dat
+            ../00inputs/filters/chimera_080.dat
+            ../00inputs/filters/chimera_081.dat
+            ../00inputs/filters/chimera_082.dat
+            ../00inputs/filters/chimera_083.dat
+            ../00inputs/filters/chimera_084.dat
+            ../00inputs/filters/chimera_085.dat
+            ../00inputs/filters/chimera_086.dat
+            ../00inputs/filters/chimera_087.dat
+            ../00inputs/filters/chimera_088.dat
+            ../00inputs/filters/chimera_089.dat
+            ../00inputs/filters/chimera_090.dat
+            ../00inputs/filters/chimera_091.dat
+            ../00inputs/filters/chimera_092.dat
+            ../00inputs/filters/chimera_093.dat
+            ../00inputs/filters/chimera_094.dat
+            ../00inputs/filters/chimera_095.dat
+            ../00inputs/filters/chimera_096.dat
+            ../00inputs/filters/chimera_097.dat
+            ../00inputs/filters/chimera_098.dat
+            ../00inputs/filters/chimera_099.dat
+            ../00inputs/filters/chimera_100.dat
+            ../00inputs/filters/chimera_101.dat
+            ../00inputs/filters/chimera_102.dat
+            ../00inputs/filters/chimera_103.dat
+            ../00inputs/filters/chimera_104.dat
+            ../00inputs/filters/chimera_105.dat
+            ../00inputs/filters/chimera_106.dat
+            ../00inputs/filters/chimera_107.dat
+            ../00inputs/filters/chimera_108.dat
+            ../00inputs/filters/chimera_109.dat
+            ../00inputs/filters/chimera_110.dat
+            ../00inputs/filters/chimera_111.dat
+            ../00inputs/filters/chimera_112.dat
+            ../00inputs/filters/chimera_113.dat
+            ../00inputs/filters/chimera_114.dat
+            ../00inputs/filters/chimera_115.dat
+            ../00inputs/filters/chimera_116.dat
+            ../00inputs/filters/chimera_117.dat
+            ../00inputs/filters/chimera_118.dat
+            ../00inputs/filters/chimera_119.dat
+            ../00inputs/filters/chimera_120.dat
+            ../00inputs/filters/chimera_121.dat
+            ../00inputs/filters/chimera_122.dat
+            ../00inputs/filters/chimera_123.dat
+            ../00inputs/filters/chimera_124.dat
+            ../00inputs/filters/chimera_125.dat
+            ../00inputs/filters/chimera_126.dat
+            ../00inputs/filters/chimera_127.dat
+            ../00inputs/filters/chimera_128.dat
+            ../00inputs/filters/chimera_129.dat
+            ../00inputs/filters/chimera_130.dat
+            ../00inputs/filters/chimera_131.dat
+            ../00inputs/filters/chimera_132.dat
+            ../00inputs/filters/chimera_133.dat
+            ../00inputs/filters/chimera_134.dat
+            ../00inputs/filters/chimera_135.dat
+            ../00inputs/filters/chimera_136.dat
+            ../00inputs/filters/chimera_137.dat
+            ../00inputs/filters/chimera_138.dat
+            ../00inputs/filters/chimera_139.dat
+            ../00inputs/filters/chimera_140.dat
+            ../00inputs/filters/chimera_141.dat
+            ../00inputs/filters/chimera_142.dat
+            ../00inputs/filters/chimera_143.dat
+            ../00inputs/filters/chimera_144.dat
+            ../00inputs/filters/chimera_145.dat
+            ../00inputs/filters/chimera_146.dat
+            ../00inputs/filters/chimera_147.dat
+            ../00inputs/filters/chimera_148.dat
+            ../00inputs/filters/chimera_149.dat
+            ../00inputs/filters/chimera_150.dat
+            ../00inputs/filters/chimera_151.dat
+            ../00inputs/filters/chimera_152.dat
+            ../00inputs/filters/chimera_153.dat
+            ../00inputs/filters/chimera_154.dat
+            ../00inputs/filters/chimera_155.dat
+            ../00inputs/filters/chimera_156.dat
+            ../00inputs/filters/chimera_157.dat
+            ../00inputs/filters/chimera_158.dat
+            ../00inputs/filters/chimera_159.dat
+            ../00inputs/filters/chimera_160.dat
+            ../00inputs/filters/chimera_161.dat
+            ../00inputs/filters/chimera_162.dat
+            ../00inputs/filters/chimera_163.dat
+            ../00inputs/filters/chimera_164.dat
+            ../00inputs/filters/chimera_165.dat
+            ../00inputs/filters/chimera_166.dat
+            ../00inputs/filters/chimera_167.dat
+            ../00inputs/filters/chimera_168.dat
+            ../00inputs/filters/chimera_169.dat
+            ../00inputs/filters/chimera_170.dat
+            ../00inputs/filters/chimera_171.dat
+            ../00inputs/filters/chimera_172.dat
+            ../00inputs/filters/chimera_173.dat
+            ../00inputs/filters/chimera_174.dat
+            ../00inputs/filters/chimera_175.dat
+            ../00inputs/filters/chimera_176.dat
+            ../00inputs/filters/chimera_177.dat
+            ../00inputs/filters/chimera_178.dat
+            ../00inputs/filters/chimera_179.dat
+            ../00inputs/filters/chimera_180.dat
+            ../00inputs/filters/chimera_181.dat
+            ../00inputs/filters/chimera_182.dat
+            ../00inputs/filters/chimera_183.dat
+            ../00inputs/filters/chimera_184.dat
+            ../00inputs/filters/chimera_185.dat
+            ../00inputs/filters/chimera_186.dat
+            ../00inputs/filters/chimera_187.dat
+            ../00inputs/filters/chimera_188.dat
+            ../00inputs/filters/chimera_189.dat
+            ../00inputs/filters/chimera_190.dat
+            ../00inputs/filters/chimera_191.dat
+            ../00inputs/filters/chimera_192.dat
+            ../00inputs/filters/chimera_193.dat
+            ../00inputs/filters/chimera_194.dat
+            ../00inputs/filters/chimera_195.dat
+            ../00inputs/filters/chimera_196.dat
+            ../00inputs/filters/chimera_197.dat
+            ../00inputs/filters/chimera_198.dat
+            ../00inputs/filters/chimera_199.dat
+            ../00inputs/filters/chimera_200.dat
+            ../00inputs/filters/chimera_201.dat
+            ../00inputs/filters/chimera_202.dat
+            ../00inputs/filters/chimera_203.dat
+            ../00inputs/filters/chimera_204.dat
+            ../00inputs/filters/chimera_205.dat
+            ../00inputs/filters/chimera_206.dat
+            ../00inputs/filters/chimera_207.dat
+            ../00inputs/filters/chimera_208.dat
+            ../00inputs/filters/chimera_209.dat
+            ../00inputs/filters/chimera_210.dat
+            ../00inputs/filters/chimera_211.dat
+            ../00inputs/filters/chimera_212.dat
+            ../00inputs/filters/chimera_213.dat
+            ../00inputs/filters/chimera_214.dat
+            ../00inputs/filters/chimera_215.dat
+            ../00inputs/filters/chimera_216.dat
+            ../00inputs/filters/chimera_217.dat
+            ../00inputs/filters/chimera_218.dat
+            ../00inputs/filters/chimera_219.dat
+            ../00inputs/filters/chimera_220.dat
+            ../00inputs/filters/chimera_221.dat
+            ../00inputs/filters/chimera_222.dat
+            ../00inputs/filters/chimera_223.dat
+            ../00inputs/filters/chimera_224.dat
+            ../00inputs/filters/chimera_225.dat
+            ../00inputs/filters/chimera_226.dat
+            ../00inputs/filters/chimera_227.dat
+            ../00inputs/filters/chimera_228.dat
+            ../00inputs/filters/chimera_229.dat
+            ../00inputs/filters/chimera_230.dat
+            ../00inputs/filters/chimera_231.dat
+            ../00inputs/filters/chimera_232.dat
+
+# The fitting function (3-element tuple with function name, module name,
+#  and path to module):
+# (Absolute path or relative path from loc_dir)
+func = hack BARTfunc ../../../BART/code/
+
+# List of molecules being fit:
+molfit = H2O CO
+
+# Temperature boundaries:
+Tmin =  501.0
+Tmax = 2499.0
+
+# The model fitting parameters:
+# The 'Mi' parameters are the log10 of an abundance scale factor:
+#      log(kappa)  log(g1) log(g2) alpha   beta  log(M1) log(M2) ...
+parnames = T(K)  R$_p$   log$P_{cloud}$  scattering  logH$_2$O logCO
+params   = 1300  71492.0    0.0             0.0         0.0     0.0
+pmin     = 1000  50000.0   -7.5            -1.0        -6.0    -6.0
+pmax     = 2499 128000.0    1.5             1.0         5.0     5.0
+stepsize =  100   5000.0    0.5             0.0         1.0     1.0
+
+# Total number of MCMC samples (burn-in + final MCMC):
+numit       = 1e5
+# Number of parallel MCMC chains (= number of processors):
+nchains     = 10
+# Number of burn-in iterations per chain:
+burnin      = 5000
+# MCMC algorithm ('demc' for Differential Evolution or 'mrw' for 
+#  Metropolis Random Walk with Gaussian proposals):
+walk        = snooker
+# Perform a least-square fit before the MCMC:
+leastsq     = False
+# Scale data uncertainties to enforce reduced chi-square == 1:
+chisqscale  = False
+# Perform the Gelman-Rubin convergence test along the MCMC:
+grtest      = True
+grexit      = False
+# Use MPI for parallel processing:
+mpi         = True
+# Filename to store the model fit for each MCMC evaluation:
+savemodel   = band_eclipse.npy
+# Make plots:
+plots       = True
+# MCMC log file:
+logfile     = MCMC.log
+
+# Verbosity level (0--20):
+verb = 1
+
+# Transit variables ::::::::::::::::::::::::::::::::::::::::::::::::::
+# Output transit configuration file name:
+tconfig = config_transit.cfg
+
+# Transit line information (TLI) file:
+linedb = ../00inputs/TLI/H2O_CO_0.48-12um.tli
+# Collision induced absorption file:
+csfile    = ../../../BART/modules/transit/inputs/CIA_H2H2_1000-7000K.dat
+            ../00inputs/CIA_HITRAN_H2He_0200-9900K_0.5-500um.dat
+
+# Scattering - log10(kappa_ray), where 0=solar-composition H2
+scattering = 0.0
+# Pressure of top of cloud
+cloudtop   = 0.0
+
+# Spectrum's lower wavelength boundary (alternatively, use wnhigh):
+wllow  = 0.5
+# Spectrum's higher wavelength boundary (alternatively, use wnlow):
+wlhigh = 10.1
+# Wavelength unit conversion to cm (default: 1e-4, microns):
+wlfct   = 1e-4
+# Wavenumber sampling interval:
+wndelt  = 0.1
+# Wavenumber oversampling factor:
+wnosamp = 1680
+# Wavenumber unit conversion to cm-1 (default: 1.0, inverse centimeters):
+wnfct = 1.0
+
+# Eclipe or transit observing geometry:
+solution = transit
+# Maximum optical depth to calculate:
+toomuch = 10.0
+# Number of HWHM:
+nwidth = 20
+
+# Planetary surface gravity (cm/s^2):
+gsurf = 2325.73922
+# Reference pressure and radius level (surface-ish) where p(r0) = p0:
+refpress  = 10.0
+
+# Set the star radius
+starrad = 0.781
+
+# Opacity lines' strength threshold:
+ethresh = 1e-50
+
+# Opacity-grid temperature lower boundary (in Kelvin):
+tlow   =  500
+# Opacity-grid temperature higher boundary (in Kelvin):
+thigh  = 2500
+# Opacity-grid temperature sampling interval (in Kelvin):
+tempdelt = 100
+# Opacity-grid file name:
+opacityfile = opacity_hjclear-model0.dat
+
+# Output spectrum file name:
+outspec    = ./transit_out.dat
+# Output file with the radius where the optical depth reached toomuch:
+outtoomuch = ./transit_toom.dat
+# Output file with the samplings info:
+outsample  = ./transit_samp.dat
+outflux    = ./transit_flux.dat

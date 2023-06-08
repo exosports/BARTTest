@@ -1,0 +1,52 @@
+[Parameters]
+# Multiple-value arguments can be set separated either by a white space or
+# a line break.
+
+# This is the list (and source) of the currently supported Line Lists:
+# Partridge and Schwenke (H2O):
+#   - http://kurucz.harvard.edu/molecules/h2o/h2ofastfix.bin
+# HITRAN and HITEMP:
+#   - http://www.cfa.harvard.edu/hitran/
+# Schwenke (TiO):
+#   - http://kurucz.harvard.edu/molecules/tio/tioschwenke.bin
+
+# With the correspoding partition functions:
+#   - http://kurucz.harvard.edu/molecules/h2o/h2opartfn.dat
+#   - Total Internal Partition Sums (TIPS) *
+#   - http://kurucz.harvard.edu/molecules/tio/tiopart.dat
+# (*): Transit incorporates a modified version of the TIPS code
+
+
+# Path(s) to the database linelists:
+db_list  = ../00inputs/par/H2O_exomol_pokazatel_0.24-500.0um_100-3500K_threshold_0.01_lbl.dat
+           ../00inputs/par/CO2_exomol_ucl4000_0.5-500.0um_100-3500K_threshold_0.01_lbl.dat
+           ../00inputs/par/06_HITEMP2020.par
+           ../00inputs/par/05_HITEMP2019.par
+           ../00inputs/par/45_hit12.par
+
+# Path(s) to the partition function files:
+part_list = ../00inputs/par/PF_exomol_H2O.dat
+            ../00inputs/par/PF_exomol_CO2.dat
+            ../../../BART/modules/transit/pylineread/src/fortran/lib/TIPS_BART
+            ../../../BART/modules/transit/pylineread/src/fortran/lib/TIPS_BART
+            ../../../BART/modules/transit/pylineread/src/fortran/lib/TIPS_BART
+
+# Type of each input database:
+#   hit:  hitran and hitemp
+#   ps:   Partridge and Schwenke H2O
+#   ts:   Schwenke TiO 
+dbtype = repack repack hit hit hit
+
+# Output TLI filename:
+output = ../00inputs/TLI/ExoMol-H2O-CO2_HITEMP-CH4-CO-H2_1-36um.tli
+
+# Initial wavelength in microns:
+iwav   = 1.0
+
+# Final wavelength in microns:
+fwav   = 36.0
+
+# Verbosity level (0 -- 20):
+verb   = 1
+
+ncores = 2
